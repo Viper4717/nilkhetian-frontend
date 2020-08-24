@@ -1,0 +1,33 @@
+.btn-custom {
+    background-color: #ffa500 !important;
+    color: white !important;
+}
+
+.btn-custom:hover {
+    background-color: #ffa500 !important;
+    color: black !important;
+}
+
+.navbar-brand{
+    padding-left: 15px;
+}
+
+.nav-link:hover{
+    color: #ffa500 !important;
+}
+
+.navbar-text{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.iconText{
+    padding: 5px;
+    display: inline-block;
+}
+
+@media screen and (min-width: 720px){
+    .iconText{
+        display: none;
+    }
+}
