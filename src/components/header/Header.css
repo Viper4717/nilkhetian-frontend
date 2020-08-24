@@ -1,3 +1,7 @@
+.navbar-brand{
+    padding-left: 15px;
+}
+
 .btn-custom {
     background-color: #ffa500 !important;
     color: white !important;
@@ -8,12 +12,12 @@
     color: black !important;
 }
 
-.navbar-brand{
-    padding-left: 15px;
-}
-
 .nav-link:hover{
     color: #ffa500 !important;
+}
+
+.navbar-collapse{
+    flex-grow: 0 !important;
 }
 
 .navbar-text{
@@ -26,8 +30,20 @@
     display: inline-block;
 }
 
-@media screen and (min-width: 720px){
+@media screen and (min-width: 768px){
+    .mobileBrand{
+        display: none !important;
+    }
     .iconText{
         display: none;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .webBrand{
+        display: none !important;
+    }
+    .mobileBrand{
+        display: contents !important;
     }
 }
