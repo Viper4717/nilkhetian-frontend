@@ -9,7 +9,7 @@ function Header() {
   return (
     <div>
       <Navbar className="shadow-sm p-1 justify-content-between" expand="md" sticky="top">
-        <Container>
+        <Container className="parentContainer">
           <Navbar.Brand className="webBrand" href="#home">
             <img
               src={HeaderLogo}
@@ -26,7 +26,7 @@ function Header() {
               alt="Nilkhetian Mobile Logo"
             />
           </Navbar.Brand>
-          <Form inline>
+          <Form className="searchBar">
             <div style={{display: "flex", flexDirection: "row"}}>
               <FormControl type="text" placeholder="Search Products" className="mr-sm-2" />
               <Button variant="custom" size='sm'>

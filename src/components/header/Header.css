@@ -1,3 +1,16 @@
+.parentContainer{
+    position: relative !important;
+}
+
+.searchBar{
+    position: absolute !important;
+    left: 30%;
+    right: 70%;
+    top: 15%;
+    margin: auto;
+    width: 50% !important;
+}
+
 .btn-custom {
     background-color: #ffa500 !important;
     color: white !important;
@@ -36,5 +49,11 @@
     }
     .mobileBrand{
         display: contents !important;
+    }
+    .searchBar{
+        position: relative !important;
+        width: 65% !important;
+        left: 0;
+        right: 0;
     }
 }
