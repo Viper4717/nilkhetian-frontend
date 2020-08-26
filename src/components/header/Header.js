@@ -7,49 +7,47 @@ import './Header.css';
 
 function Header() {
   return (
-    <div>
-      <Navbar className="shadow-sm p-1 justify-content-between" expand="md" sticky="top">
-        <Container className="parentContainer">
-          <Navbar.Brand className="webBrand" href="#home">
-            <img
-              src={HeaderLogo}
-              width="180"
-              height="40"
-              alt="Nilkhetian Logo"
-            />
-          </Navbar.Brand>
-          <Navbar.Brand className="mobileBrand" href="#home">
-            <img
-              src={MobileHeaderLogo}
-              width="50"
-              height="50"
-              alt="Nilkhetian Mobile Logo"
-            />
-          </Navbar.Brand>
-          <Form className="searchBar">
-            <div style={{display: "flex", flexDirection: "row"}}>
-              <FormControl type="text" placeholder="Search Products" className="mr-sm-2" />
-              <Button variant="custom" size='sm'>
-                <CgSearch size='2em'/>
-              </Button>
-            </div>
-          </Form>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav" >
-            <Nav>
-              <Nav.Link href="#home">
-                <CgProfile size='2em'/>
-                <h5 className="iconText">Profile</h5>
-              </Nav.Link>
-              <Nav.Link href="#home">
-                <CgShoppingCart size='2em'/>
-                <h5 className="iconText">Cart</h5>
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
+    <Navbar className="shadow-sm p-1 justify-content-between" bg="light" expand="md" sticky="top">
+      <Container className="parentContainer">
+        <Navbar.Brand className="webBrand" href="#home">
+          <img
+            src={HeaderLogo}
+            width="180"
+            height="40"
+            alt="Nilkhetian Logo"
+          />
+        </Navbar.Brand>
+        <Navbar.Brand className="mobileBrand" href="#home">
+          <img
+            src={MobileHeaderLogo}
+            width="50"
+            height="50"
+            alt="Nilkhetian Mobile Logo"
+          />
+        </Navbar.Brand>
+        <Form className="searchBar">
+          <div style={{display: "flex", flexDirection: "row"}}>
+            <FormControl type="text" placeholder="Search Products" className="mr-sm-2" />
+            <Button variant="custom" size='sm'>
+              <CgSearch size='2em'/>
+            </Button>
+          </div>
+        </Form>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav" >
+          <Nav>
+            <Nav.Link href="#home">
+              <CgProfile size='2em'/>
+              <h5 className="iconText">Profile</h5>
+            </Nav.Link>
+            <Nav.Link href="#home">
+              <CgShoppingCart size='2em'/>
+              <h5 className="iconText">Cart</h5>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
 
