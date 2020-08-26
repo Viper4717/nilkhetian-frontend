@@ -13,12 +13,12 @@
 
 .btn-custom {
     background-color: #ffa500 !important;
-    color: white !important;
+    color: black !important;
 }
 
 .btn-custom:hover {
-    background-color: #ffa500 !important;
-    color: black !important;
+    background-color: #e59010 !important;
+    color: white !important;
 }
 
 .nav-link:hover{
