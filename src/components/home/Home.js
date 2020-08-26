@@ -93,8 +93,9 @@ function Home() {
                 {book.bookStoreName}
               </Card.Title>
               <Card.Text className="bookPrice">
-                {book.price}
+                {book.price} ৳
               </Card.Text>
+              <Button className="addToCartButton" variant="custom"> Add to Cart </Button>
             </Card>
           ))}
         </CardGroup>

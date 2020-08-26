@@ -81,7 +81,7 @@
 }
 .bookCard{
     padding: 15px;
-    height: 350px;
+    height: 420px;
 }
 .bookTitle{
     text-align: left;
@@ -112,6 +112,10 @@
     text-align: left;
     font-size: 1em !important;
     font-weight: 400 !important;
+}
+.addToCartButton{
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
 }
 
 @media screen and (max-width: 768px){
