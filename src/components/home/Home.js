@@ -45,7 +45,7 @@ function Home() {
 
   return (
     <Container fluid="md" className="parentContainer">
-      <div>
+      <div className="whiteDiv">
         <img className="mobileTopBanner" src={MobileTopBanner}/>
         <Card className="siteBanner">
           <Card.Img className="bannerImage" src={WebsiteBanner} alt="Site Banner"/>
@@ -102,17 +102,9 @@ function Home() {
           ))}
         </CardGroup>
       </div>
-      <div>
+      <div className="whiteDiv">
         <Card className="midBanner">
           <Card.Img className="midBannerImage" src={MidBanner} alt="Site Banner"/>
-          <Card.ImgOverlay className="midBannerOverlay">
-            <Card.Text className="midBannerText">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Aliquam purus sem, tristique in malesuada nec, laoreet nec 
-              erat. Proin vel arcu et metus feugiat dignissim convallis 
-              eu dolor.
-            </Card.Text>
-          </Card.ImgOverlay>
         </Card>
       </div>
       <div className="cardDeck">
@@ -148,17 +140,9 @@ function Home() {
           ))}
         </CardGroup>
       </div>
-      <div>
+      <div className="whiteDiv">
         <Card className="midBanner">
           <Card.Img className="midBannerImage" src={MidBanner2} alt="Site Banner"/>
-          <Card.ImgOverlay className="midBannerRightOverlay">
-            <Card.Text className="midBannerRightText">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Aliquam purus sem, tristique in malesuada nec, laoreet nec 
-              erat. Proin vel arcu et metus feugiat dignissim convallis
-              eu dolor.
-            </Card.Text>
-          </Card.ImgOverlay>
         </Card>
       </div>
       <div className="finalCardDeck">
