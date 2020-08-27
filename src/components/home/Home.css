@@ -60,6 +60,10 @@
 .cardDeck{
     margin-top: 30px;
 }
+.finalCardDeck{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
 .cardDeckHeader{
     display: flex;
     justify-content: space-between;
@@ -95,12 +99,13 @@
 }
 .bookCoverBg{
     height: 200px;
-    background-color: black;
+    background-color: white;
     overflow: hidden;
 }
 .bookCover{
-    max-height: 100%;
     max-width: 50%;
+    max-height: auto;
+    object-fit: contain;
 }
 .bookStoreTitle{
     margin-top: 0.75rem;
@@ -117,7 +122,34 @@
     font-size: 1.1em !important;
     font-weight: 600 !important;
 }
-
+.midBanner{
+    margin-top: 15px;
+    position: relative;
+}
+.midBannerOverlay{
+    width: 40%;
+    height: fit-content;
+    right: auto !important;
+}
+.midBannerText{
+    position: absolute;
+    text-align: right;
+    font-size: 1.7em !important;
+    font-weight: 400 !important;
+    padding: 40px;
+}
+.midBannerRightOverlay{
+    width: 40%;
+    height: fit-content;
+    left: auto !important;
+}
+.midBannerRightText{
+    position: absolute;
+    text-align: left;
+    font-size: 1.7em !important;
+    font-weight: 400 !important;
+    padding: 40px;
+}
 @media screen and (max-width: 768px){
     .parentContainer{
         padding-right: 0px !important;
@@ -158,5 +190,51 @@
     }
     .moreButton{
         margin-right: 15px;
+    }
+    .bookCardGroup{
+        padding: 15px;
+    }
+    .bookCard{
+        padding: 15px;
+        height: 50%;
+        width: 50%;
+        display: inline-block !important;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .bookTitle{
+        text-align: left;
+        font-size: 0.9em !important;
+        font-weight: 400 !important;
+        margin-bottom: 0.2rem !important;
+    }
+    .author{
+        text-align: left;
+        font-size: 0.7em !important;
+        font-weight: 400 !important;
+        margin-bottom: 0.5rem;
+    }
+    .bookCoverBg{
+        height: 50%;
+        background-color: white;
+        overflow: hidden;
+    }
+    .bookStoreTitle{
+        margin-top: 0.5rem;
+        margin-bottom: 0.2rem !important;
+        text-align: left;
+        font-size: 0.9em !important;
+        font-weight: 400 !important;
+    }
+    .bookPrice{
+        text-align: left;
+        font-size: 0.7em !important;
+        font-weight: 400 !important;
+        margin-bottom: 0.5rem;
+    }
+    .addToCartButton{
+        font-size: 0.8em !important;
+        font-weight: 600 !important;
+        width: 100%;
     }
 }
