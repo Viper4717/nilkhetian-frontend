@@ -86,30 +86,40 @@
 }
 .bookCard{
     padding: 15px;
-    height: 420px;
+    height: 500px;
 }
-.bookTitle{
-    text-align: left;
-    font-size: 1.2em !important;
-    font-weight: 600 !important;
-}
-.author{
-    text-align: left;
-    font-size: 1em !important;
-    font-weight: 400 !important;
+.bookCardDiv{
+    height: 500px;
+    position: relative;
 }
 .bookCoverBg{
-    height: 200px;
+    height: 190px;
     background-color: white;
     overflow: hidden;
 }
 .bookCover{
     max-width: 50%;
-    max-height: auto;
+    max-height: 100%;
     object-fit: contain;
 }
+.bookDetailsBg{
+    height: 225px;
+    background-color: white;
+    overflow: hidden;
+}
+.bookTitle{
+    text-align: left;
+    font-size: 1.2em !important;
+    font-weight: 600 !important;
+    margin-top: 15px;
+}
+.author{
+    text-align: left;
+    font-size: 1em !important;
+    font-weight: 400 !important;
+    color: #82878b;
+}
 .bookStoreTitle{
-    margin-top: 0.75rem;
     text-align: left;
     font-size: 1.2em !important;
     font-weight: 600 !important;
@@ -122,6 +132,12 @@
 .addToCartButton{
     font-size: 1.1em !important;
     font-weight: 600 !important;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
 }
 .midBanner{
     margin-top: 15px;
@@ -182,46 +198,42 @@
         padding: 15px;
     }
     .bookCard{
-        padding: 15px;
         height: 50%;
         width: 50%;
         display: inline-block !important;
-        white-space: nowrap;
         overflow: hidden;
     }
+    .bookCardDiv{
+        height: 250px;
+    }
+    .bookCoverBg{
+        height: 95px;
+    }
+    .bookDetailsBg{
+        height: 112.5px;
+    }
     .bookTitle{
-        text-align: left;
-        font-size: 0.9em !important;
+        font-size: 0.7em !important;
         font-weight: 400 !important;
         margin-bottom: 0.2rem !important;
     }
     .author{
-        text-align: left;
-        font-size: 0.7em !important;
+        font-size: 0.5em !important;
         font-weight: 400 !important;
         margin-bottom: 0.5rem;
     }
-    .bookCoverBg{
-        height: 50%;
-        background-color: white;
-        overflow: hidden;
-    }
     .bookStoreTitle{
-        margin-top: 0.5rem;
-        margin-bottom: 0.2rem !important;
-        text-align: left;
-        font-size: 0.9em !important;
+        font-size: 0.7em !important;
         font-weight: 400 !important;
+        margin-bottom: 0.2rem !important;
     }
     .bookPrice{
-        text-align: left;
-        font-size: 0.7em !important;
+        font-size: 0.5em !important;
         font-weight: 400 !important;
         margin-bottom: 0.5rem;
     }
     .addToCartButton{
-        font-size: 0.8em !important;
+        font-size: 0.7em !important;
         font-weight: 600 !important;
-        width: 100%;
     }
 }

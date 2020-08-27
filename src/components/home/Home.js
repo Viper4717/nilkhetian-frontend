@@ -82,22 +82,26 @@ function Home() {
         <CardGroup className="bookCardGroup">
           {topCategory.map((book) => (
             <Card className="bookCard">
-              <Card.Title className="bookTitle">
-                {book.bookName}
-              </Card.Title>
-              <Card.Text className="author">
-                {book.author}
-              </Card.Text>
-              <div className="bookCoverBg">
-                <Card.Img className="bookCover" src={book.imgPath} alt="Book Image"/>
+              <div className="bookCardDiv">
+                <div className="bookCoverBg">
+                  <Card.Img className="bookCover" src={book.imgPath} alt="Book Image"/>
+                </div>
+                <div className="bookDetailsBg">
+                  <Card.Title className="bookTitle">
+                    {book.bookName}
+                  </Card.Title>
+                  <Card.Text className="author">
+                    {book.author}
+                  </Card.Text>
+                  <Card.Title className="bookStoreTitle">
+                    {book.bookStoreName}
+                  </Card.Title>
+                  <Card.Text className="bookPrice">
+                    {book.price} ৳
+                  </Card.Text>
+                </div>
+                <Button className="addToCartButton" variant="custom"> Add to Cart </Button>
               </div>
-              <Card.Title className="bookStoreTitle">
-                {book.bookStoreName}
-              </Card.Title>
-              <Card.Text className="bookPrice">
-                {book.price} ৳
-              </Card.Text>
-              <Button className="addToCartButton" variant="custom"> Add to Cart </Button>
             </Card>
           ))}
         </CardGroup>
@@ -120,22 +124,26 @@ function Home() {
         <CardGroup className="bookCardGroup">
           {topCategory.map((book) => (
             <Card className="bookCard">
-              <Card.Title className="bookTitle">
-                {book.bookName}
-              </Card.Title>
-              <Card.Text className="author">
-                {book.author}
-              </Card.Text>
-              <div className="bookCoverBg">
-                <Card.Img className="bookCover" src={book.imgPath} alt="Book Image"/>
+              <div className="bookCardDiv">
+                <div className="bookCoverBg">
+                  <Card.Img className="bookCover" src={book.imgPath} alt="Book Image"/>
+                </div>
+                <div className="bookDetailsBg">
+                  <Card.Title className="bookTitle">
+                    {book.bookName}
+                  </Card.Title>
+                  <Card.Text className="author">
+                    {book.author}
+                  </Card.Text>
+                  <Card.Title className="bookStoreTitle">
+                    {book.bookStoreName}
+                  </Card.Title>
+                  <Card.Text className="bookPrice">
+                    {book.price} ৳
+                  </Card.Text>
+                </div>
+                <Button className="addToCartButton" variant="custom"> Add to Cart </Button>
               </div>
-              <Card.Title className="bookStoreTitle">
-                {book.bookStoreName}
-              </Card.Title>
-              <Card.Text className="bookPrice">
-                {book.price} ৳
-              </Card.Text>
-              <Button className="addToCartButton" variant="custom"> Add to Cart </Button>
             </Card>
           ))}
         </CardGroup>
@@ -158,22 +166,26 @@ function Home() {
         <CardGroup className="bookCardGroup">
           {topCategory.map((book) => (
             <Card className="bookCard">
-              <Card.Title className="bookTitle">
-                {book.bookName}
-              </Card.Title>
-              <Card.Text className="author">
-                {book.author}
-              </Card.Text>
-              <div className="bookCoverBg">
-                <Card.Img className="bookCover" src={book.imgPath} alt="Book Image"/>
+              <div className="bookCardDiv">
+                <div className="bookCoverBg">
+                  <Card.Img className="bookCover" src={book.imgPath} alt="Book Image"/>
+                </div>
+                <div className="bookDetailsBg">
+                  <Card.Title className="bookTitle">
+                    {book.bookName}
+                  </Card.Title>
+                  <Card.Text className="author">
+                    {book.author}
+                  </Card.Text>
+                  <Card.Title className="bookStoreTitle">
+                    {book.bookStoreName}
+                  </Card.Title>
+                  <Card.Text className="bookPrice">
+                    {book.price} ৳
+                  </Card.Text>
+                </div>
+                <Button className="addToCartButton" variant="custom"> Add to Cart </Button>
               </div>
-              <Card.Title className="bookStoreTitle">
-                {book.bookStoreName}
-              </Card.Title>
-              <Card.Text className="bookPrice">
-                {book.price} ৳
-              </Card.Text>
-              <Button className="addToCartButton" variant="custom"> Add to Cart </Button>
             </Card>
           ))}
         </CardGroup>
