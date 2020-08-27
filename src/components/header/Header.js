@@ -1,14 +1,14 @@
 import React from 'react';
-import { Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap';
-import HeaderLogo from '../../assets/nilkhetianLogoHeader.png'
-import MobileHeaderLogo from '../../assets/nilkhetianMobileLogoHeader.svg'
+import { Navbar, Nav, Form, FormControl, Button, Container} from 'react-bootstrap';
+import HeaderLogo from '../../assets/header/nilkhetianLogoHeader.png'
+import MobileHeaderLogo from '../../assets/header/nilkhetianMobileLogoHeader.svg'
 import { CgProfile, CgSearch, CgShoppingCart } from 'react-icons/cg';
 import './Header.css';
 
 function Header() {
   return (
-    <div>
-      <Navbar className="shadow-sm p-1 justify-content-between" expand="md" sticky="top">
+    <Navbar className="shadow-sm p-1 justify-content-between" bg="light" expand="md" sticky="top">
+      <Container className="parentContainer">
         <Navbar.Brand className="webBrand" href="#home">
           <img
             src={HeaderLogo}
@@ -25,7 +25,7 @@ function Header() {
             alt="Nilkhetian Mobile Logo"
           />
         </Navbar.Brand>
-        <Form inline>
+        <Form className="searchBar">
           <div style={{display: "flex", flexDirection: "row"}}>
             <FormControl type="text" placeholder="Search Products" className="mr-sm-2" />
             <Button variant="custom" size='sm'>
@@ -46,8 +46,8 @@ function Header() {
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
-      </Navbar>
-    </div>
+      </Container>
+    </Navbar>
   );
 }
 
