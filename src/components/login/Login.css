@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+h4{
+    color: #054575;
+    text-align: center;
+    font-size: 1.5em !important;
+    font-weight: 600 !important;
+    margin-top: 20px !important;
+}
+.formDiv{
+    margin-top: 20px !important;
+    width: 70%;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+text{
+    font-weight: 600 !important;
+}
+.createAccount{
+    color: #e59010;
+    font-weight: 600 !important;
+}
+
+@media screen and (max-width: 768px){
+    .parentContainer{
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+    }
+    .formDiv{
+        width: 80%;
+    }
+}

@@ -96,6 +96,7 @@
     height: 190px;
     background-color: white;
     overflow: hidden;
+    text-align: center;
 }
 .bookCover{
     max-width: 50%;
@@ -150,6 +151,7 @@
     }
     .whiteDiv{
         background-color: white;
+        text-align: center;
     }
     .mobileTopBanner{
         display: block;
