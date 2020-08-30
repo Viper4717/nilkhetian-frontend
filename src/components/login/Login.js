@@ -1,11 +1,11 @@
 import React from 'react';
 import './Login.css'
-import { Form, Container } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 
 function Login() {
   return (
     <Container fluid="md" className="parentContainer">
-        <h4>
+        <h4 className="signInText">
             Sign in
         </h4>
         <div className="formDiv">
@@ -19,8 +19,18 @@ function Login() {
                     <Form.Control type="password" placeholder="Enter password" />
                 </Form.Group>
             </Form>
-            <text> Don't have an account? </text>
+            <text className="accountText"> Don't have an account? </text>
             <a className="createAccount" href="#"> Create an account. </a>
+            <div className="signInButtonnOverlay">
+                <Button className="signInButtonnWeb" variant="custom">
+                    Sign In
+                </Button>
+            </div>
+            <div className="signInMobileOverlay">
+                <Button className="signInButtonnMobile" variant="custom">
+                    Sign In
+                </Button>
+            </div>
         </div>
     </Container>
   );

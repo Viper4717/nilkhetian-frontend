@@ -29,6 +29,9 @@
     flex-grow: 0 !important;
 }
 
+.collapsedNavbar{
+    text-align: center;
+}
 .iconText{
     padding: 5px;
     display: inline-block;

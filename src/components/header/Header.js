@@ -34,7 +34,7 @@ function Header() {
           </div>
         </Form>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" >
+        <Navbar.Collapse className="collapsedNavbar" id="basic-navbar-nav" >
           <Nav>
             <Nav.Link href="#home">
               <CgProfile size='2em'/>
