@@ -20,7 +20,7 @@ function Login() {
                 </Form.Group>
             </Form>
             <text className="accountText"> Don't have an account? </text>
-            <a className="createAccount" href="#"> Create an account. </a>
+            <a className="createAccount" href="/registration"> Create an account. </a>
             <div className="signInButtonnOverlay">
                 <Button className="signInButtonnWeb" variant="custom">
                     Sign In
