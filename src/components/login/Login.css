@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+.signInText{
+    color: #054575;
+    text-align: center;
+    font-size: 1.5em !important;
+    font-weight: 600 !important;
+    margin-top: 20px !important;
+}
+.formDiv{
+    margin-top: 20px !important;
+    width: 70%;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.accountText{
+    font-weight: 600 !important;
+}
+.createAccount{
+    color: #e59010;
+    font-weight: 600 !important;
+}
+.signInButtonnOverlay{
+    display: flex;
+    height: fit-content;
+    justify-content: flex-end;
+}
+.signInMobileOverlay{
+    display: none;
+}
+.signInButtonnMobile{
+    width: 70%;
+}
+
+@media screen and (max-width: 768px){
+    .formDiv{
+        width: 80%;
+    }
+    .accountText{
+        display: block;
+    }
+    .signInButtonnOverlay{
+        display: none;
+    }
+    .signInMobileOverlay{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+}

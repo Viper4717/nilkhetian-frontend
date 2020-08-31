@@ -9,7 +9,7 @@ function Header() {
   return (
     <Navbar className="shadow-sm p-1 justify-content-between" bg="light" expand="md" sticky="top">
       <Container className="parentContainer">
-        <Navbar.Brand className="webBrand" href="#home">
+        <Navbar.Brand className="webBrand" href="/">
           <img
             src={HeaderLogo}
             width="180"
@@ -17,7 +17,7 @@ function Header() {
             alt="Nilkhetian Logo"
           />
         </Navbar.Brand>
-        <Navbar.Brand className="mobileBrand" href="#home">
+        <Navbar.Brand className="mobileBrand" href="/">
           <img
             src={MobileHeaderLogo}
             width="50"
@@ -34,13 +34,13 @@ function Header() {
           </div>
         </Form>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" >
+        <Navbar.Collapse className="collapsedNavbar" id="basic-navbar-nav" >
           <Nav>
-            <Nav.Link href="#home">
+            <Nav.Link href="/login">
               <CgProfile size='2em'/>
               <h5 className="iconText">Profile</h5>
             </Nav.Link>
-            <Nav.Link href="#home">
+            <Nav.Link href="/cart">
               <CgShoppingCart size='2em'/>
               <h5 className="iconText">Cart</h5>
             </Nav.Link>
