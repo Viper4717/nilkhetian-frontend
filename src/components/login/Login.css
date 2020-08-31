@@ -34,10 +34,6 @@
 }
 
 @media screen and (max-width: 768px){
-    .parentContainer{
-        padding-right: 0px !important;
-        padding-left: 0px !important;
-    }
     .formDiv{
         width: 80%;
     }
