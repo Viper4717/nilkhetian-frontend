@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
+.smallHeight{
+    padding-top: 50px;
+    padding-bottom: 50px !important;
+    min-height: 100vh;
+}
 .signInText{
     color: #054575;
     text-align: center;
@@ -22,6 +27,7 @@
     font-weight: 600 !important;
 }
 .signInButtonnOverlay{
+    margin-top: 50px;
     display: flex;
     height: fit-content;
     justify-content: flex-end;
@@ -29,8 +35,15 @@
 .signInMobileOverlay{
     display: none;
 }
+.signInButtonnWeb{
+    width: 20%;
+    font-size: 1.3em !important;
+    font-weight: 600 !important;
+}
 .signInButtonnMobile{
     width: 70%;
+    font-size: 1.2em !important;
+    font-weight: 600 !important;
 }
 
 @media screen and (max-width: 768px){
@@ -46,6 +59,6 @@
     .signInMobileOverlay{
         display: flex;
         justify-content: center;
-        margin-top: 20px;
+        margin-top: 50px;
     }
 }
