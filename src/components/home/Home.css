@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
+.padBottomContainer{
+    padding-bottom: 30px !important;
+}
 .mobileTopBanner{
     width: 100%;
     padding: 15px;
@@ -58,88 +61,6 @@
     font-size: 1.3em !important;
     font-weight: 400 !important;
 }
-.cardDeck{
-    margin-top: 30px;
-}
-.finalCardDeck{
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-.cardDeckHeader{
-    display: flex;
-    justify-content: space-between;
-}
-.cardDeckTitle{
-    color: #054575;
-    display: inline-block;
-    font-size: 2em !important;
-    font-family: 'Staatliches', cursive;
-    font-weight: 500 !important;
-}
-.moreButtonText{
-    font-size: 1.2em;
-    font-weight: 400;
-    margin-right: 5px;
-}
-.moreButton{
-    color: #054575;
-}
-.bookCard{
-    padding: 15px;
-    height: 500px;
-}
-.bookCardDiv{
-    height: 500px;
-    position: relative;
-}
-.bookCoverBg{
-    height: 190px;
-    background-color: white;
-    overflow: hidden;
-    text-align: center;
-}
-.bookCover{
-    max-width: 50%;
-    max-height: 100%;
-    object-fit: contain;
-}
-.bookDetailsBg{
-    height: 225px;
-    background-color: white;
-    overflow: hidden;
-}
-.bookTitle{
-    text-align: left;
-    font-size: 1.2em !important;
-    font-weight: 600 !important;
-    margin-top: 15px;
-}
-.author{
-    text-align: left;
-    font-size: 1em !important;
-    font-weight: 400 !important;
-    color: #82878b;
-}
-.bookStoreTitle{
-    text-align: left;
-    font-size: 1.2em !important;
-    font-weight: 600 !important;
-}
-.bookPrice{
-    text-align: left;
-    font-size: 1em !important;
-    font-weight: 400 !important;
-}
-.addToCartButton{
-    font-size: 1.1em !important;
-    font-weight: 600 !important;
-    width: 100%;
-    position: absolute;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    margin: auto;
-}
 .midBanner{
     margin-top: 15px;
     position: relative;
@@ -148,6 +69,9 @@
     .parentContainer{
         padding-right: 0px !important;
         padding-left: 0px !important;
+    }
+    .padBottomContainer{
+        padding-bottom: 0px !important;
     }
     .whiteDiv{
         background-color: white;
@@ -178,64 +102,5 @@
     }
     .exploreButtonMobile{
         display: inline-block !important;
-    }
-    .cardDeck{
-        margin-top: 15px;
-    }
-    .finalCardDeck{
-        margin-top: 15px;
-        margin-bottom: 30px;
-    }
-    .cardDeckTitle{
-        font-size: 1.5em !important;
-        margin-left: 15px;
-    }
-    .moreButtonText{
-        font-size: 1em;
-    }
-    .moreButton{
-        margin-right: 15px;
-    }
-    .bookCardGroup{
-        padding: 15px;
-    }
-    .bookCard{
-        height: 50%;
-        width: 50%;
-        display: inline-block !important;
-        overflow: hidden;
-    }
-    .bookCardDiv{
-        height: 250px;
-    }
-    .bookCoverBg{
-        height: 95px;
-    }
-    .bookDetailsBg{
-        height: 112.5px;
-    }
-    .bookTitle{
-        font-size: 0.7em !important;
-        font-weight: 400 !important;
-        margin-bottom: 0.2rem !important;
-    }
-    .author{
-        font-size: 0.5em !important;
-        font-weight: 400 !important;
-        margin-bottom: 0.5rem;
-    }
-    .bookStoreTitle{
-        font-size: 0.7em !important;
-        font-weight: 400 !important;
-        margin-bottom: 0.2rem !important;
-    }
-    .bookPrice{
-        font-size: 0.5em !important;
-        font-weight: 400 !important;
-        margin-bottom: 0.5rem;
-    }
-    .addToCartButton{
-        font-size: 0.7em !important;
-        font-weight: 600 !important;
     }
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Home.css'
+import FeaturedProducts from './FeaturedProducts'
 import WebsiteBanner from '../../assets/home/websiteBanner.jpg'
 import MidBanner from '../../assets/home/midBanner.jpg'
 import MidBanner2 from '../../assets/home/midBanner2.jpg'
@@ -8,8 +9,7 @@ import Himu from '../../assets/home/himuRimande.jpg'
 import AmiEbongAmra from '../../assets/home/amiEbongAmra.jpg'
 import AngelsAndDemons from '../../assets/home/angelsAndDemons.jpg'
 import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg'
-import { Button, Container, Card, CardGroup } from 'react-bootstrap';
-import {RiArrowRightCircleFill} from 'react-icons/ri'
+import { Button, Container, Card } from 'react-bootstrap';
 
 function Home() {
   const [topCategory, setTopCategory] = useState([
@@ -44,7 +44,7 @@ function Home() {
   ])
 
   return (
-    <Container fluid="md" className="parentContainer">
+    <Container fluid="md" className="parentContainer padBottomContainer">
       <div className="whiteDiv">
         <img className="mobileTopBanner" src={MobileTopBanner}/>
         <Card className="siteBanner">
@@ -69,127 +69,19 @@ function Home() {
           EXPLORE NOW
         </Button>
       </div>
-      <div className="cardDeck">
-        <div className="cardDeckHeader">
-          <h4 className="cardDeckTitle"> Top Category </h4>
-          <div>
-            <text className="moreButtonText">More</text>
-              <a className="moreButton" href='#'>
-                <RiArrowRightCircleFill size='2em'/>
-              </a>
-          </div>
-        </div>
-        <CardGroup className="bookCardGroup">
-          {topCategory.map((book) => (
-            <Card className="bookCard">
-              <div className="bookCardDiv">
-                <div className="bookCoverBg">
-                  <Card.Img className="bookCover" src={book.imgPath} alt="Book Image"/>
-                </div>
-                <div className="bookDetailsBg">
-                  <Card.Title className="bookTitle">
-                    {book.bookName}
-                  </Card.Title>
-                  <Card.Text className="author">
-                    {book.author}
-                  </Card.Text>
-                  <Card.Title className="bookStoreTitle">
-                    {book.bookStoreName}
-                  </Card.Title>
-                  <Card.Text className="bookPrice">
-                    {book.price} ৳
-                  </Card.Text>
-                </div>
-                <Button className="addToCartButton" variant="custom"> Add to Cart </Button>
-              </div>
-            </Card>
-          ))}
-        </CardGroup>
-      </div>
+      <FeaturedProducts cardDeckTitle="Top Category" topCategory={topCategory}/>
       <div className="whiteDiv">
         <Card className="midBanner">
           <Card.Img className="midBannerImage" src={MidBanner} alt="Site Banner"/>
         </Card>
       </div>
-      <div className="cardDeck">
-        <div className="cardDeckHeader">
-          <h4 className="cardDeckTitle"> Book Category </h4>
-          <div>
-            <text className="moreButtonText">More</text>
-              <a className="moreButton" href='#'>
-                <RiArrowRightCircleFill size='2em'/>
-              </a>
-          </div>
-        </div>
-        <CardGroup className="bookCardGroup">
-          {topCategory.map((book) => (
-            <Card className="bookCard">
-              <div className="bookCardDiv">
-                <div className="bookCoverBg">
-                  <Card.Img className="bookCover" src={book.imgPath} alt="Book Image"/>
-                </div>
-                <div className="bookDetailsBg">
-                  <Card.Title className="bookTitle">
-                    {book.bookName}
-                  </Card.Title>
-                  <Card.Text className="author">
-                    {book.author}
-                  </Card.Text>
-                  <Card.Title className="bookStoreTitle">
-                    {book.bookStoreName}
-                  </Card.Title>
-                  <Card.Text className="bookPrice">
-                    {book.price} ৳
-                  </Card.Text>
-                </div>
-                <Button className="addToCartButton" variant="custom"> Add to Cart </Button>
-              </div>
-            </Card>
-          ))}
-        </CardGroup>
-      </div>
+      <FeaturedProducts cardDeckTitle="Book Category" topCategory={topCategory}/>
       <div className="whiteDiv">
         <Card className="midBanner">
           <Card.Img className="midBannerImage" src={MidBanner2} alt="Site Banner"/>
         </Card>
       </div>
-      <div className="finalCardDeck">
-        <div className="cardDeckHeader">
-          <h4 className="cardDeckTitle"> Book Category </h4>
-          <div>
-            <text className="moreButtonText">More</text>
-              <a className="moreButton" href='#'>
-                <RiArrowRightCircleFill size='2em'/>
-              </a>
-          </div>
-        </div>
-        <CardGroup className="bookCardGroup">
-          {topCategory.map((book) => (
-            <Card className="bookCard">
-              <div className="bookCardDiv">
-                <div className="bookCoverBg">
-                  <Card.Img className="bookCover" src={book.imgPath} alt="Book Image"/>
-                </div>
-                <div className="bookDetailsBg">
-                  <Card.Title className="bookTitle">
-                    {book.bookName}
-                  </Card.Title>
-                  <Card.Text className="author">
-                    {book.author}
-                  </Card.Text>
-                  <Card.Title className="bookStoreTitle">
-                    {book.bookStoreName}
-                  </Card.Title>
-                  <Card.Text className="bookPrice">
-                    {book.price} ৳
-                  </Card.Text>
-                </div>
-                <Button className="addToCartButton" variant="custom"> Add to Cart </Button>
-              </div>
-            </Card>
-          ))}
-        </CardGroup>
-      </div>
+      <FeaturedProducts cardDeckTitle="Book Category" topCategory={topCategory}/>
     </Container>
   );
 }
