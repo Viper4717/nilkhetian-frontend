@@ -27,6 +27,11 @@
     font-weight: 600;
     color: #054575;
 }
+.invisibleFooterTitle{
+    font-size: 1.7em;
+    font-weight: 600;
+    color: #054575;     
+}
 .footerSecondaryTitle{
     font-size: 1.2em;
     font-weight: 600;
@@ -36,5 +41,28 @@
     .footerContainer{
         padding-right: 0px !important;
         padding-left: 0px !important;
+        flex-direction: column;
+    }
+    .footerLeft{
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+    .footerRight{
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+    .footerTop{
+        text-align: center;
+    }
+    .footerMiddle{
+        text-align: center;
+    }
+    .footerBottom{
+        text-align: center;
+    }
+    .invisibleFooterTitle{
+        display: none;
     }
 }

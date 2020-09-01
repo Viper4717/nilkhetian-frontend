@@ -16,13 +16,13 @@ function Footer() {
             <text>Is this even a legit address</text>
           </div>
           <div className="footerBottom">
-            <text>All Rights Reserved</text><br/>
-            <text>Nilkhetian © 2020</text>
+            <text>Logos will go here</text><br/>
+            <text>Logos will go here</text>
           </div>
         </div>
         <div className="footerRight">
           <div className="footerTop">
-            <text className="footerTitle"></text><br/>
+            <text className="invisibleFooterTitle"></text><br/>
             <text className="footerSecondaryTitle">Contact Us</text>
           </div>
           <div className="footerMiddle">
