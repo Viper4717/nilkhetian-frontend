@@ -4,9 +4,9 @@ import { Form, Button, Container } from 'react-bootstrap';
 
 function Login() {
   return (
-    <Container fluid="md" className="parentContainer">
+    <Container fluid="md" className="parentContainer smallHeight">
         <h4 className="signInText">
-            Sign in
+            Sign In
         </h4>
         <div className="formDiv">
             <Form>

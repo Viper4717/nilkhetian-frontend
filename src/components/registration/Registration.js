@@ -4,7 +4,7 @@ import { Form, Button, Container } from 'react-bootstrap';
 
 function Registration() {
   return (
-    <Container fluid="md" className="parentContainer">
+    <Container fluid="md" className="parentContainer smallHeight">
         <h4 className="signInText">
             Create Account
         </h4>
