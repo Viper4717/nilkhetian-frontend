@@ -1,0 +1,62 @@
+.storeHeader{
+    text-align: center;
+    font-weight: 600;
+    color: #054575;
+}
+.topButtonDiv{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+.bookCategoryButton{
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+    padding: 10px 20px 10px 20px !important;
+}
+.storeCard{
+    padding: 15px;
+    height: 425px;
+    width: calc(30% - 20px);
+}
+.storeCardDiv{
+    height: 425px;
+    position: relative;
+}
+.storeTitle{
+    text-align: left;
+    font-size: 1.2em !important;
+    font-weight: 600 !important;
+}
+.storeCoverBg{
+    height: 200px;
+    background-color: white;
+    overflow: hidden;
+    text-align: center;
+}
+.storeCover{
+    max-width: 100%;
+    max-height: auto;
+    object-fit: contain;
+}
+.storeDetailsBg{
+    height: 120px;
+    padding: 10px;
+    background-color: white;
+    overflow: hidden;
+}
+.storeDetails{
+    text-align: left;
+    font-size: 1em !important;
+    font-weight: 400 !important;
+}
+.visitStoreButton{
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+}
