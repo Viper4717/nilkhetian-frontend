@@ -7,12 +7,6 @@
     height: 425px;
     position: relative;
 }
-.storeTitle{
-    text-align: left;
-    font-size: 1.2em !important;
-    font-weight: 600 !important;
-    color: #054575;
-}
 .storeCoverBg{
     height: 200px;
     background-color: white;
@@ -25,10 +19,18 @@
     object-fit: contain;
 }
 .storeDetailsBg{
-    height: 120px;
-    padding: 10px;
+    height: 195px;
     background-color: white;
     overflow: hidden;
+    position: relative;
+}
+.storeTitle{
+    text-align: left;
+    font-size: 1.2em !important;
+    font-weight: 600 !important;
+    color: #054575;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem !important;
 }
 .storeDetails{
     text-align: left;
@@ -44,4 +46,54 @@
     left: 0;
     bottom: 0;
     margin: auto;
+}
+
+@media screen and (max-width: 768px){
+    .storeCard{
+        padding: 10px;
+        height: 120px;
+        margin: 5px 15px 5px 15px;
+    }
+    .storeCardDiv{
+        height: 120px;
+        display: flex;
+    }
+    .storeCoverBg{
+        height: 100px;
+        width: 31%;
+        display: inline-block;
+    }
+    .storeCover{
+        max-width: auto;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    .storeDetailsBg{
+        height: 100px;
+        width: 69%; /* haha yeah boi ( ͡° ͜ʖ ͡°) */
+        padding-left: 10px;
+    }
+    .storeTitle{
+        display: inline-block;
+        text-align: left;
+        font-size: 0.8em !important;
+        margin-top: 0rem;
+        margin-bottom: 0.3rem !important;
+    }
+    .storeDetails{
+        text-align: left;
+        font-size: 0.6em !important;
+        margin-bottom: 0.3rem !important;
+    }
+    .visitStoreButton{
+        font-size: 0.6em !important;
+        padding: 5px !important;
+        margin-left: 10px !important;
+        width: 70%;
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: auto;
+    }
 }

@@ -51,7 +51,7 @@ function Home() {
           <Card.Img className="bannerImage" src={WebsiteBanner} alt="Site Banner"/>
           <Card.ImgOverlay className="bannerOverlay">
             <Card.Title className="bannerTitle">
-                Welcome to Nilkhetian
+              Welcome to Nilkhetian
             </Card.Title>
             <Card.Text className="bannerText">
               An online platform that gives you

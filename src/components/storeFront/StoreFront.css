@@ -23,3 +23,22 @@
 .storeGrid > .storeCard{
     flex-basis: calc(33.33333% - 20px) !important;
 }
+
+@media screen and (max-width: 768px){
+    .storeHeader{
+        font-size: 1.4em;
+    }
+    .topButtonDiv{
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .bookCategoryButton{
+        font-size: 1em !important;
+    }
+    .storeGrid{
+        min-height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+}
