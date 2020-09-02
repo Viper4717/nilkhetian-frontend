@@ -14,10 +14,19 @@
     font-weight: 600 !important;
     padding: 10px 20px 10px 20px !important;
 }
+.storeGrid{
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.storeGrid > .storeCard{
+    flex-basis: calc(33.33333% - 20px) !important;
+}
 .storeCard{
     padding: 15px;
     height: 425px;
-    width: calc(30% - 20px);
+    margin: 10px;
 }
 .storeCardDiv{
     height: 425px;
@@ -27,6 +36,7 @@
     text-align: left;
     font-size: 1.2em !important;
     font-weight: 600 !important;
+    color: #054575;
 }
 .storeCoverBg{
     height: 200px;
@@ -35,8 +45,8 @@
     text-align: center;
 }
 .storeCover{
-    max-width: 100%;
-    max-height: auto;
+    max-width: auto;
+    max-height: 100%;
     object-fit: contain;
 }
 .storeDetailsBg{
