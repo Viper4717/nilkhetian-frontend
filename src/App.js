@@ -13,13 +13,12 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header/>
-          {/* <Switch>
+          <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/login" component={Login}/>
             <Route path="/registration" component={Registration}/>
             <Route path="/store" component={StoreFront}/>
-          </Switch> */}
-          <StoreFront/>
+          </Switch>
         <Footer/>
       </BrowserRouter>
     </div>
