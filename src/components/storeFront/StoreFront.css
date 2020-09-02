@@ -1,0 +1,54 @@
+.storeHeader{
+    text-align: center;
+    font-weight: 600;
+    color: #054575;
+}
+.topButtonDiv{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+.bookCategoryButton{
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+    padding: 10px 20px 10px 20px !important;
+}
+.storeGrid{
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+.storeGrid > .storeCard{
+    flex-basis: calc(33.33333% - 20px) !important;
+}
+.paginationDiv{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+@media screen and (max-width: 768px){
+    .storeHeader{
+        font-size: 1.4em;
+    }
+    .topButtonDiv{
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .bookCategoryButton{
+        font-size: 1em !important;
+    }
+    .storeGrid{
+        min-height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+}

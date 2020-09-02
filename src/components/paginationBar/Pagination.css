@@ -1,0 +1,11 @@
+.page-link{
+    color: #054575 !important;
+}
+.page-item.active .page-link{
+    background-color: #ffa500 !important;
+    color: #fff !important;
+}
+.page-item.disabled .page-link{
+    background-color: #d4dbe2 !important;
+    color: #054575 !important;
+}
