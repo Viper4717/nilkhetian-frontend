@@ -127,14 +127,50 @@ function StoreFront() {
             storeDetails: "This is where my friend, the details, \
               the unique details of the store, will be shown, proudly, gloriously",
         },
+        {
+          storeName: "Book Store 21",
+          storeImgPath: BookStoreImage,
+          storeDetails: "This is where my friend, the details, \
+            the unique details of the store, will be shown, proudly, gloriously",
+        },
+        {
+          storeName: "Book Store 22",
+          storeImgPath: BookStoreImage,
+          storeDetails: "This is where my friend, the details, \
+            the unique details of the store, will be shown, proudly, gloriously",
+        },
+        {
+          storeName: "Book Store 23",
+          storeImgPath: BookStoreImage,
+          storeDetails: "This is where my friend, the details, \
+            the unique details of the store, will be shown, proudly, gloriously",
+        },
+        {
+          storeName: "Book Store 24",
+          storeImgPath: BookStoreImage,
+          storeDetails: "This is where my friend, the details, \
+            the unique details of the store, will be shown, proudly, gloriously",
+        },
+        {
+          storeName: "Book Store 25",
+          storeImgPath: BookStoreImage,
+          storeDetails: "This is where my friend, the details, \
+            the unique details of the store, will be shown, proudly, gloriously",
+        },
+        {
+          storeName: "Book Store 26",
+          storeImgPath: BookStoreImage,
+          storeDetails: "This is where my friend, the details, \
+            the unique details of the store, will be shown, proudly, gloriously",
+        },
     ])
     
     const [currentPage, setCurrentPage] = useState(1);
     const storesPerPage = 12;
-    const totalStores = 24;
+    const totalStores = 26;
     const lastPage = Math.ceil(totalStores/storesPerPage);
-    const indexOfLastPost = currentPage * storesPerPage;
-    const indexofFirstPost = indexOfLastPost - storesPerPage;
+    const indexOfLastPost = currentPage * (storesPerPage > totalStores? totalStores : storesPerPage);
+    const indexofFirstPost = indexOfLastPost - (storesPerPage > totalStores? totalStores : storesPerPage);
     const currentStores = stores.slice(indexofFirstPost, indexOfLastPost);
 
     return (

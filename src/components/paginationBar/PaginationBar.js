@@ -16,9 +16,11 @@ function PaginationBar({lastPage, currentPage, setCurrentPage}) {
 
   return (
       <Pagination>
+        <Pagination.First disabled={currentPage === 1} onClick={() => setCurrentPage(1)}/>
         <Pagination.Prev disabled={currentPage === 1} onClick={() => setCurrentPage((p)=>(p-1))}/>
           {pageNumbers}
         <Pagination.Next disabled={currentPage === lastPage} onClick={() => setCurrentPage((p)=>(p+1))}/>
+        <Pagination.Last disabled={currentPage === lastPage} onClick={() => setCurrentPage(lastPage)}/>
       </Pagination>
   );
 }
