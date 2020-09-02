@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './StoreFront.css';
 import BookStoreImage from '../../assets/bookStore/bookStore.jpg'
 import StoreCard from './StoreCard'
+import PaginationBar from '../paginationBar/PaginationBar'
 import { Container, Button} from 'react-bootstrap';
 
 function StoreFront() {
@@ -126,7 +127,16 @@ function StoreFront() {
             storeDetails: "This is where my friend, the details, \
               the unique details of the store, will be shown, proudly, gloriously",
         },
-      ])
+    ])
+    
+    const [currentPage, setCurrentPage] = useState(1);
+    const storesPerPage = 12;
+    const totalStores = 24;
+    const lastPage = Math.ceil(totalStores/storesPerPage);
+    const indexOfLastPost = currentPage * storesPerPage;
+    const indexofFirstPost = indexOfLastPost - storesPerPage;
+    const currentStores = stores.slice(indexofFirstPost, indexOfLastPost);
+
     return (
         <Container fluid="md" className="parentContainer smallHeight padBottomContainer">
             <h2 className="storeHeader"> Nilkhet Online: Store Front </h2>
@@ -136,10 +146,13 @@ function StoreFront() {
                 </Button>
             </div>
             <div className="storeGrid">
-                {stores.map(store => (
+                {currentStores.map(store => (
                     <StoreCard storeName={store.storeName} storeImgPath={store.storeImgPath}
                      storeDetails={store.storeDetails} />
                 ))}
+            </div>
+            <div className="paginationDiv">
+              <PaginationBar lastPage={lastPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
             </div>
         </Container>
     );

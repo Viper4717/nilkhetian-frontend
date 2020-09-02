@@ -19,9 +19,19 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    margin-bottom: 30px;
 }
 .storeGrid > .storeCard{
     flex-basis: calc(33.33333% - 20px) !important;
+}
+.paginationDiv{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 @media screen and (max-width: 768px){
