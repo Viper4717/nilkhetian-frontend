@@ -7,7 +7,7 @@ import Login from './components/login/Login';
 import Registration from './components/registration/Registration';
 import Footer from './components/footer/Footer';
 import StoreFront from './components/storeFront/StoreFront';
-import Category from './components/category/Category';
+import BookLibrary from './components/bookLibrary/BookLibrary';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             <Route path="/registration" component={Registration}/>
             <Route path="/store" component={StoreFront}/>
           </Switch> */}
-          <Category/>
+          <BookLibrary/>
         <Footer/>
       </BrowserRouter>
     </div>

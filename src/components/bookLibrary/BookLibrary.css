@@ -1,0 +1,8 @@
+.categoryBgDiv{
+    min-height: 100vh;
+    display: flex;
+}
+.bookBgDiv{
+    display: inline-block;
+    width: 71%;
+}
