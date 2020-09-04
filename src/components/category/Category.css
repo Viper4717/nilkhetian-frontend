@@ -18,7 +18,8 @@
     height: 60px;   
 }
 .categoryHeaderDiv{
-    padding: 10px 30px ;
+    padding: 10px 30px;
+    color: #054575;
 }
 .categoryHeader{
     font-size: 1.5em;
@@ -35,6 +36,15 @@
     text-decoration: none;
     padding: 10px 30px;
     font-size: 1.2em;
+    position: relative;
+}
+.categoryLeftDiv > ul > li > a > svg{
+    position: absolute;
+    right: 5px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    color: #054575;
 }
 .activeCategory{
     background-color: #c2c9ce;

@@ -1,7 +1,7 @@
 import React from 'react';
 import './FeaturedProducts.css';
 import { Button, Card, CardGroup } from 'react-bootstrap';
-import {RiArrowRightCircleFill} from 'react-icons/ri'
+import { RiArrowRightCircleFill } from 'react-icons/ri';
 
 function FeaturedProducts({cardDeckTitle, topCategory}) {
     return (

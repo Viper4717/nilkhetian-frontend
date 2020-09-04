@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Category.css';
-import { Container } from 'react-bootstrap';
+import { RiArrowRightSLine } from 'react-icons/ri';
 
 function Category({categories}) {
 
@@ -15,8 +15,9 @@ function Category({categories}) {
                 {categories.map(item => (
                     <li>
                         <a className={currentCategory === item? "activeCategory" : "inactiveCategory"}
-                            onClick={() => setCurrentCategory(item)} href='#'>
+                        onClick={() => setCurrentCategory(item)} href='#'>
                             {item}
+                            <RiArrowRightSLine size="2em"/>
                         </a>
                     </li>
                 ))}
