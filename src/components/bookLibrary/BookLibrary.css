@@ -17,7 +17,6 @@
     color: #054575;
 }
 .bookGrid{
-    min-height: 100%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -25,4 +24,10 @@
 }
 .bookGrid > .bookCheckCard{
     flex-basis: calc(33.33333% - 20px) !important;
+}
+
+@media screen and (max-width: 768px){
+    .bookGrid{
+        flex-direction: column;
+    }
 }

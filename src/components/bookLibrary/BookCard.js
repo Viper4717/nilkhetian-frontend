@@ -16,7 +16,7 @@ function BookCard({bookImgPath, bookName, bookAuthor}) {
                     <Card.Text className="bookCheckAuthor">
                         {bookAuthor}
                     </Card.Text>
-                    <Button className="checkAvailableButton" variant="custom"> Check Availability </Button>
+                    <Button className="visitStoreButton" variant="custom"> Check Availability </Button>
                 </div>
             </div>
         </Card>

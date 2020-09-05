@@ -38,63 +38,42 @@
     color: #82878b;
     margin-bottom: 10px !important;
 }
-.checkAvailableButton{
-    font-size: 1.1em !important;
-    font-weight: 600 !important;
-    width: 100%;
-    position: absolute;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    margin: auto;
-}
 
 @media screen and (max-width: 768px){
-    .storeCard{
+    .bookCheckCard{
         padding: 10px;
         height: 120px;
         margin: 5px 15px 5px 15px;
     }
-    .storeCardDiv{
+    .bookCheckCardDiv{
         height: 120px;
         display: flex;
     }
-    .storeCoverBg{
+    .bookCheckCoverBg{
         height: 100px;
         width: 31%;
         display: inline-block;
     }
-    .storeCover{
+    .bookCheckCover{
         max-width: auto;
         max-height: 100%;
         object-fit: contain;
     }
-    .storeDetailsBg{
+    .bookCheckDetailsBg{
         height: 100px;
         width: 69%; /* haha yeah boi ( ͡° ͜ʖ ͡°) */
         padding-left: 10px;
     }
-    .storeTitle{
+    .bookCheckTitle{
         display: inline-block;
         text-align: left;
         font-size: 0.8em !important;
         margin-top: 0rem;
         margin-bottom: 0.3rem !important;
     }
-    .storeDetails{
+    .bookCheckAuthor{
         text-align: left;
         font-size: 0.6em !important;
         margin-bottom: 0.3rem !important;
-    }
-    .visitStoreButton{
-        font-size: 0.6em !important;
-        padding: 5px !important;
-        margin-left: 10px !important;
-        width: 70%;
-        position: absolute;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        margin: auto;
     }
 }

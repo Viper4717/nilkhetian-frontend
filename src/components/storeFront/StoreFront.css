@@ -47,9 +47,6 @@
         font-size: 1em !important;
     }
     .storeGrid{
-        min-height: 100%;
-        display: flex;
-        flex-wrap: wrap;
         flex-direction: column;
     }
 }
