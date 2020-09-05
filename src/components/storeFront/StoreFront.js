@@ -177,7 +177,7 @@ function StoreFront() {
         <Container fluid="md" className="parentContainer smallHeight padBottomContainer">
             <h2 className="storeHeader"> Nilkhet Online: Store Front </h2>
             <div className="topButtonDiv">
-                <Button className="bookCategoryButton" variant="custom">
+                <Button className="bookCategoryButton" variant="custom" href="/books">
                     Search by Book Categories
                 </Button>
             </div>

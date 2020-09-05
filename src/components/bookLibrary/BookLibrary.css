@@ -1,0 +1,43 @@
+.categoryBgDiv{
+    min-height: 100vh;
+    display: flex;
+}
+.bookBgDiv{
+    display: inline-block;
+    width: 71%;
+    background-color: #fff;
+}
+.bookBgDivHeader{
+    height: 60px;
+    padding: 10px 30px;
+}
+.bookDivHeader{
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #054575;
+}
+.bookGrid{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+.bookGrid > .bookCheckCard{
+    flex-basis: calc(33.33333% - 20px) !important;
+}
+
+@media screen and (max-width: 768px){
+    .bookGrid{
+        flex-direction: column;
+    }
+    .categoryBgDiv{
+        flex-direction: column;
+    }
+    .bookBgDiv{
+        display: block;
+        width: 100%;
+    }
+    .bookBgDivHeader{
+        display: none;
+    }
+}
