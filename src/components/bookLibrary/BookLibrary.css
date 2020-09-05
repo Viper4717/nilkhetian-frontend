@@ -30,4 +30,14 @@
     .bookGrid{
         flex-direction: column;
     }
+    .categoryBgDiv{
+        flex-direction: column;
+    }
+    .bookBgDiv{
+        display: block;
+        width: 100%;
+    }
+    .bookBgDivHeader{
+        display: none;
+    }
 }

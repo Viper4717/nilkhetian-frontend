@@ -1,4 +1,4 @@
-.categoryLeftDiv{
+.categoryDiv{
     display: inline-block;
     border-top: 1px;
     border-right: 1px;
@@ -50,5 +50,27 @@
     background-color: #c2c9ce;
 }
 .categoryLeftDiv > ul > li > a:hover{
-    background-color: #d4dbe2;
+    background-color: #dae1e9;
+}
+.categoryDropdownDiv{
+    text-align: center;
+    display: none;
+    margin-bottom: 30px;
+}
+.categoryDropdownBtn{
+    font-weight: 600 !important;
+}
+
+@media screen and (max-width: 768px){
+    .categoryDiv{
+        display: block;
+        border: none;
+        width: 100%;
+    }
+    .categoryLeftDiv{
+        display: none;
+    }
+    .categoryDropdownDiv{
+        display: block;
+    }
 }

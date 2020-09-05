@@ -43,7 +43,7 @@ function BookLibrary() {
         <Container fluid="md" className="parentContainer">
             <h2 className="storeHeader"> Nilkhet Online: All Available Books </h2>
             <div className="topButtonDiv">
-                <Button className="bookCategoryButton" variant="custom">
+                <Button className="bookCategoryButton" variant="custom" href='/stores'>
                     Search by Store Names
                 </Button>
             </div>

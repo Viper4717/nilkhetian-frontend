@@ -40,11 +40,11 @@
 .visitStoreButton{
     font-size: 1.1em !important;
     font-weight: 600 !important;
-    width: 100%;
+    width: 95%;
     position: absolute;
-    right: 0;
-    left: 0;
-    bottom: 0;
+    right: 2px;
+    left: 2px;
+    bottom: 3px;
     margin: auto;
 }
 
@@ -90,10 +90,5 @@
         padding: 5px !important;
         margin-left: 10px !important;
         width: 70%;
-        position: absolute;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        margin: auto;
     }
 }
