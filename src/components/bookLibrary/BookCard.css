@@ -1,0 +1,100 @@
+.bookCheckCard{
+    padding: 15px;
+    height: 380px;
+    margin: 10px;
+}
+.bookCheckCardDiv{
+    height: 380px;
+    position: relative;
+}
+.bookCheckCoverBg{
+    height: 165px;
+    background-color: white;
+    overflow: hidden;
+    text-align: center;
+}
+.bookCheckCover{
+    max-width: 50%;
+    max-height: 100%;
+    object-fit: contain;
+}
+.bookCheckDetailsBg{
+    height: 185px;
+    background-color: white;
+    overflow: hidden;
+    position: relative;
+}
+.bookCheckTitle{
+    text-align: left;
+    font-size: 1.2em !important;
+    font-weight: 600 !important;
+    margin-top: 10px;
+    margin-bottom: 10px !important;
+}
+.bookCheckAuthor{
+    text-align: left;
+    font-size: 1em !important;
+    font-weight: 400 !important;
+    color: #82878b;
+    margin-bottom: 10px !important;
+}
+.checkAvailableButton{
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+@media screen and (max-width: 768px){
+    .storeCard{
+        padding: 10px;
+        height: 120px;
+        margin: 5px 15px 5px 15px;
+    }
+    .storeCardDiv{
+        height: 120px;
+        display: flex;
+    }
+    .storeCoverBg{
+        height: 100px;
+        width: 31%;
+        display: inline-block;
+    }
+    .storeCover{
+        max-width: auto;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    .storeDetailsBg{
+        height: 100px;
+        width: 69%; /* haha yeah boi ( ͡° ͜ʖ ͡°) */
+        padding-left: 10px;
+    }
+    .storeTitle{
+        display: inline-block;
+        text-align: left;
+        font-size: 0.8em !important;
+        margin-top: 0rem;
+        margin-bottom: 0.3rem !important;
+    }
+    .storeDetails{
+        text-align: left;
+        font-size: 0.6em !important;
+        margin-bottom: 0.3rem !important;
+    }
+    .visitStoreButton{
+        font-size: 0.6em !important;
+        padding: 5px !important;
+        margin-left: 10px !important;
+        width: 70%;
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: auto;
+    }
+}

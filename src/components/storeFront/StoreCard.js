@@ -2,7 +2,7 @@ import React from 'react';
 import './StoreCard.css';
 import { Button, Card } from 'react-bootstrap';
 
-function StoreFront({storeName, storeImgPath, storeDetails}) {
+function StoreCard({storeName, storeImgPath, storeDetails}) {
     return (
         <Card className="storeCard">
             <div className="storeCardDiv">
@@ -23,4 +23,4 @@ function StoreFront({storeName, storeImgPath, storeDetails}) {
     );
 }
 
-export default StoreFront;
+export default StoreCard;

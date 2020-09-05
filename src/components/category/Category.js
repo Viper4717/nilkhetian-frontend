@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import './Category.css';
 import { RiArrowRightSLine } from 'react-icons/ri';
 
-function Category({categories}) {
-
-    const [currentCategory, setCurrentCategory] = useState("none")
-
+function Category({categories, currentCategory, setCurrentCategory}) {
     return (
         <div className="categoryLeftDiv">
             <div className="categoryHeaderDiv">
