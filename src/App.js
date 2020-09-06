@@ -8,19 +8,22 @@ import Registration from './components/registration/Registration';
 import Footer from './components/footer/Footer';
 import StoreFront from './components/storeFront/StoreFront';
 import BookLibrary from './components/bookLibrary/BookLibrary';
+import StoreBrowse from './components/storeBrowse/StoreBrowse';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Header/>
-          <Switch>
+          {/* <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/login" component={Login}/>
             <Route path="/registration" component={Registration}/>
             <Route path="/stores" component={StoreFront}/>
             <Route path='/books' component={BookLibrary}/>
-          </Switch>
+            <Route path="/store-browse" component={StoreBrowse}/>
+          </Switch> */}
+          <StoreBrowse/>
         <Footer/>
       </BrowserRouter>
     </div>
