@@ -1,0 +1,19 @@
+.resultGrid{
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+.resultGrid > .bookCard{
+    flex-basis: calc(25% - 20px) !important;
+    margin: 10px;
+}
+
+@media screen and (max-width: 768px){
+    .resultGrid > .bookCard{
+        flex-basis: calc(50% - 10px) !important;
+        margin: 5px;
+    }
+}

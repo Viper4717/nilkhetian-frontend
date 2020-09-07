@@ -9,6 +9,7 @@ import Footer from './components/footer/Footer';
 import StoreFront from './components/storeFront/StoreFront';
 import BookLibrary from './components/bookLibrary/BookLibrary';
 import StoreBrowse from './components/storeBrowse/StoreBrowse';
+import Result from './components/result/Result';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/stores" component={StoreFront}/>
             <Route path="/books" component={BookLibrary}/>
             <Route path="/store/:storeId" component={StoreBrowse}/>
+            <Route path="/results" component={Result}/>
           </Switch>
         <Footer/>
       </BrowserRouter>
