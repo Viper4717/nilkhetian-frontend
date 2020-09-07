@@ -1,79 +1,78 @@
-.bookCheckCard{
+.storeBookCard{
     padding: 15px;
     height: 380px;
     margin: 10px;
 }
-.bookCheckCardDiv{
+.storeBookCardDiv{
     height: 380px;
     position: relative;
 }
-.bookCheckCoverBg{
+.storeBookCoverBg{
     height: 165px;
     background-color: white;
     overflow: hidden;
     text-align: center;
 }
-.bookCheckCover{
+.storeBookCover{
     max-width: 50%;
     max-height: 100%;
     object-fit: contain;
 }
-.bookCheckDetailsBg{
+.storeBookDetailsBg{
     height: 185px;
     background-color: white;
     overflow: hidden;
     position: relative;
 }
-.bookCheckTitle{
+.storeBookTitle{
     text-align: left;
     font-size: 1.2em !important;
     font-weight: 600 !important;
     margin-top: 10px;
     margin-bottom: 10px !important;
 }
-.bookCheckAuthor{
+.storeBookAuthor{
     text-align: left;
     font-size: 1em !important;
     font-weight: 400 !important;
     color: #82878b;
     margin-bottom: 10px !important;
 }
+.storeBookPrice{
+    text-align: left;
+    font-size: 1em !important;
+    font-weight: 400 !important;
+}
 
 @media screen and (max-width: 768px){
-    .bookCheckCard{
-        padding: 10px;
-        height: 120px;
-        margin: 5px 15px 5px 15px;
+    .storeBookCard{
+        height: 50%;
+        width: 50%;
+        display: inline-block !important;
+        overflow: hidden;
     }
-    .bookCheckCardDiv{
-        height: 120px;
-        display: flex;
+    .storeBookCardDiv{
+        height: 240px;
     }
-    .bookCheckCoverBg{
+    .storeBookCoverBg{
+        height: 95px;
+    }
+    .storeBookDetailsBg{
         height: 100px;
-        width: 31%;
-        display: inline-block;
     }
-    .bookCheckCover{
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-    .bookCheckDetailsBg{
-        height: 100px;
-        width: 69%; /* haha yeah boi ( ͡° ͜ʖ ͡°) */
-        padding-left: 10px;
-    }
-    .bookCheckTitle{
-        display: inline-block;
-        text-align: left;
+    .storeBookTitle{
         font-size: 0.7em !important;
-        margin-top: 0rem;
+        font-weight: 400 !important;
         margin-bottom: 0.2rem !important;
     }
-    .bookCheckAuthor{
-        text-align: left;
+    .storeBookAuthor{
         font-size: 0.6em !important;
-        margin-bottom: 0.2rem !important;
+        font-weight: 400 !important;
+        margin-bottom: 0.5rem;
+    }
+    .storeBookPrice{
+        font-size: 0.6em !important;
+        font-weight: 400 !important;
+        margin-bottom: 0.5rem;
     }
 }

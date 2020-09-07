@@ -1,25 +1,26 @@
 import React from 'react';
+import './StoreBookCard.css';
 import { Button, Card } from 'react-bootstrap';
 
 function StoreBookCard({bookImgPath, bookName, bookAuthor, bookPrice}) {
     return (
-        <Card className="bookCheckCard">
-            <div className="bookCheckCardDiv">
-                <div className="bookCheckCoverBg">
-                    <Card.Img className="bookCheckCover" src={bookImgPath} alt="Book Image"/>
+        <Card className="storeBookCard">
+            <div className="storeBookCardDiv">
+                <div className="storeBookCoverBg">
+                    <Card.Img className="storeBookCover" src={bookImgPath} alt="Book Image"/>
                 </div>
-                <div className="bookCheckDetailsBg">
-                    <Card.Title className="bookCheckTitle">
+                <div className="storeBookDetailsBg">
+                    <Card.Title className="storeBookTitle">
                         {bookName}
                     </Card.Title>
-                    <Card.Text className="bookCheckAuthor">
+                    <Card.Text className="storeBookAuthor">
                         {bookAuthor}
                     </Card.Text>
-                    <Card.Text className="bookPrice">
+                    <Card.Text className="storeBookPrice">
                         {bookPrice} ৳
                     </Card.Text>
-                    <Button className="visitStoreButton" variant="custom"> Add to Cart </Button>
                 </div>
+                <Button className="addToCartButton" variant="custom"> Add to Cart </Button>
             </div>
         </Card>
     );

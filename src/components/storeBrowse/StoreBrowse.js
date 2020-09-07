@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import './StoreBrowse.css';
 import Category from '../category/Category';
-import StoreBookCard from './StoreBookCard'
+import StoreBookCard from './StoreBookCard';
 import { Container, Button } from 'react-bootstrap';
-import Himu from '../../assets/home/himuRimande.jpg'
-import AmiEbongAmra from '../../assets/home/amiEbongAmra.jpg'
-import AngelsAndDemons from '../../assets/home/angelsAndDemons.jpg'
-import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg'
+import Himu from '../../assets/home/himuRimande.jpg';
+import AmiEbongAmra from '../../assets/home/amiEbongAmra.jpg';
+import AngelsAndDemons from '../../assets/home/angelsAndDemons.jpg';
+import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg';
 
 function StoreBrowse() {
 
@@ -52,7 +53,7 @@ function StoreBrowse() {
                     <div className="bookBgDivHeader">
                         <text className="bookDivHeader"> {currentCategory} </text>
                     </div>
-                    <div className="bookGrid">
+                    <div className="StoreBookGrid">
                         {testBooks.map(book => (
                             <StoreBookCard bookImgPath={book.imgPath} bookName={book.bookName}
                             bookAuthor={book.author} bookPrice={book.price}/>
