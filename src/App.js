@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header/>
-          {/* <Switch>
+          <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/login" component={Login}/>
             <Route path="/registration" component={Registration}/>
@@ -25,8 +25,7 @@ function App() {
             <Route path="/books" component={BookLibrary}/>
             <Route path="/store/:storeId" component={StoreBrowse}/>
             <Route path="/results" component={Result}/>
-          </Switch> */}
-          <Profile/>
+          </Switch>
         <Footer/>
       </BrowserRouter>
     </div>
