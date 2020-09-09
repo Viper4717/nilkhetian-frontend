@@ -39,3 +39,39 @@
     flex-wrap: wrap;
     flex-direction: column;
 }
+
+@media screen and (max-width: 768px){
+    .profileBgDiv{
+        flex-direction: column-reverse;
+        margin-top: 30px;
+    }
+    .profileRightDiv{
+        width: 100%;
+    }
+    .profileRightDiv > .createAccount{
+        margin-top: 20px;
+    }
+    .logInOutBtn{
+        margin-top: 20px;
+    }
+    .profileLeftDiv{
+        width: 100%;
+        padding: 0px 15px;
+        margin-top: 30px;
+        text-align: center;
+    }
+    .personalInfoDiv{
+        margin-bottom: 20px;
+    }
+    .personalInfoDiv > text{
+        margin-top: 20px;
+    }
+    .bookOrderDiv{
+        margin-top: 20px;
+        padding: 0px 15px;
+        text-align: center;
+    }
+    .bookOrderGrid{
+        margin-top: 20px;
+    }
+}
