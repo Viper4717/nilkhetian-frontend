@@ -10,13 +10,14 @@ import StoreFront from './components/storeFront/StoreFront';
 import BookLibrary from './components/bookLibrary/BookLibrary';
 import StoreBrowse from './components/storeBrowse/StoreBrowse';
 import Result from './components/result/Result';
+import Profile from './components/profile/Profile';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Header/>
-          <Switch>
+          {/* <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/login" component={Login}/>
             <Route path="/registration" component={Registration}/>
@@ -24,7 +25,8 @@ function App() {
             <Route path="/books" component={BookLibrary}/>
             <Route path="/store/:storeId" component={StoreBrowse}/>
             <Route path="/results" component={Result}/>
-          </Switch>
+          </Switch> */}
+          <Profile/>
         <Footer/>
       </BrowserRouter>
     </div>

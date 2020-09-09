@@ -1,0 +1,41 @@
+.profileBgDiv{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+.profileLeftDiv{
+    width: 60%;
+    padding: 0px 100px;
+}
+.profileRightDiv{
+    width: 40%;
+    text-align: center;
+}
+.personalInfoDiv{
+    margin-bottom: 30px;
+}
+.personalInfoDiv > text{
+    display: block;
+    margin-top: 30px;
+}
+.profileRightDiv > .createAccount{
+    display: block;
+    margin-top: 30px;
+}
+.logInOutBtn{
+    margin-top: 30px;
+}
+.bookOrderDiv{
+    margin-top: 30px;
+    padding: 0px 100px;
+}
+.bookOrderHeader{
+    font-weight: 600;
+    color: #054575;
+}
+.bookOrderGrid{
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
