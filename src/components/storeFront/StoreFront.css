@@ -6,7 +6,6 @@
 }
 .topButtonDiv{
     margin-top: 50px;
-    margin-bottom: 50px;
     display: flex;
     justify-content: center;
 }
@@ -20,6 +19,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    margin-top: 50px;
     margin-bottom: 30px;
 }
 .storeGrid > .storeCard{
@@ -41,12 +41,12 @@
     }
     .topButtonDiv{
         margin-top: 30px;
-        margin-bottom: 30px;
     }
     .bookCategoryButton{
         font-size: 1em !important;
     }
     .storeGrid{
         flex-direction: column;
+        margin-top: 30px;
     }
 }

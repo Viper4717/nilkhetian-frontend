@@ -1,0 +1,23 @@
+.bookOrderCard{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-evenly;
+    padding: 10px 30px;
+}
+.bookOrderCard > div{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.bookOrderCard > div > h6{
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 768px){
+    .bookOrderCard{
+        padding: 10px 10px;
+    }
+}

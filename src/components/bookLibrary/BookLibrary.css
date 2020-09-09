@@ -1,6 +1,7 @@
 .categoryBgDiv{
     min-height: 100vh;
     display: flex;
+    margin-top: 50px;
 }
 .bookBgDiv{
     display: inline-block;
@@ -32,6 +33,7 @@
     }
     .categoryBgDiv{
         flex-direction: column;
+        margin-top: 30px;
     }
     .bookBgDiv{
         display: block;

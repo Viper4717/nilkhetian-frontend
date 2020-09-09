@@ -1,0 +1,16 @@
+.StoreBookGrid{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+.StoreBookGrid > .storeBookCard{
+    flex-basis: calc(33.33333% - 20px) !important;
+}
+
+@media screen and (max-width: 768px){
+    .StoreBookGrid > .storeBookCard{
+        flex-basis: calc(50% - 10px) !important;
+        margin: 5px;
+    }
+}

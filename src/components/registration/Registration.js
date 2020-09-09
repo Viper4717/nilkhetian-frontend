@@ -10,7 +10,7 @@ function Registration() {
         </h4>
         <div className="formDiv">
           <div>
-            <h5 className="PersonalInfoText">
+            <h5 className="personalInfoText">
                 Personal Info
             </h5>
             <Form>
@@ -38,7 +38,7 @@ function Registration() {
           </div>
           <div>
             <div className="addressTextDiv">
-              <h5 className="PersonalInfoText">
+              <h5 className="personalInfoText">
                   Address Info
               </h5>
               <text className="accountText"> This will be set as your default shipping address </text>
