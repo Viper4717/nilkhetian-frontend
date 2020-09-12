@@ -41,10 +41,10 @@ function BookLibrary() {
 
     return (
         <Container fluid="md" className="parentContainer">
-            <h2 className="storeHeader"> Nilkhet Online: All Available Books </h2>
+            <h2 className="storeHeader"> Nilkhet Online: All Available Products </h2>
             <div className="topButtonDiv">
                 <Button className="bookCategoryButton" variant="custom" href='/stores'>
-                    Search by Store Names
+                    Browse Stores
                 </Button>
             </div>
             <div className="categoryBgDiv">

@@ -28,7 +28,7 @@ function loadStores(setStores, setTotalStores){
 }
 
 function StoreFront() {
-    const [stores, setStores] = useState([])
+    const [stores, setStores] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalStores, setTotalStores] = useState(1);
 
@@ -50,7 +50,7 @@ function StoreFront() {
             <h2 className="storeHeader"> Nilkhet Online: Store Front </h2>
             <div className="topButtonDiv">
                 <Button className="bookCategoryButton" variant="custom" href="/books">
-                    Search by Book Categories
+                    Browse Books/Stationaries
                 </Button>
             </div>
             <div className="storeGrid">

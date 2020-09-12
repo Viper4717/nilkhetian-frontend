@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './StoreBrowse.css';
 import Category from '../category/Category';
 import StoreBookCard from './StoreBookCard';
@@ -10,23 +10,71 @@ import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg';
 import Axios from 'axios';
 import { serverUrl } from '../../util';
 
-function StoreBrowse({match}) {
+const parsedCategories = [];
+const storeIdString = window.location.href.substring(
+    window.location.href.indexOf("?")+1, window.location.href.indexOf("&category"));
 
-    const { params: { storeId } } = match;
+var categoryIdString = window.location.href.substring(
+    window.location.href.indexOf("&category")+10, window.location.href.length);
 
-    Axios
-        .post(`${serverUrl}/store`, null, {params: {
-            storeId,
-        }})
-        .then(({data: res}) => {
-            
+var storeName;
+
+function categoryParse(storeCategories){
+    if(Array.isArray(storeCategories) && storeCategories.length){
+        storeCategories.map(category => {
+            var words = category.split(" ");
+            var catName = "";
+            var lower;
+            for(var i = 0; i < words.length; i++){
+                lower = words[i].toLowerCase();
+                if(i > 0){
+                    catName += ('-' + lower);
+                }
+                else{
+                    catName += lower;
+                }
+            }
+            parsedCategories.push(catName);
         })
+    }
+}
+
+function firstLoad(setCategories){
+    Axios
+        .get(`${serverUrl}/store?${storeIdString}`)
+        .then(({data: res}) => {
+            storeName = res.storeName
+            setCategories(res.categories)
+        })
+        .catch((error) => {
+            console.error(error);
+            console.log('failed to first load');
+        });
+}
+
+function loadCategories(){
+    Axios
+        .get(`${serverUrl}/store?${storeIdString}&category=${categoryIdString}`)
+        .then(res => (
+            storeName = res.storeName
+        ))
+        .catch((error) => {
+            console.error(error);
+            console.log('failed to first load');
+        });
+}
+
+function StoreBrowse() {
 
     const [categories, setCategories] = useState([
         "Fiction", "Drama", "Mystery", "Adventure", "Academic"
     ])
-
     const [currentCategory, setCurrentCategory] = useState("Fiction")
+
+    useEffect(() => {
+        firstLoad(setCategories);
+      }, []);
+    
 
     const testBooks = [
         {
@@ -57,7 +105,7 @@ function StoreBrowse({match}) {
 
     return (
         <Container fluid="md" className="parentContainer">
-            <h2 className="storeHeader"> Nilkhet Online: All Available Books </h2>
+            <h2 className="storeHeader"> {storeName} </h2>
             <div className="categoryBgDiv">
                 <Category categories={categories} currentCategory={currentCategory} 
                 setCurrentCategory={setCurrentCategory} />

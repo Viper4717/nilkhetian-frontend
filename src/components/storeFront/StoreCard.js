@@ -6,21 +6,19 @@ const parsedCategories = [];
 
 function categoryParse(storeCategories){
     if(Array.isArray(storeCategories) && storeCategories.length){
-        storeCategories.map(category =>{
-            var words = category.split(" ");
-            var catName = "";
-            var lower;
-            for(var i = 0; i < words.length; i++){
-                lower = words[i].toLowerCase();
-                if(i > 0){
-                    catName += ('-' + lower);
-                }
-                else{
-                    catName += lower;
-                }
+        var words = storeCategories[0].split(" ");
+        var catName = "";
+        var lower;
+        for(var i = 0; i < words.length; i++){
+            lower = words[i].toLowerCase();
+            if(i > 0){
+                catName += ('-' + lower);
             }
-            parsedCategories.push(catName);
-        })
+            else{
+                catName += lower;
+            }
+        }
+        parsedCategories.push(catName);
     }
 }
 
