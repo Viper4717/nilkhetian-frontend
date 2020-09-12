@@ -4,196 +4,43 @@ import BookStoreImage from '../../assets/bookStore/bookStore.jpg'
 import StoreCard from './StoreCard'
 import PaginationBar from '../paginationBar/PaginationBar'
 import { Container, Button} from 'react-bootstrap';
+import Axios from 'axios';
+import { serverUrl } from '../../util';
+
+const bodyParser = require("body-parser")
+
+function loadStores(setStores, setTotalStores){
+  Axios
+  .get(`${serverUrl}/stores`)
+  .then(({data: res}) => {
+    setTotalStores(res.length);
+    const newStores = res.map((store) => ({
+      id: store._id,
+      storeName: store.storeName,
+      storeImgPath: BookStoreImage,
+      storeDetails: store.storeDetails,
+    }));
+    setStores(newStores);
+  })
+  .catch((error) => {
+    console.error(error);
+    console.log('failed to load stores');
+  });
+}
 
 function StoreFront() {
-    const [stores, setStores] = useState([
-        {
-          id: "bookstore1",
-          storeName: "Book Store 1",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-              the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore2",
-          storeName: "Book Store 2",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore3",
-          storeName: "Book Store 3",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore4",
-          storeName: "Book Store 4",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore5",
-          storeName: "Book Store 5",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore6",
-          storeName: "Book Store 6",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore7",
-          storeName: "Book Store 7",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore8",
-          storeName: "Book Store 8",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore9",
-          storeName: "Book Store 9",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore10",
-          storeName: "Book Store 10",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore11",
-          storeName: "Book Store 11",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore12",
-          storeName: "Book Store 12",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore13",
-          storeName: "Book Store 13",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore14",
-          storeName: "Book Store 14",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore15",
-          storeName: "Book Store 15",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore16",
-          storeName: "Book Store 16",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore17",
-          storeName: "Book Store 17",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore18",
-          storeName: "Book Store 18",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore19",
-          storeName: "Book Store 19",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore20",
-          storeName: "Book Store 20",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore21",
-          storeName: "Book Store 21",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore22",
-          storeName: "Book Store 22",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore23",
-          storeName: "Book Store 23",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore24",
-          storeName: "Book Store 24",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore25",
-          storeName: "Book Store 25",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-        {
-          id: "bookstore26",
-          storeName: "Book Store 26",
-          storeImgPath: BookStoreImage,
-          storeDetails: "This is where my friend, the details, \
-            the unique details of the store, will be shown, proudly, gloriously",
-        },
-    ])
-    
+    const [stores, setStores] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalStores, setTotalStores] = useState(1);
+
+    useEffect(() => {
+      loadStores(
+        setStores,
+        setTotalStores,
+      );
+    }, []);
+
     const storesPerPage = 12;
-    const totalStores = 26;
     const lastPage = Math.ceil(totalStores/storesPerPage);
     const indexOfLastPost = currentPage * (storesPerPage > totalStores? totalStores : storesPerPage);
     const indexofFirstPost = indexOfLastPost - (storesPerPage > totalStores? totalStores : storesPerPage);
