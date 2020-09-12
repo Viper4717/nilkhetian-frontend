@@ -2,7 +2,34 @@ import React from 'react';
 import './StoreCard.css';
 import { Button, Card } from 'react-bootstrap';
 
-function StoreCard({storeId, storeName, storeImgPath, storeDetails}) {
+const parsedCategories = [];
+
+function categoryParse(storeCategories){
+    if(Array.isArray(storeCategories) && storeCategories.length){
+        storeCategories.map(category =>{
+            var words = category.split(" ");
+            var catName = "";
+            var lower;
+            for(var i = 0; i < words.length; i++){
+                lower = words[i].toLowerCase();
+                if(i > 0){
+                    catName += ('-' + lower);
+                }
+                else{
+                    catName += lower;
+                }
+            }
+            parsedCategories.push(catName);
+        })
+    }
+}
+
+function StoreCard({storeId, storeName, storeImgPath, storeDetails, storeCategories}) {
+
+    console.log("react start")
+
+    categoryParse(storeCategories);
+
     return (
         <Card className="storeCard">
             <div className="storeCardDiv">
@@ -17,7 +44,9 @@ function StoreCard({storeId, storeName, storeImgPath, storeDetails}) {
                         {storeDetails}
                     </Card.Text>
                     <Button className="visitStoreButton" variant="custom"
-                    href={`/store/${storeId}`}>
+                    href = {(Array.isArray(parsedCategories) && parsedCategories.length) ? 
+                        `/store?id=${storeId}&category=${parsedCategories[0]}`
+                        : `/store?id=${storeId}`}>
                         Visit This Store 
                     </Button>
                 </div>

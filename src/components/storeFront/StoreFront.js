@@ -7,8 +7,6 @@ import { Container, Button} from 'react-bootstrap';
 import Axios from 'axios';
 import { serverUrl } from '../../util';
 
-const bodyParser = require("body-parser")
-
 function loadStores(setStores, setTotalStores){
   Axios
   .get(`${serverUrl}/stores`)
@@ -19,6 +17,7 @@ function loadStores(setStores, setTotalStores){
       storeName: store.storeName,
       storeImgPath: BookStoreImage,
       storeDetails: store.storeDetails,
+      storeCategories: store.categories,
     }));
     setStores(newStores);
   })
@@ -57,7 +56,7 @@ function StoreFront() {
             <div className="storeGrid">
                 {currentStores.map(store => (
                     <StoreCard storeId={store.id} storeName={store.storeName} storeImgPath={store.storeImgPath}
-                     storeDetails={store.storeDetails} />
+                     storeDetails={store.storeDetails} storeCategories={store.storeCategories} />
                 ))}
             </div>
             <div className="paginationDiv">

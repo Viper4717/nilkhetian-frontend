@@ -23,7 +23,7 @@ function App() {
             <Route path="/registration" component={Registration}/>
             <Route path="/stores" component={StoreFront}/>
             <Route path="/books" component={BookLibrary}/>
-            <Route path="/store/:storeId" component={StoreBrowse}/>
+            <Route path="/store" component={StoreBrowse}/>
             <Route path="/results" component={Result}/>
           </Switch>
         <Footer/>

@@ -7,8 +7,20 @@ import Himu from '../../assets/home/himuRimande.jpg';
 import AmiEbongAmra from '../../assets/home/amiEbongAmra.jpg';
 import AngelsAndDemons from '../../assets/home/angelsAndDemons.jpg';
 import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg';
+import Axios from 'axios';
+import { serverUrl } from '../../util';
 
-function StoreBrowse() {
+function StoreBrowse({match}) {
+
+    const { params: { storeId } } = match;
+
+    Axios
+        .post(`${serverUrl}/store`, null, {params: {
+            storeId,
+        }})
+        .then(({data: res}) => {
+            
+        })
 
     const [categories, setCategories] = useState([
         "Fiction", "Drama", "Mystery", "Adventure", "Academic"
