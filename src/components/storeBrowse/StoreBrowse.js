@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './StoreBrowse.css';
 import Category from '../category/Category';
 import StoreBookCard from './StoreBookCard';
-import { Container, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Himu from '../../assets/home/himuRimande.jpg';
 import AmiEbongAmra from '../../assets/home/amiEbongAmra.jpg';
 import AngelsAndDemons from '../../assets/home/angelsAndDemons.jpg';
@@ -39,28 +39,36 @@ function categoryParse(storeCategories){
     }
 }
 
-function firstLoad(setCategories){
+function firstLoad(setCategories, setCurrentCategory){
     Axios
         .get(`${serverUrl}/store?${storeIdString}`)
         .then(({data: res}) => {
             storeName = res.storeName
             setCategories(res.categories)
+            setCurrentCategory(res.categories[0])
         })
         .catch((error) => {
             console.error(error);
-            console.log('failed to first load');
+            console.log('failed to load initial data');
         });
 }
 
-function loadCategories(){
+function loadCategory(setBooks){
     Axios
         .get(`${serverUrl}/store?${storeIdString}&category=${categoryIdString}`)
-        .then(res => (
-            storeName = res.storeName
-        ))
+        .then(({data: res}) => {
+            const newBooks = res.map((book) => ({
+                id: book._id,
+                bookName: book.name,
+                author: book.author,
+                bookImgPath: Himu,
+                price: book.price,
+              }));
+            setBooks(newBooks);
+        })
         .catch((error) => {
             console.error(error);
-            console.log('failed to first load');
+            console.log('failed to load category');
         });
 }
 
@@ -70,13 +78,7 @@ function StoreBrowse() {
         "Fiction", "Drama", "Mystery", "Adventure", "Academic"
     ])
     const [currentCategory, setCurrentCategory] = useState("Fiction")
-
-    useEffect(() => {
-        firstLoad(setCategories);
-      }, []);
-    
-
-    const testBooks = [
+    const [currentBooks, setBooks] = useState([
         {
             bookName: "Himu Rimande",
             author: "Humayun Ahmed",
@@ -101,7 +103,16 @@ function StoreBrowse() {
             imgPath: TheDaVinciCode,
             price: 850,
         },
-    ]
+    ])
+
+    useEffect(() => {
+        firstLoad(setCategories, setCurrentCategory);
+        categoryParse(categories);
+    }, []);
+
+    useEffect(() => {
+        loadCategory(setBooks)
+    }, [currentCategory])
 
     return (
         <Container fluid="md" className="parentContainer">
@@ -114,7 +125,7 @@ function StoreBrowse() {
                         <text className="bookDivHeader"> {currentCategory} </text>
                     </div>
                     <div className="StoreBookGrid">
-                        {testBooks.map(book => (
+                        {currentBooks.map(book => (
                             <StoreBookCard bookImgPath={book.imgPath} bookName={book.bookName}
                             bookAuthor={book.author} bookPrice={book.price}/>
                         ))}

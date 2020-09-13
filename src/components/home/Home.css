@@ -2,6 +2,7 @@
 
 .parentContainer{
     position: relative !important;
+    min-height: 100vh;
 }
 .padBottomContainer{
     padding-bottom: 30px !important;
