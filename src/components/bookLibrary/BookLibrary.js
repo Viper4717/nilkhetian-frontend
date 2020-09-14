@@ -10,37 +10,18 @@ import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg'
 import Axios from 'axios';
 import { serverUrl } from '../../util';
 
-const parsedCategories = [];
-
 var categoryIdString = window.location.href.substring(
     window.location.href.indexOf("?category=")+10, window.location.href.length);
 
-function categoryParse(storeCategories){
-    if(Array.isArray(storeCategories) && storeCategories.length){
-        storeCategories.map(category => {
-            var words = category.split(" ");
-            var catName = "";
-            var lower;
-            for(var i = 0; i < words.length; i++){
-                lower = words[i].toLowerCase();
-                if(i > 0){
-                    catName += ('-' + lower);
-                }
-                else{
-                    catName += lower;
-                }
-            }
-            parsedCategories.push(catName);
-        })
-    }
-}
+const urlPath = window.location.href.substring(
+    window.location.href.indexOf("/products"), window.location.href.indexOf("&category="));
 
 function firstLoad(setCategories, setCurrentCategory){
     Axios
         .get(`${serverUrl}/products`)
         .then(({data: res}) => {
-            setCategories(res.categories)
-            setCurrentCategory(res.categories[0])
+            setCategories(res)
+            setCurrentCategory(res[0])
         })
         .catch((error) => {
             console.error(error);
@@ -56,7 +37,7 @@ function loadCategory(setBooks){
                 id: book._id,
                 bookName: book.name,
                 author: book.author,
-                bookImgPath: Himu,
+                imgPath: Himu,
               }));
             setBooks(newBooks);
         })
@@ -97,7 +78,6 @@ function BookLibrary() {
 
     useEffect(() => {
         firstLoad(setCategories, setCurrentCategory);
-        categoryParse(categories);
     }, []);
 
     useEffect(() => {
@@ -114,7 +94,7 @@ function BookLibrary() {
             </div>
             <div className="categoryBgDiv">
                 <Category categories={categories} currentCategory={currentCategory} 
-                setCurrentCategory={setCurrentCategory} />
+                setCurrentCategory={setCurrentCategory} urlPath={urlPath} />
                 <div className="bookBgDiv">
                     <div className="bookBgDivHeader">
                         <text className="bookDivHeader"> {currentCategory} </text>

@@ -2,8 +2,23 @@ import React, { useState } from 'react';
 import './Category.css';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { Dropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-function Category({categories, currentCategory, setCurrentCategory}) {
+function categoryParse(item){
+    var words = item.split(" ");
+    var catName = "";
+    for(var i = 0; i < words.length; i++){
+        if(i > 0){
+            catName += ('+' + words[i]);
+        }
+        else{
+            catName += words[i];
+        }
+    }
+    return catName;
+}
+
+function Category({categories, currentCategory, setCurrentCategory, urlPath}) {
     return (
         <div className="categoryDiv">
             <div className="categoryLeftDiv">
@@ -11,13 +26,14 @@ function Category({categories, currentCategory, setCurrentCategory}) {
                     <text className="categoryHeader">Categories</text>
                 </div>
                 <ul>
-                    {categories.map(item => (
+                    {categories.map((item) => (
                         <li>
-                            <a className={currentCategory === item? "activeCategory" : "inactiveCategory"}
-                            onClick={() => setCurrentCategory(item)} href='#'>
+                            <Link to={`${urlPath}&category=${categoryParse(item)}`}
+                            className={currentCategory === item? "activeCategory" : "inactiveCategory"}
+                            onClick={() => setCurrentCategory(item)}>
                                 {item}
                                 <RiArrowRightSLine size="2em"/>
-                            </a>
+                            </Link>
                         </li>
                     ))}
                 </ul>
@@ -29,9 +45,10 @@ function Category({categories, currentCategory, setCurrentCategory}) {
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         {categories.map(item => (
-                            <Dropdown.Item onClick={() => setCurrentCategory(item)}
-                             href="#">
-                                 {item}
+                            <Dropdown.Item onClick={() => setCurrentCategory(item)}>
+                                <Link to={`${urlPath}&category=${categoryParse(item)}`}>
+                                    {item}
+                                </Link>
                             </Dropdown.Item>
                         ))}
                     </Dropdown.Menu>

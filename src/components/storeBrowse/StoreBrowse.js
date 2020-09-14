@@ -10,34 +10,16 @@ import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg';
 import Axios from 'axios';
 import { serverUrl } from '../../util';
 
-const parsedCategories = [];
 const storeIdString = window.location.href.substring(
     window.location.href.indexOf("?")+1, window.location.href.indexOf("&category"));
 
 var categoryIdString = window.location.href.substring(
     window.location.href.indexOf("&category")+10, window.location.href.length);
 
-var storeName;
+const urlPath = window.location.href.substring(
+    window.location.href.indexOf("/store"), window.location.href.indexOf("&category="));
 
-function categoryParse(storeCategories){
-    if(Array.isArray(storeCategories) && storeCategories.length){
-        storeCategories.map(category => {
-            var words = category.split(" ");
-            var catName = "";
-            var lower;
-            for(var i = 0; i < words.length; i++){
-                lower = words[i].toLowerCase();
-                if(i > 0){
-                    catName += ('-' + lower);
-                }
-                else{
-                    catName += lower;
-                }
-            }
-            parsedCategories.push(catName);
-        })
-    }
-}
+var storeName;
 
 function firstLoad(setCategories, setCurrentCategory){
     Axios
@@ -107,7 +89,6 @@ function StoreBrowse() {
 
     useEffect(() => {
         firstLoad(setCategories, setCurrentCategory);
-        categoryParse(categories);
     }, []);
 
     useEffect(() => {
@@ -119,7 +100,7 @@ function StoreBrowse() {
             <h2 className="storeHeader"> {storeName} </h2>
             <div className="categoryBgDiv">
                 <Category categories={categories} currentCategory={currentCategory} 
-                setCurrentCategory={setCurrentCategory} />
+                setCurrentCategory={setCurrentCategory} urlPath={urlPath} />
                 <div className="bookBgDiv">
                     <div className="bookBgDivHeader">
                         <text className="bookDivHeader"> {currentCategory} </text>

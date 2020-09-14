@@ -46,7 +46,7 @@ function StoreFront() {
     const currentStores = stores.slice(indexofFirstPost, indexOfLastPost);
 
     return (
-        <Container fluid="md" className="parentContainer">
+        <Container fluid="md" className="parentContainer smallHeight">
             <h2 className="storeHeader"> Nilkhet Online: Store Front </h2>
             <div className="topButtonDiv">
                 <Button className="bookCategoryButton" variant="custom" href="/products">
