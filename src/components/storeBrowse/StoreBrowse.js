@@ -13,21 +13,39 @@ import { serverUrl } from '../../util';
 const storeIdString = window.location.href.substring(
     window.location.href.indexOf("?")+1, window.location.href.indexOf("&category"));
 
-var categoryIdString = window.location.href.substring(
-    window.location.href.indexOf("&category")+10, window.location.href.length);
-
 const urlPath = window.location.href.substring(
-    window.location.href.indexOf("/store"), window.location.href.indexOf("&category="));
+    window.location.href.indexOf("/store"), window.location.href.indexOf("category"+9));
+
+var categoryIdString;
 
 var storeName;
 
-function firstLoad(setCategories, setCurrentCategory){
+function reverseCategoryParse(item){
+    var words = item.split("+");
+    var catName = "";
+    for(var i = 0; i < words.length; i++){
+        if(i > 0){
+            catName += (' ' + words[i]);
+        }
+        else{
+            catName += words[i];
+        }
+    }
+    return catName;
+}
+
+function loadCurrentCateogry(setCurrentCategory){
+    categoryIdString = window.location.href.substring(
+        window.location.href.indexOf("&category")+10, window.location.href.length);
+    setCurrentCategory(reverseCategoryParse(categoryIdString));
+}
+
+function firstLoad(setCategories){
     Axios
         .get(`${serverUrl}/store?${storeIdString}`)
         .then(({data: res}) => {
             storeName = res.storeName
             setCategories(res.categories)
-            setCurrentCategory(res.categories[0])
         })
         .catch((error) => {
             console.error(error);
@@ -59,7 +77,7 @@ function StoreBrowse() {
     const [categories, setCategories] = useState([
         "Fiction", "Drama", "Mystery", "Adventure", "Academic"
     ])
-    const [currentCategory, setCurrentCategory] = useState("Fiction")
+    const [currentCategory, setCurrentCategory] = useState()
     const [currentBooks, setBooks] = useState([
         {
             bookName: "Himu Rimande",
@@ -88,7 +106,11 @@ function StoreBrowse() {
     ])
 
     useEffect(() => {
-        firstLoad(setCategories, setCurrentCategory);
+        loadCurrentCateogry(setCurrentCategory);
+    })
+
+    useEffect(() => {
+        firstLoad(setCategories);
     }, []);
 
     useEffect(() => {
@@ -100,7 +122,7 @@ function StoreBrowse() {
             <h2 className="storeHeader"> {storeName} </h2>
             <div className="categoryBgDiv">
                 <Category categories={categories} currentCategory={currentCategory} 
-                setCurrentCategory={setCurrentCategory} urlPath={urlPath} />
+                 urlPath={urlPath} />
                 <div className="bookBgDiv">
                     <div className="bookBgDivHeader">
                         <text className="bookDivHeader"> {currentCategory} </text>

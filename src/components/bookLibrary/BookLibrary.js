@@ -10,18 +10,36 @@ import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg'
 import Axios from 'axios';
 import { serverUrl } from '../../util';
 
-var categoryIdString = window.location.href.substring(
-    window.location.href.indexOf("?category=")+10, window.location.href.length);
-
 const urlPath = window.location.href.substring(
-    window.location.href.indexOf("/products"), window.location.href.indexOf("&category="));
+    window.location.href.indexOf("/products"), window.location.href.indexOf("category")+9);
 
-function firstLoad(setCategories, setCurrentCategory){
+var categoryIdString;
+
+function reverseCategoryParse(item){
+    var words = item.split("+");
+    var catName = "";
+    for(var i = 0; i < words.length; i++){
+        if(i > 0){
+            catName += (' ' + words[i]);
+        }
+        else{
+            catName += words[i];
+        }
+    }
+    return catName;
+}
+
+function loadCurrentCateogry(setCurrentCategory){
+    categoryIdString = window.location.href.substring(
+        window.location.href.indexOf("?category=")+10, window.location.href.length);
+    setCurrentCategory(reverseCategoryParse(categoryIdString));
+}
+
+function firstLoad(setCategories){
     Axios
         .get(`${serverUrl}/products`)
         .then(({data: res}) => {
             setCategories(res)
-            setCurrentCategory(res[0])
         })
         .catch((error) => {
             console.error(error);
@@ -38,7 +56,7 @@ function loadCategory(setBooks){
                 bookName: book.name,
                 author: book.author,
                 imgPath: Himu,
-              }));
+            }));
             setBooks(newBooks);
         })
         .catch((error) => {
@@ -52,7 +70,7 @@ function BookLibrary() {
     const [categories, setCategories] = useState([
         "Fiction", "Drama", "Mystery", "Adventure", "Academic"
     ])
-    const [currentCategory, setCurrentCategory] = useState("Fiction")
+    const [currentCategory, setCurrentCategory] = useState()
     const [currentBooks, setBooks] = useState([
         {
             bookName: "Himu Rimande",
@@ -75,10 +93,14 @@ function BookLibrary() {
             imgPath: TheDaVinciCode,
         },
     ])
+    
+    useEffect(() => {
+        loadCurrentCateogry(setCurrentCategory);
+    })
 
     useEffect(() => {
-        firstLoad(setCategories, setCurrentCategory);
-    }, []);
+        firstLoad(setCategories);
+    }, [])
 
     useEffect(() => {
         loadCategory(setBooks)
@@ -94,7 +116,7 @@ function BookLibrary() {
             </div>
             <div className="categoryBgDiv">
                 <Category categories={categories} currentCategory={currentCategory} 
-                setCurrentCategory={setCurrentCategory} urlPath={urlPath} />
+                 urlPath={urlPath} />
                 <div className="bookBgDiv">
                     <div className="bookBgDivHeader">
                         <text className="bookDivHeader"> {currentCategory} </text>

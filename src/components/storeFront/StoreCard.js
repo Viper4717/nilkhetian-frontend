@@ -8,14 +8,12 @@ function categoryParse(storeCategories){
     if(Array.isArray(storeCategories) && storeCategories.length){
         var words = storeCategories[0].split(" ");
         var catName = "";
-        var lower;
         for(var i = 0; i < words.length; i++){
-            lower = words[i].toLowerCase();
             if(i > 0){
-                catName += ('-' + lower);
+                catName += ('+' + words[i]);
             }
             else{
-                catName += lower;
+                catName += words[i];
             }
         }
         parsedCategories.push(catName);

@@ -18,7 +18,7 @@ function categoryParse(item){
     return catName;
 }
 
-function Category({categories, currentCategory, setCurrentCategory, urlPath}) {
+function Category({categories, currentCategory, urlPath}) {
     return (
         <div className="categoryDiv">
             <div className="categoryLeftDiv">
@@ -28,9 +28,8 @@ function Category({categories, currentCategory, setCurrentCategory, urlPath}) {
                 <ul>
                     {categories.map((item) => (
                         <li>
-                            <Link to={`${urlPath}&category=${categoryParse(item)}`}
-                            className={currentCategory === item? "activeCategory" : "inactiveCategory"}
-                            onClick={() => setCurrentCategory(item)}>
+                            <Link to={`${urlPath}${categoryParse(item)}`}
+                            className={currentCategory === item? "activeCategory" : "inactiveCategory"}>
                                 {item}
                                 <RiArrowRightSLine size="2em"/>
                             </Link>
@@ -45,7 +44,7 @@ function Category({categories, currentCategory, setCurrentCategory, urlPath}) {
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         {categories.map(item => (
-                            <Dropdown.Item onClick={() => setCurrentCategory(item)}>
+                            <Dropdown.Item>
                                 <Link to={`${urlPath}&category=${categoryParse(item)}`}>
                                     {item}
                                 </Link>
