@@ -40,7 +40,6 @@ function loadStores(setStores){
   Axios
     .get(`${serverUrl}/products`)
     .then(({data: res}) => {
-        console.log(res[0]);
         firstCategory = categoryParse(res[0]);
     })
     .catch((error) => {

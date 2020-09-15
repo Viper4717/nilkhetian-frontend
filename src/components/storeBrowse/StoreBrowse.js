@@ -2,33 +2,39 @@ import React, { useState, useEffect } from 'react';
 import './StoreBrowse.css';
 import Category from '../category/Category';
 import StoreBookCard from './StoreBookCard';
+import PaginationBar from '../paginationBar/PaginationBar';
 import { Container } from 'react-bootstrap';
 import Himu from '../../assets/home/himuRimande.jpg';
-import AmiEbongAmra from '../../assets/home/amiEbongAmra.jpg';
-import AngelsAndDemons from '../../assets/home/angelsAndDemons.jpg';
-import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg';
 import Axios from 'axios';
 import { serverUrl, reverseCategoryParse } from '../../util';
 
-const storeIdString = window.location.href.substring(
-    window.location.href.indexOf("?")+1, window.location.href.indexOf("&category"));
-
-const urlPathForCat = window.location.href.substring(
-    window.location.href.indexOf("/store"), window.location.href.indexOf("category"+9));
-
 var categoryIdString;
-
+var currentPageNo;
+var totalPages;
 var storeName;
+
+const storeIdString = window.location.href.substring(
+    window.location.href.indexOf("id")+3, window.location.href.indexOf("&category"));
+const urlPathForCat = window.location.href.substring(
+    window.location.href.indexOf("/store"), window.location.href.indexOf("category")+9);
+const afterCat = window.location.href.substring(
+    window.location.href.indexOf("&page"), window.location.href.indexOf("page")+5);
 
 function loadCurrentCateogry(setCurrentCategory){
     categoryIdString = window.location.href.substring(
-        window.location.href.indexOf("&category")+10, window.location.href.length);
+        window.location.href.indexOf("&category")+10, window.location.href.indexOf("&page"));
     setCurrentCategory(reverseCategoryParse(categoryIdString));
+}
+
+function loadCurrentPage(setCurrentPage){
+    currentPageNo = window.location.href.substring(
+      window.location.href.indexOf("page=")+5, window.location.href.length);
+    setCurrentPage(parseInt(currentPageNo, 10));
 }
 
 function firstLoad(setCategories){
     Axios
-        .get(`${serverUrl}/store?${storeIdString}`)
+        .get(`${serverUrl}/store?id=${storeIdString}`)
         .then(({data: res}) => {
             storeName = res.storeName
             setCategories(res.categories)
@@ -41,13 +47,15 @@ function firstLoad(setCategories){
 
 function loadCategory(setBooks){
     Axios
-        .get(`${serverUrl}/store?${storeIdString}&category=${categoryIdString}`)
+        .get(`${serverUrl}/concrete-products?storeId=${storeIdString}
+            &category=${categoryIdString}&page=${currentPageNo}`)
         .then(({data: res}) => {
-            const newBooks = res.map((book) => ({
+            totalPages = res.totalPages;
+            const newBooks = res.results.map((book) => ({
                 id: book._id,
                 bookName: book.name,
                 author: book.author,
-                bookImgPath: Himu,
+                imgPath: Himu,
                 price: book.price,
               }));
             setBooks(newBooks);
@@ -60,40 +68,20 @@ function loadCategory(setBooks){
 
 function StoreBrowse() {
 
-    const [categories, setCategories] = useState([
-        "Fiction", "Drama", "Mystery", "Adventure", "Academic"
-    ])
+    const [categories, setCategories] = useState([])
     const [currentCategory, setCurrentCategory] = useState()
-    const [currentBooks, setBooks] = useState([
-        {
-            bookName: "Himu Rimande",
-            author: "Humayun Ahmed",
-            imgPath: Himu,
-            price: 300,
-        },
-        {
-            bookName: "Ami Ebong Amra",
-            author: "Humayun Ahmed",
-            imgPath: AmiEbongAmra,
-            price: 350,
-        },
-        {
-            bookName: "Angels and Demons",
-            author: "Dan Brown",
-            imgPath: AngelsAndDemons,
-            price: 800,
-        },
-        {
-            bookName: "The Da Vinci Code",
-            author: "Dan Brown",
-            imgPath: TheDaVinciCode,
-            price: 850,
-        },
-    ])
+    const [currentBooks, setBooks] = useState([])
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         loadCurrentCateogry(setCurrentCategory);
-    }, [window.location.href])
+    }, [window.location.href.substring(
+        window.location.href.indexOf("?category=")+10, window.location.href.indexOf("&page"))])
+
+    useEffect(() => {
+        loadCurrentPage(setCurrentPage);
+    }, [window.location.href.substring(
+        window.location.href.indexOf("page=")+5, window.location.href.length)])
 
     useEffect(() => {
         firstLoad(setCategories);
@@ -101,7 +89,22 @@ function StoreBrowse() {
 
     useEffect(() => {
         loadCategory(setBooks);
-    }, [currentCategory])
+    }, [currentCategory, currentPage])
+
+    const pageBarLimit = 5;
+    var maxLeft = currentPage - Math.floor(pageBarLimit/2);
+    var maxRight = currentPage + Math.floor(pageBarLimit/2);
+    if(maxLeft < 1){
+      maxLeft = 1;
+      maxRight = (pageBarLimit > totalPages? totalPages : pageBarLimit);
+    }
+    if(maxRight > totalPages){
+      maxLeft = (pageBarLimit > totalPages? 1 : totalPages - (pageBarLimit - 1));
+      maxRight = totalPages;
+      if(maxLeft < 1){
+        maxLeft = 1;
+      }
+    }
 
     return (
         <Container fluid="md" className="parentContainer">
@@ -118,6 +121,10 @@ function StoreBrowse() {
                             <StoreBookCard bookImgPath={book.imgPath} bookName={book.bookName}
                             bookAuthor={book.author} bookPrice={book.price}/>
                         ))}
+                        <div className="paginationDiv">
+                            <PaginationBar maxLeft={maxLeft} maxRight={maxRight} lastPage={totalPages}
+                            currentPage={currentPage} urlPath={urlPathForCat+categoryIdString+afterCat} />
+                        </div>
                     </div>
                 </div>
             </div>

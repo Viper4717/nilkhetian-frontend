@@ -32,7 +32,7 @@ function StoreCard({storeId, storeName, storeImgPath, storeDetails, storeCategor
                     </Card.Text>
                     <Button className="visitStoreButton" variant="custom"
                     href = {(Array.isArray(parsedCategories) && parsedCategories.length) ? 
-                        `/store?id=${storeId}&category=${parsedCategories[0]}`
+                        `/store?id=${storeId}&category=${parsedCategories[0]}&page=1`
                         : `/store?id=${storeId}`}>
                         Visit This Store 
                     </Button>

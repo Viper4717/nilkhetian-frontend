@@ -19,7 +19,6 @@ function PaginationBar({maxLeft, maxRight, lastPage, currentPage, urlPath}) {
 
   return (
       <Pagination>
-        
         <Pagination.Item disabled={currentPage === 1}>
           <Link to={`${urlPath}1`}> {`<<`} </Link>
         </Pagination.Item>

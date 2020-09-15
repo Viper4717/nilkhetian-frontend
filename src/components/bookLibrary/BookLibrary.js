@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './BookLibrary.css';
 import Category from '../category/Category';
 import BookCard from './BookCard'
+import PaginationBar from '../paginationBar/PaginationBar';
 import { Container, Button } from 'react-bootstrap';
-import Himu from '../../assets/home/himuRimande.jpg'
+import Himu from '../../assets/home/himuRimande.jpg';
 import Axios from 'axios';
 import { serverUrl, reverseCategoryParse } from '../../util';
-import PaginationBar from '../paginationBar/PaginationBar'
 
 var categoryIdString;
 var currentPageNo;
