@@ -10,7 +10,7 @@ import { serverUrl, reverseCategoryParse } from '../../util';
 
 var categoryIdString;
 var currentPageNo;
-var totalPages;
+var totalPages = 1;
 
 const urlPathForCat = window.location.href.substring(
     window.location.href.indexOf("/products"), window.location.href.indexOf("category")+9);

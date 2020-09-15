@@ -10,7 +10,7 @@ import { serverUrl, reverseCategoryParse } from '../../util';
 
 var categoryIdString;
 var currentPageNo;
-var totalPages;
+var totalPages = 1;
 var storeName;
 
 const storeIdString = window.location.href.substring(
@@ -47,8 +47,7 @@ function firstLoad(setCategories){
 
 function loadCategory(setBooks){
     Axios
-        .get(`${serverUrl}/concrete-products?storeId=${storeIdString}
-            &category=${categoryIdString}&page=${currentPageNo}`)
+        .get(`${serverUrl}/concrete-products?storeId=${storeIdString}&category=${categoryIdString}&page=${currentPageNo}`)
         .then(({data: res}) => {
             totalPages = res.totalPages;
             const newBooks = res.results.map((book) => ({

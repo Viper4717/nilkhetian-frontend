@@ -1,21 +1,9 @@
 import React, { useEffect } from 'react';
 import './StoreCard.css';
 import { Button, Card } from 'react-bootstrap';
-
-const parsedCategories = [];
-
-function categoryParse(storeCategories){
-    if(Array.isArray(storeCategories) && storeCategories.length){
-        const catName = storeCategories[0].replace(" ", "+");
-        parsedCategories.push(catName);
-    }
-}
+import { categoryParse } from '../../util';
 
 function StoreCard({storeId, storeName, storeImgPath, storeDetails, storeCategories}) {
-
-    useEffect(() => {
-        categoryParse(storeCategories);
-    }, [])
 
     return (
         <Card className="storeCard">
@@ -31,8 +19,8 @@ function StoreCard({storeId, storeName, storeImgPath, storeDetails, storeCategor
                         {storeDetails}
                     </Card.Text>
                     <Button className="visitStoreButton" variant="custom"
-                    href = {(Array.isArray(parsedCategories) && parsedCategories.length) ? 
-                        `/store?id=${storeId}&category=${parsedCategories[0]}&page=1`
+                    href = {(Array.isArray(storeCategories) && storeCategories.length) ? 
+                        `/store?id=${storeId}&category=${categoryParse(storeCategories[0])}&page=1`
                         : `/store?id=${storeId}`}>
                         Visit This Store 
                     </Button>
