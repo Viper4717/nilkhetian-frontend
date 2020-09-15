@@ -13,7 +13,7 @@ import { serverUrl, reverseCategoryParse } from '../../util';
 const storeIdString = window.location.href.substring(
     window.location.href.indexOf("?")+1, window.location.href.indexOf("&category"));
 
-const urlPath = window.location.href.substring(
+const urlPathForCat = window.location.href.substring(
     window.location.href.indexOf("/store"), window.location.href.indexOf("category"+9));
 
 var categoryIdString;
@@ -108,7 +108,7 @@ function StoreBrowse() {
             <h2 className="storeHeader"> {storeName} </h2>
             <div className="categoryBgDiv">
                 <Category categories={categories} currentCategory={currentCategory} 
-                 urlPath={urlPath} />
+                 urlPath={urlPathForCat} />
                 <div className="bookBgDiv">
                     <div className="bookBgDivHeader">
                         <text className="bookDivHeader"> {currentCategory} </text>

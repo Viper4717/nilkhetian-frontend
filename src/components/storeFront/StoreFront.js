@@ -15,7 +15,7 @@ const urlPath = window.location.href.substring(
 
 function loadCurrentPage(setCurrentPage){
   currentPageNo = window.location.href.substring(
-    window.location.href.indexOf("?page=")+6, window.location.href.length);
+    window.location.href.indexOf("page=")+5, window.location.href.length);
   setCurrentPage(parseInt(currentPageNo, 10));
 }
 
@@ -83,7 +83,7 @@ function StoreFront() {
             <h2 className="storeHeader"> Nilkhet Online: Store Front </h2>
             <div className="topButtonDiv">
                 <Button className="bookCategoryButton" variant="custom" 
-                href={`/products?category=${firstCategory}`}>
+                href={`/products?category=${firstCategory}&page=1`}>
                     Browse Books/Stationaries
                 </Button>
             </div>

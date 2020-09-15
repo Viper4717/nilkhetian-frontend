@@ -6,7 +6,7 @@ function Footer() {
   return (
     <div className="footerBG">
       <Container fluid="md" className="footerContainer">
-        <div classNam="footerLeft">
+        <div className="footerLeft">
           <div className="footerTop">
             <text className="footerTitle">Nilkhetian</text><br/>
             <text className="footerSecondaryTitle">By Quixx</text>

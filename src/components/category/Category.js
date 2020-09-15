@@ -15,7 +15,7 @@ function Category({categories, currentCategory, urlPath}) {
                 <ul>
                     {categories.map((item) => (
                         <li>
-                            <Link to={`${urlPath}${categoryParse(item)}`}
+                            <Link to={`${urlPath}${categoryParse(item)}&page=1`}
                             className={currentCategory === item? "activeCategory" : "inactiveCategory"}>
                                 {item}
                                 <RiArrowRightSLine size="2em"/>
@@ -32,7 +32,7 @@ function Category({categories, currentCategory, urlPath}) {
                     <Dropdown.Menu>
                         {categories.map(item => (
                             <Dropdown.Item>
-                                <Link to={`${urlPath}${categoryParse(item)}`}>
+                                <Link to={`${urlPath}${categoryParse(item)}&page=1`}>
                                     {item}
                                 </Link>
                             </Dropdown.Item>
