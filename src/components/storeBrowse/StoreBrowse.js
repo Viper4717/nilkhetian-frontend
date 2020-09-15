@@ -8,7 +8,7 @@ import AmiEbongAmra from '../../assets/home/amiEbongAmra.jpg';
 import AngelsAndDemons from '../../assets/home/angelsAndDemons.jpg';
 import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg';
 import Axios from 'axios';
-import { serverUrl } from '../../util';
+import { serverUrl, reverseCategoryParse } from '../../util';
 
 const storeIdString = window.location.href.substring(
     window.location.href.indexOf("?")+1, window.location.href.indexOf("&category"));
@@ -19,20 +19,6 @@ const urlPath = window.location.href.substring(
 var categoryIdString;
 
 var storeName;
-
-function reverseCategoryParse(item){
-    var words = item.split("+");
-    var catName = "";
-    for(var i = 0; i < words.length; i++){
-        if(i > 0){
-            catName += (' ' + words[i]);
-        }
-        else{
-            catName += words[i];
-        }
-    }
-    return catName;
-}
 
 function loadCurrentCateogry(setCurrentCategory){
     categoryIdString = window.location.href.substring(
@@ -107,14 +93,14 @@ function StoreBrowse() {
 
     useEffect(() => {
         loadCurrentCateogry(setCurrentCategory);
-    })
+    }, [window.location.href])
 
     useEffect(() => {
         firstLoad(setCategories);
-    }, []);
+    }, [])
 
     useEffect(() => {
-        loadCategory(setBooks)
+        loadCategory(setBooks);
     }, [currentCategory])
 
     return (

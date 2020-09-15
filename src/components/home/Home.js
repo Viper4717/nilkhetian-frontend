@@ -60,12 +60,12 @@ function Home() {
             </Card.Text>
           </Card.ImgOverlay>
           <Card.ImgOverlay className="buttonOverlay">
-            <Button className="exploreButtonWeb" variant="custom" href="/stores">
+            <Button className="exploreButtonWeb" variant="custom" href="/stores?page=1">
               EXPLORE NOW
             </Button>
           </Card.ImgOverlay>
         </Card>
-        <Button className="exploreButtonMobile" variant="custom" href="/stores">
+        <Button className="exploreButtonMobile" variant="custom" href="/stores?page=1">
           EXPLORE NOW
         </Button>
       </div>

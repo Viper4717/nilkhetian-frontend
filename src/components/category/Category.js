@@ -1,22 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Category.css';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
-function categoryParse(item){
-    var words = item.split(" ");
-    var catName = "";
-    for(var i = 0; i < words.length; i++){
-        if(i > 0){
-            catName += ('+' + words[i]);
-        }
-        else{
-            catName += words[i];
-        }
-    }
-    return catName;
-}
+import { categoryParse } from '../../util';
 
 function Category({categories, currentCategory, urlPath}) {
     return (
@@ -45,7 +32,7 @@ function Category({categories, currentCategory, urlPath}) {
                     <Dropdown.Menu>
                         {categories.map(item => (
                             <Dropdown.Item>
-                                <Link to={`${urlPath}&category=${categoryParse(item)}`}>
+                                <Link to={`${urlPath}${categoryParse(item)}`}>
                                     {item}
                                 </Link>
                             </Dropdown.Item>

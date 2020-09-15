@@ -2,13 +2,13 @@ import React from 'react';
 import './Pagination.css'
 import { Pagination } from 'react-bootstrap';
 
-function PaginationBar({lastPage, currentPage, setCurrentPage}) {
+function PaginationBar({maxLeft, maxRight, lastPage, currentPage, urlPath}) {
 
   const pageNumbers = [];
 
-  for(let i=1; i<=lastPage; i++){
+  for(let i=maxLeft; i<=maxRight; i++){
     pageNumbers.push(
-      <Pagination.Item key={i} active={i === currentPage} onClick={() => setCurrentPage(i)}>
+      <Pagination.Item key={i} active={i === currentPage} href={`${urlPath}${i}`}>
         {i}
       </Pagination.Item>
     );
@@ -16,11 +16,11 @@ function PaginationBar({lastPage, currentPage, setCurrentPage}) {
 
   return (
       <Pagination>
-        <Pagination.First disabled={currentPage === 1} onClick={() => setCurrentPage(1)}/>
-        <Pagination.Prev disabled={currentPage === 1} onClick={() => setCurrentPage((p)=>(p-1))}/>
+        <Pagination.First disabled={currentPage === 1} href={`${urlPath}1`}/>
+        <Pagination.Prev disabled={currentPage === 1} href={`${urlPath}${currentPage-1}`}/>
           {pageNumbers}
-        <Pagination.Next disabled={currentPage === lastPage} onClick={() => setCurrentPage((p)=>(p+1))}/>
-        <Pagination.Last disabled={currentPage === lastPage} onClick={() => setCurrentPage(lastPage)}/>
+        <Pagination.Next disabled={currentPage === lastPage} href={`${urlPath}${currentPage+1}`}/>
+        <Pagination.Last disabled={currentPage === lastPage} href={`${urlPath}${lastPage}`}/>
       </Pagination>
   );
 }

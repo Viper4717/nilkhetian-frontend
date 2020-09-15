@@ -5,30 +5,26 @@ import StoreCard from './StoreCard'
 import PaginationBar from '../paginationBar/PaginationBar'
 import { Container, Button} from 'react-bootstrap';
 import Axios from 'axios';
-import { serverUrl } from '../../util';
+import { serverUrl, categoryParse } from '../../util';
 
 var firstCategory = "Fiction";
+var currentPageNo;
+var totalPages;
+const urlPath = window.location.href.substring(
+  window.location.href.indexOf("/stores"), window.location.href.indexOf("page"+5));
 
-function categoryParse(item){
-  var words = item.split(" ");
-  var catName = "";
-  for(var i = 0; i < words.length; i++){
-      if(i > 0){
-          catName += ('+' + words[i]);
-      }
-      else{
-          catName += words[i];
-      }
-  }
-  return catName;
+function loadCurrentPage(setCurrentPage){
+  currentPageNo = window.location.href.substring(
+    window.location.href.indexOf("?page=")+6, window.location.href.length);
+  setCurrentPage(parseInt(currentPageNo, 10));
 }
 
-function loadStores(setStores, setTotalStores){
+function loadStores(setStores){
   Axios
-  .get(`${serverUrl}/stores`)
+  .get(`${serverUrl}/stores?page=${currentPageNo}`)
   .then(({data: res}) => {
-    setTotalStores(res.length);
-    const newStores = res.map((store) => ({
+    totalPages = res.totalPages;
+    const newStores = res.results.map((store) => ({
       id: store._id,
       storeName: store.storeName,
       storeImgPath: BookStoreImage,
@@ -46,7 +42,6 @@ function loadStores(setStores, setTotalStores){
     .then(({data: res}) => {
         console.log(res[0]);
         firstCategory = categoryParse(res[0]);
-        console.log(firstCategory);
     })
     .catch((error) => {
         console.error(error);
@@ -56,21 +51,32 @@ function loadStores(setStores, setTotalStores){
 
 function StoreFront() {
     const [stores, setStores] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalStores, setTotalStores] = useState(1);
+    const [currentPage, setCurrentPage] = useState();
+
+    useEffect(() => {
+      loadCurrentPage(setCurrentPage);
+    }, [window.location.href])
 
     useEffect(() => {
       loadStores(
         setStores,
-        setTotalStores,
       );
-    }, []);
+    }, [currentPage]);
 
-    const storesPerPage = 12;
-    const lastPage = Math.ceil(totalStores/storesPerPage);
-    const indexOfLastPost = currentPage * (storesPerPage > totalStores? totalStores : storesPerPage);
-    const indexofFirstPost = indexOfLastPost - (storesPerPage > totalStores? totalStores : storesPerPage);
-    const currentStores = stores.slice(indexofFirstPost, indexOfLastPost);
+    const pageBarLimit = 5;
+    var maxLeft = currentPage - Math.floor(pageBarLimit/2);
+    var maxRight = currentPage + Math.floor(pageBarLimit/2);
+    if(maxLeft < 1){
+      maxLeft = 1;
+      maxRight = (pageBarLimit > totalPages? totalPages : pageBarLimit);
+    }
+    if(maxRight > totalPages){
+      maxLeft = (pageBarLimit > totalPages? 1 : totalPages - (pageBarLimit - 1));
+      maxRight = totalPages;
+      if(maxLeft < 1){
+        maxLeft = 1;
+      }
+    }
 
     return (
         <Container fluid="md" className="parentContainer smallHeight">
@@ -82,13 +88,14 @@ function StoreFront() {
                 </Button>
             </div>
             <div className="storeGrid">
-                {currentStores.map(store => (
+                {stores.map(store => (
                     <StoreCard storeId={store.id} storeName={store.storeName} storeImgPath={store.storeImgPath}
                      storeDetails={store.storeDetails} storeCategories={store.storeCategories} />
                 ))}
             </div>
             <div className="paginationDiv">
-              <PaginationBar lastPage={lastPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+              <PaginationBar maxLeft={maxLeft} maxRight={maxRight} lastPage={totalPages}
+               currentPage={currentPage} urlPath={urlPath} />
             </div>
         </Container>
     );

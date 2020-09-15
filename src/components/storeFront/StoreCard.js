@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './StoreCard.css';
 import { Button, Card } from 'react-bootstrap';
 
@@ -6,25 +6,16 @@ const parsedCategories = [];
 
 function categoryParse(storeCategories){
     if(Array.isArray(storeCategories) && storeCategories.length){
-        var words = storeCategories[0].split(" ");
-        var catName = "";
-        for(var i = 0; i < words.length; i++){
-            if(i > 0){
-                catName += ('+' + words[i]);
-            }
-            else{
-                catName += words[i];
-            }
-        }
+        const catName = storeCategories[0].replace(" ", "+");
         parsedCategories.push(catName);
     }
 }
 
 function StoreCard({storeId, storeName, storeImgPath, storeDetails, storeCategories}) {
 
-    console.log("react start")
-
-    categoryParse(storeCategories);
+    useEffect(() => {
+        categoryParse(storeCategories);
+    }, [])
 
     return (
         <Card className="storeCard">
