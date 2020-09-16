@@ -8,7 +8,7 @@ import './Header.css';
 function Header() {
   return (
     <Navbar className="shadow-sm p-1 justify-content-between" bg="light" expand="md" sticky="top">
-      <Container fluid="md">
+      <Container fluid="md" className="headerContainer">
         <Navbar.Brand className="webBrand" href="/">
           <img
             src={HeaderLogo}

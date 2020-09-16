@@ -9,6 +9,7 @@ import Footer from './components/footer/Footer';
 import StoreFront from './components/storeFront/StoreFront';
 import BookLibrary from './components/bookLibrary/BookLibrary';
 import StoreBrowse from './components/storeBrowse/StoreBrowse';
+import Search from './components/search/Search';
 import Result from './components/result/Result';
 import Profile from './components/profile/Profile';
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/stores" component={StoreFront}/>
             <Route path="/products" component={BookLibrary}/>
             <Route path="/store" component={StoreBrowse}/>
+            <Route path="/search" component={Search}/>
             <Route path="/results" component={Result}/>
           </Switch>
         <Footer/>

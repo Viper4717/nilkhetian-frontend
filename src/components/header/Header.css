@@ -1,3 +1,6 @@
+.headerContainer{
+    position: relative !important;
+}
 .searchBar{
     position: absolute !important;
     left: 30%;
