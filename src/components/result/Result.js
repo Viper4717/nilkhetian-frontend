@@ -36,6 +36,7 @@ function loadResults(setResults){
                 id: book._id,
                 bookName: book.name,
                 author: book.author,
+                bookStoreName: book.storeName,
                 imgPath: Himu,
                 price: book.price,
               }));

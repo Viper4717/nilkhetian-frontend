@@ -117,7 +117,7 @@ function BookLibrary() {
                     </div>
                     <div className="bookGrid">
                         {currentBooks.map(book => (
-                            <BookCard bookImgPath={book.imgPath} bookName={book.bookName}
+                            <BookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.bookName}
                             bookAuthor={book.author}/>
                         ))}
                         <div className="paginationDiv">

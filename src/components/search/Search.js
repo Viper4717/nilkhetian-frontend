@@ -101,7 +101,7 @@ function Search() {
             <h2 className="storeHeader"> Nilkhet Online </h2>
             <div className="searchGrid">
                 {currentResults.map(book => (
-                    <BookCard bookImgPath={book.imgPath} bookName={book.bookName}
+                    <BookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.bookName}
                     bookAuthor={book.author}/>
                 ))}
             </div>
