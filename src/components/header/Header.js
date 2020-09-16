@@ -5,23 +5,19 @@ import MobileHeaderLogo from '../../assets/header/nilkhetianMobileLogoHeader.svg
 import { CgProfile, CgSearch, CgShoppingCart } from 'react-icons/cg';
 import './Header.css';
 import { categoryParse } from '../../util';
-import { useHistory  } from 'react-router-dom';
-
 
 function Header() {
 
   const [searchText, setSearchText] = useState();
-  const history = useHistory();
 
   function parseSearchText(e){
     setSearchText(categoryParse(e.target.value));
   }
 
-  // function handleKeyPress(e) {
-  //   if(e.charCode==13){
-  //     history.push(`/search?q=${searchText}&page=1`)
-  //   } 
-  // } 
+  function handleSubmit(e) {
+    e.preventDefault();
+    window.location.assign(`/search?q=${searchText}&page=1`);
+  } 
 
   return (
     <Navbar className="shadow-sm p-1 justify-content-between" bg="light" expand="md" sticky="top">
@@ -42,11 +38,11 @@ function Header() {
             alt="Nilkhetian Mobile Logo"
           />
         </Navbar.Brand>
-        <Form className="searchBar">
+        <Form className="searchBar" onSubmit={handleSubmit}>
           <div style={{display: "flex", flexDirection: "row"}}>
             <FormControl type="text" placeholder="Search Products" className="mr-sm-2" 
             onChange={parseSearchText}/>
-            <Button variant="custom" size='sm' href={`/search?q=${searchText}&page=1`}>
+            <Button variant="custom" type="submit" size='sm'>
               <CgSearch size='2em'/>
             </Button>
           </div>

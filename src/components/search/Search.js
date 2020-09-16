@@ -4,9 +4,6 @@ import { Container} from 'react-bootstrap';
 import BookCard from '../bookLibrary/BookCard';
 import PaginationBar from '../paginationBar/PaginationBar'
 import Himu from '../../assets/home/himuRimande.jpg'
-import AmiEbongAmra from '../../assets/home/amiEbongAmra.jpg'
-import AngelsAndDemons from '../../assets/home/angelsAndDemons.jpg'
-import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg'
 import Axios from 'axios';
 import { serverUrl } from '../../util';
 
@@ -48,34 +45,17 @@ function loadResults(setResults){
 
 function Search() {
 
-    const [currentResults, setResults] = useState([
-      {
-        bookName: "Himu Rimande",
-        author: "Humayun Ahmed",
-        imgPath: Himu,
-      },
-      {
-        bookName: "Ami Ebong Amra",
-        author: "Humayun Ahmed",
-        imgPath: AmiEbongAmra,
-      },
-      {
-        bookName: "Angels and Demons",
-        author: "Dan Brown",
-        imgPath: AngelsAndDemons,
-      },
-      {
-        bookName: "The Da Vinci Code",
-        author: "Dan Brown",
-        imgPath: TheDaVinciCode,
-      },
-    ])
+    const [currentResults, setResults] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         loadCurrentPage(setCurrentPage);
     }, [window.location.href.substring(
         window.location.href.indexOf("page=")+5, window.location.href.length)])
+
+    useEffect(() => {
+        loadResults(setResults);
+    }, [])
   
     useEffect(() => {
         loadResults(setResults);

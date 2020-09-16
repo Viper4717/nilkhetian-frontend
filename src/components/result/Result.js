@@ -4,9 +4,6 @@ import { Container} from 'react-bootstrap';
 import ResultBookCard from './ResultBookCard';
 import PaginationBar from '../paginationBar/PaginationBar'
 import Himu from '../../assets/home/himuRimande.jpg'
-import AmiEbongAmra from '../../assets/home/amiEbongAmra.jpg'
-import AngelsAndDemons from '../../assets/home/angelsAndDemons.jpg'
-import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg'
 import Axios from 'axios';
 import { serverUrl } from '../../util';
 
@@ -50,36 +47,7 @@ function loadResults(setResults){
 
 function Result() {
 
-    const [currentResults, setResults] = useState([
-      {
-        bookName: "Himu Rimande",
-        author: "Humayun Ahmed",
-        bookStoreName: "Shameme Boi Bitan",
-        imgPath: Himu,
-        price: 300,
-      },
-      {
-        bookName: "Ami Ebong Amra",
-        author: "Humayun Ahmed",
-        bookStoreName: "Shameme Boi Bitan",
-        imgPath: AmiEbongAmra,
-        price: 350,
-      },
-      {
-        bookName: "Angels and Demons",
-        author: "Dan Brown",
-        bookStoreName: "Samin Er Bosta",
-        imgPath: AngelsAndDemons,
-        price: 700,
-      },
-      {
-        bookName: "The Da Vinci Code",
-        author: "Dan Brown",
-        bookStoreName: "Samin Er Bosta",
-        imgPath: TheDaVinciCode,
-        price: 800,
-      },
-    ])
+    const [currentResults, setResults] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
