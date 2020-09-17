@@ -12,13 +12,14 @@ import StoreBrowse from './components/storeBrowse/StoreBrowse';
 import Search from './components/search/Search';
 import Result from './components/result/Result';
 import Profile from './components/profile/Profile';
+import Cart from './components/cart/Cart';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Header/>
-          <Switch>
+          {/* <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/login" component={Login}/>
             <Route path="/registration" component={Registration}/>
@@ -27,7 +28,8 @@ function App() {
             <Route path="/store" component={StoreBrowse}/>
             <Route path="/search" component={Search}/>
             <Route path="/results" component={Result}/>
-          </Switch>
+          </Switch> */}
+          <Cart/>
         <Footer/>
       </BrowserRouter>
     </div>
