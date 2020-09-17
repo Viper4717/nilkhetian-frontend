@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Category.css';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { Dropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { categoryParse } from '../../util';
 
-function Category({categories, currentCategory, setCurrentCategory}) {
+function Category({categories, currentCategory, urlPath}) {
     return (
         <div className="categoryDiv">
             <div className="categoryLeftDiv">
@@ -11,13 +13,13 @@ function Category({categories, currentCategory, setCurrentCategory}) {
                     <text className="categoryHeader">Categories</text>
                 </div>
                 <ul>
-                    {categories.map(item => (
+                    {categories.map((item) => (
                         <li>
-                            <a className={currentCategory === item? "activeCategory" : "inactiveCategory"}
-                            onClick={() => setCurrentCategory(item)} href='#'>
+                            <Link to={`${urlPath}${categoryParse(item)}&page=1`}
+                            className={currentCategory === item? "activeCategory" : "inactiveCategory"}>
                                 {item}
                                 <RiArrowRightSLine size="2em"/>
-                            </a>
+                            </Link>
                         </li>
                     ))}
                 </ul>
@@ -29,9 +31,10 @@ function Category({categories, currentCategory, setCurrentCategory}) {
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         {categories.map(item => (
-                            <Dropdown.Item onClick={() => setCurrentCategory(item)}
-                             href="#">
-                                 {item}
+                            <Dropdown.Item>
+                                <Link to={`${urlPath}${categoryParse(item)}&page=1`}>
+                                    {item}
+                                </Link>
                             </Dropdown.Item>
                         ))}
                     </Dropdown.Menu>

@@ -2,7 +2,7 @@ import React from 'react';
 import './BookCard.css';
 import { Button, Card } from 'react-bootstrap';
 
-function BookCard({bookImgPath, bookName, bookAuthor}) {
+function BookCard({bookId, bookImgPath, bookName, bookAuthor}) {
     return (
         <Card className="bookCheckCard">
             <div className="bookCheckCardDiv">
@@ -16,7 +16,10 @@ function BookCard({bookImgPath, bookName, bookAuthor}) {
                     <Card.Text className="bookCheckAuthor">
                         {bookAuthor}
                     </Card.Text>
-                    <Button className="visitStoreButton" variant="custom"> Check Availability </Button>
+                    <Button className="visitStoreButton" variant="custom" 
+                    href={`/results?productId=${bookId}&page=1`}>
+                        Check Availability 
+                    </Button>
                 </div>
             </div>
         </Card>

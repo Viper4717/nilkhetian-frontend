@@ -1,26 +1,37 @@
 import React from 'react';
 import './Pagination.css'
 import { Pagination } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-function PaginationBar({lastPage, currentPage, setCurrentPage}) {
+function PaginationBar({maxLeft, maxRight, lastPage, currentPage, urlPath}) {
 
   const pageNumbers = [];
 
-  for(let i=1; i<=lastPage; i++){
+  for(let i=maxLeft; i<=maxRight; i++){
     pageNumbers.push(
-      <Pagination.Item key={i} active={i === currentPage} onClick={() => setCurrentPage(i)}>
-        {i}
+      <Pagination.Item key={i} active={i === currentPage} >
+        <Link to={`${urlPath}${i}`}>
+          {i}
+        </Link>
       </Pagination.Item>
     );
   }
 
   return (
       <Pagination>
-        <Pagination.First disabled={currentPage === 1} onClick={() => setCurrentPage(1)}/>
-        <Pagination.Prev disabled={currentPage === 1} onClick={() => setCurrentPage((p)=>(p-1))}/>
+        <Pagination.Item disabled={currentPage === 1}>
+          <Link to={`${urlPath}1`}> {`<<`} </Link>
+        </Pagination.Item>
+        <Pagination.Item disabled={currentPage === 1}>
+          <Link to={`${urlPath}${currentPage-1}`}> {`<`} </Link>
+        </Pagination.Item>
           {pageNumbers}
-        <Pagination.Next disabled={currentPage === lastPage} onClick={() => setCurrentPage((p)=>(p+1))}/>
-        <Pagination.Last disabled={currentPage === lastPage} onClick={() => setCurrentPage(lastPage)}/>
+        <Pagination.Item disabled={currentPage === lastPage}>
+          <Link to={`${urlPath}${currentPage+1}`}> {`>`} </Link>
+        </Pagination.Item>
+        <Pagination.Item disabled={currentPage === lastPage}>
+          <Link to={`${urlPath}${lastPage}`}> {`>>`} </Link>
+        </Pagination.Item>
       </Pagination>
   );
 }

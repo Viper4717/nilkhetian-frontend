@@ -1,0 +1,17 @@
+.searchGrid{
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+.searchGrid > .bookCheckCard{
+    flex-basis: calc(25% - 20px) !important;
+}
+
+@media screen and (max-width: 768px){
+    .searchGrid{
+        flex-direction: column;
+    }
+}

@@ -1,11 +1,18 @@
+
 .page-link{
-    color: #054575 !important;
+    padding: 0 !important;
 }
-.page-item.active .page-link{
+.page-link > a{
+    display: block;
+    color: #054575;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+}
+.page-item.active .page-link > a{
     background-color: #ffa500 !important;
     color: #fff !important;
 }
-.page-item.disabled .page-link{
+.page-item.disabled .page-link > a{
     background-color: #d4dbe2 !important;
     color: #054575 !important;
 }

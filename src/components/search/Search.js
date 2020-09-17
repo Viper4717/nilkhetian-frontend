@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './Result.css';
+import './Search.css';
 import { Container} from 'react-bootstrap';
-import ResultBookCard from './ResultBookCard';
+import BookCard from '../bookLibrary/BookCard';
 import PaginationBar from '../paginationBar/PaginationBar'
 import Himu from '../../assets/home/himuRimande.jpg'
 import Axios from 'axios';
@@ -10,10 +10,10 @@ import { serverUrl } from '../../util';
 var currentPageNo;
 var totalPages = 1;
 
-const productIdString = window.location.href.substring(
-    window.location.href.indexOf("productId")+10, window.location.href.indexOf("&page"));
+const searchString = window.location.href.substring(
+    window.location.href.indexOf("?q=")+3, window.location.href.indexOf("&page"));
 const urlPath = window.location.href.substring(
-    window.location.href.indexOf("/results"), window.location.href.indexOf("page")+5);
+    window.location.href.indexOf("/search"), window.location.href.indexOf("page")+5);
 
 function loadCurrentPage(setCurrentPage){
     currentPageNo = window.location.href.substring(
@@ -23,16 +23,14 @@ function loadCurrentPage(setCurrentPage){
 
 function loadResults(setResults){
     Axios
-        .get(`${serverUrl}/concrete-products?productId=${productIdString}&page=${currentPageNo}`)
+        .get(`${serverUrl}/products?search=${searchString}&page=${currentPageNo}`)
         .then(({data: res}) => {
             totalPages = res.totalPages;
             const newResults = res.results.map((book) => ({
                 id: book._id,
                 bookName: book.name,
                 author: book.author,
-                bookStoreName: book.storeName,
                 imgPath: Himu,
-                price: book.price,
               }));
             setResults(newResults);
         })
@@ -42,7 +40,7 @@ function loadResults(setResults){
         });
 }
 
-function Result() {
+function Search() {
 
     const [currentResults, setResults] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
@@ -51,6 +49,10 @@ function Result() {
         loadCurrentPage(setCurrentPage);
     }, [window.location.href.substring(
         window.location.href.indexOf("page=")+5, window.location.href.length)])
+
+    useEffect(() => {
+        loadResults(setResults);
+    }, [])
   
     useEffect(() => {
         loadResults(setResults);
@@ -74,10 +76,10 @@ function Result() {
     return (
         <Container fluid="md" className="parentContainer smallHeight">
             <h2 className="storeHeader"> Nilkhet Online </h2>
-            <div className="resultGrid">
+            <div className="searchGrid">
                 {currentResults.map(book => (
-                    <ResultBookCard imgPath={book.imgPath} bookName={book.bookName}
-                    author={book.author} bookStoreName={book.bookStoreName} price={book.price}/>
+                    <BookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.bookName}
+                    bookAuthor={book.author}/>
                 ))}
             </div>
             <div className="paginationDiv">
@@ -88,4 +90,4 @@ function Result() {
     );
 }
 
-export default Result;
+export default Search;
