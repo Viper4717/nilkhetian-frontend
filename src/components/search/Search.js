@@ -7,9 +7,6 @@ import Himu from '../../assets/home/himuRimande.jpg'
 import Axios from 'axios';
 import { serverUrl } from '../../util';
 
-//search?q=Blah&page=Blah
-//products?search=Blah&page=Blah
-
 var currentPageNo;
 var totalPages = 1;
 
