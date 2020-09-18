@@ -1,6 +1,7 @@
 import React from 'react';
 import './BookCard.css';
 import { Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function BookCard({bookId, bookImgPath, bookName, bookAuthor}) {
     return (
@@ -16,9 +17,9 @@ function BookCard({bookId, bookImgPath, bookName, bookAuthor}) {
                     <Card.Text className="bookCheckAuthor">
                         {bookAuthor}
                     </Card.Text>
-                    <Button className="visitStoreButton" variant="custom" 
-                    href={`/results?productId=${bookId}&page=1`}>
-                        Check Availability 
+                    <Button className="visitStoreButton" variant="custom" as={Link}
+                    to={`/results?productId=${bookId}&page=1`}>
+                        Check Availability
                     </Button>
                 </div>
             </div>

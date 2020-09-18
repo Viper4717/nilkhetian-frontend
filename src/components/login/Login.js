@@ -1,6 +1,7 @@
 import React from 'react';
 import './Login.css'
 import { Form, Button, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Login() {
   return (
@@ -20,7 +21,7 @@ function Login() {
                 </Form.Group>
             </Form>
             <text className="accountText"> Don't have an account? </text>
-            <a className="createAccount" href="/registration"> Create an account. </a>
+            <Link className="createAccount" to="/registration"> Create an account. </Link>
             <div className="signInButtonnOverlay">
                 <Button className="signInButtonnWeb" variant="custom">
                     Sign In

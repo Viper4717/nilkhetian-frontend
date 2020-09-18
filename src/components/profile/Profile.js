@@ -3,6 +3,7 @@ import './Profile.css';
 import BookOrderCard from './BookOrderCard';
 import { Container, Image, Button} from 'react-bootstrap';
 import ProfileImage from '../../assets/profile/profileImage.png';
+import { Link } from 'react-router-dom';
 
 function Profile() {
 
@@ -42,7 +43,7 @@ function Profile() {
                 </div>
                 <div className="profileRightDiv">
                     <Image src={ProfileImage} roundedCircle />
-                    <a className="createAccount" href="#"> Edit Profile </a>
+                    <Link className="createAccount" href="#"> Edit Profile </Link>
                     <Button className="logInOutBtn" variant="custom"> Log Out </Button>
                 </div>
             </div>

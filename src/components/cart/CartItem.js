@@ -1,20 +1,20 @@
 import React from 'react';
-import './CartItem.css'
+import './CartItem.css';
 import { Card, Button } from 'react-bootstrap';
 
-function CartItem({bookName, author, bookStoreName, imgPath, quantity, price}) {
+function CartItem({bookName, bookAuthor, bookStoreName, bookImgPath, bookQuantity, bookPrice}) {
     return (
         <Card className="cartItem">
             <div className="cartItemdDiv">
                 <div className="cartItemCoverBg">
-                    <Card.Img className="cartItemCover" src={imgPath} alt="Book Image"/>
+                    <Card.Img className="cartItemCover" src={bookImgPath} alt="Book Image"/>
                 </div>
                 <div className="cartItemDetailsBg">
                     <Card.Title className="cartItemTitle">
                         {bookName}
                     </Card.Title>
                     <Card.Text className="cartItemAuthor">
-                        {author}
+                        {bookAuthor}
                     </Card.Text>
                     <Card.Text className="cartItemStoreName">
                         {bookStoreName}
@@ -22,12 +22,12 @@ function CartItem({bookName, author, bookStoreName, imgPath, quantity, price}) {
                 </div>
                 <div className="cartItemQtyBg">
                     <Button className="qtyBtn" variant="light">-</Button>
-                    <div className="cartItemQtyDiv"> {quantity} </div>
+                    <div className="cartItemQtyDiv"> {bookQuantity} </div>
                     <Button className="qtyBtn" variant="light">+</Button>
                 </div>
                 <div className="cartItemPriceBg">
                     <Card.Text className="cartItemPrice">
-                        {price} ৳
+                        {bookQuantity * bookPrice} ৳
                     </Card.Text>
                 </div>
             </div>

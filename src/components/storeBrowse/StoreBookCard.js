@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './StoreBookCard.css';
 import { Button, Card } from 'react-bootstrap';
+import { CartContext } from '../../CartContext';
 
-function StoreBookCard({bookImgPath, bookName, bookAuthor, bookPrice}) {
+function StoreBookCard({bookId, bookImgPath, bookName, bookAuthor, bookStoreName, bookPrice}) {
+
+    const [cart, setCart] = useContext(CartContext);
+
+    const addToCart = () => {
+        const newCartItem = {
+            id: bookId,
+            name: bookName,
+            author: bookAuthor,
+            storeName: bookStoreName,
+            imgPath: bookImgPath,
+            price: bookPrice,
+            quantity: 1,
+        };
+        const newCart = [...cart, newCartItem];
+        setCart(newCart);
+        localStorage.setItem("cart", JSON.stringify(newCart));
+    }
+
     return (
         <Card className="storeBookCard">
             <div className="storeBookCardDiv">
@@ -20,7 +39,10 @@ function StoreBookCard({bookImgPath, bookName, bookAuthor, bookPrice}) {
                         {bookPrice} ৳
                     </Card.Text>
                 </div>
-                <Button className="addToCartButton" variant="custom"> Add to Cart </Button>
+                <Button className="addToCartButton" variant="custom"
+                onClick={addToCart}>
+                    Add to Cart
+                </Button>
             </div>
         </Card>
     );

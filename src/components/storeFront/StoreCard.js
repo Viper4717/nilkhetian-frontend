@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './StoreCard.css';
 import { Button, Card } from 'react-bootstrap';
 import { categoryParse } from '../../util';
+import { Link } from 'react-router-dom';
 
 function StoreCard({storeId, storeName, storeImgPath, storeDetails, storeCategories}) {
-
     return (
         <Card className="storeCard">
             <div className="storeCardDiv">
@@ -18,11 +18,11 @@ function StoreCard({storeId, storeName, storeImgPath, storeDetails, storeCategor
                     <Card.Text className="storeDetails">
                         {storeDetails}
                     </Card.Text>
-                    <Button className="visitStoreButton" variant="custom"
-                    href = {(Array.isArray(storeCategories) && storeCategories.length) ? 
+                    <Button className="visitStoreButton" variant="custom" as={Link}
+                    to = {(Array.isArray(storeCategories) && storeCategories.length) ? 
                         `/store?id=${storeId}&category=${categoryParse(storeCategories[0])}&page=1`
                         : `/store?id=${storeId}`}>
-                        Visit This Store 
+                        Visit This Store
                     </Button>
                 </div>
             </div>

@@ -28,9 +28,9 @@ function loadResults(setResults){
             totalPages = res.totalPages;
             const newResults = res.results.map((book) => ({
                 id: book._id,
-                bookName: book.name,
+                name: book.name,
                 author: book.author,
-                bookStoreName: book.storeName,
+                storeName: book.storeName,
                 imgPath: Himu,
                 price: book.price,
               }));
@@ -43,6 +43,37 @@ function loadResults(setResults){
 }
 
 function Result() {
+
+    const testBooks = [
+        {
+            name: "Himu Rimande",
+            author: "Humayun Ahmed",
+            storeName: "Shameme Boi Bitan",
+            imgPath: Himu,
+            price: 300,
+          },
+          {
+            name: "Ami Ebong Amra",
+            author: "Humayun Ahmed",
+            storeName: "Shameme Boi Bitan",
+            imgPath: Himu,
+            price: 350,
+          },
+          {
+            name: "Angels and Demons",
+            author: "Dan Brown",
+            storeName: "Samin Er Bosta",
+            imgPath: Himu,
+            price: 700,
+          },
+          {
+            name: "The Da Vinci Code",
+            author: "Dan Brown",
+            storeName: "Samin Er Bosta",
+            imgPath: Himu,
+            price: 800,
+          },
+    ]
 
     const [currentResults, setResults] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
@@ -75,9 +106,9 @@ function Result() {
         <Container fluid="md" className="parentContainer smallHeight">
             <h2 className="storeHeader"> Nilkhet Online </h2>
             <div className="resultGrid">
-                {currentResults.map(book => (
-                    <ResultBookCard imgPath={book.imgPath} bookName={book.bookName}
-                    author={book.author} bookStoreName={book.bookStoreName} price={book.price}/>
+                {testBooks.map(book => ( //it has to be currentresults
+                    <ResultBookCard bookImgPath={book.imgPath} bookName={book.name}
+                    bookAuthor={book.author} bookStoreName={book.storeName} bookPrice={book.price}/>
                 ))}
             </div>
             <div className="paginationDiv">

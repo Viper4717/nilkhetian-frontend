@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './FeaturedProducts.css';
 import { Button, Card, CardGroup } from 'react-bootstrap';
 import { RiArrowRightCircleFill } from 'react-icons/ri';
+import { CartContext } from '../../CartContext';
 
 function FeaturedProducts({cardDeckTitle, topCategory}) {
+
+    const [cart, setCart] = useContext(CartContext);
+
+    const addToCart = (book) => {
+        const newCartItem = {
+            id: book.id,
+            name: book.name,
+            author: book.author,
+            storeName: book.storeName,
+            imgPath: book.imgPath,
+            price: book.price,
+            quantity: 1,
+        }
+        const newCart = [...cart, newCartItem];
+        setCart(newCart);
+        localStorage.setItem("cart", JSON.stringify(newCart));
+    }
+
     return (
         <div className="cardDeck">
             <div className="cardDeckHeader">
@@ -24,19 +43,22 @@ function FeaturedProducts({cardDeckTitle, topCategory}) {
                             </div>
                             <div className="bookDetailsBg">
                                 <Card.Title className="bookTitle">
-                                    {book.bookName}
+                                    {book.name}
                                 </Card.Title>
                                 <Card.Text className="author">
                                     {book.author}
                                 </Card.Text>
                                 <Card.Title className="bookStoreTitle">
-                                    {book.bookStoreName}
+                                    {book.storeName}
                                 </Card.Title>
                                 <Card.Text className="bookPrice">
                                     {book.price} ৳
                                 </Card.Text>
                             </div>
-                            <Button className="addToCartButton" variant="custom"> Add to Cart </Button>
+                            <Button className="addToCartButton" variant="custom"
+                            onClick={() => addToCart(book)}>
+                                Add to Cart
+                            </Button>
                         </div>
                     </Card>
                 ))}
