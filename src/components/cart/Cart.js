@@ -15,7 +15,7 @@ function Cart() {
             </h4>
             <div className="cartDiv">
                 {cart.map(book => (
-                    <CartItem bookName={book.name} bookAuthor={book.author} bookStoreName={book.storeName}
+                    <CartItem bookId={book.id} bookName={book.name} bookAuthor={book.author} bookStoreName={book.storeName}
                     bookImgPath={book.imgPath} bookQuantity={book.quantity} bookPrice={book.price} />
                 ))}
             </div>

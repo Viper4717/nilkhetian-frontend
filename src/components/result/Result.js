@@ -46,6 +46,7 @@ function Result() {
 
     const testBooks = [
         {
+            id: "1",
             name: "Himu Rimande",
             author: "Humayun Ahmed",
             storeName: "Shameme Boi Bitan",
@@ -53,6 +54,7 @@ function Result() {
             price: 300,
           },
           {
+            id: "2",
             name: "Ami Ebong Amra",
             author: "Humayun Ahmed",
             storeName: "Shameme Boi Bitan",
@@ -60,6 +62,7 @@ function Result() {
             price: 350,
           },
           {
+            id: "3",
             name: "Angels and Demons",
             author: "Dan Brown",
             storeName: "Samin Er Bosta",
@@ -67,6 +70,7 @@ function Result() {
             price: 700,
           },
           {
+            id: "4",
             name: "The Da Vinci Code",
             author: "Dan Brown",
             storeName: "Samin Er Bosta",
