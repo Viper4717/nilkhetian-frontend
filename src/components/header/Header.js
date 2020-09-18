@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Navbar, Nav, Form, FormControl, Button, Container} from 'react-bootstrap';
+import { Navbar, Nav, Form, FormControl, Button, Container, Badge} from 'react-bootstrap';
 import HeaderLogo from '../../assets/header/nilkhetianLogoHeader.png'
 import MobileHeaderLogo from '../../assets/header/nilkhetianMobileLogoHeader.svg'
 import { CgProfile, CgSearch, CgShoppingCart } from 'react-icons/cg';
@@ -11,7 +11,7 @@ import { CartContext } from '../../CartContext';
 function loadCartFromStorage(setCart){
   var storageCart = localStorage.getItem("cart");
   storageCart = JSON.parse(storageCart);
-  if(storageCart.length){
+  if(storageCart != null && storageCart.length){
     setCart(storageCart);
   }
 }
@@ -71,6 +71,7 @@ function Header() {
             </Nav.Link>
             <Nav.Link as={Link} to="/cart">
               <CgShoppingCart size='2em'/>
+              {cart.length > 0 && <Badge className="cartCounter" pill variant="primary"> {cart.length} </Badge>}
               <h5 className="iconText">Cart</h5>
             </Nav.Link>
           </Nav>

@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
 import './Cart.css';
-import { Form, Button, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import CartItem from './CartItem';
-import Himu from '../../assets/home/himuRimande.jpg';
 import { CartContext } from '../../CartContext';
 
 function Cart() {
 
     const [cart, setCart] = useContext(CartContext);
-    
+
     return (
         <Container fluid="md" className="parentContainer smallHeight">
             <h4 className="signInText">
