@@ -21,6 +21,12 @@ function ResultBookCard({bookId, bookImgPath, bookName, bookAuthor, bookStoreNam
         localStorage.setItem("cart", JSON.stringify(newCart));
     }
 
+    const removeFromCart = () => {
+        const newCart = cart.filter(item => item.id !== bookId);
+        setCart(newCart);
+        localStorage.setItem("cart", JSON.stringify(newCart));
+    }
+
     return (
         <Card className="bookCard">
             <div className="bookCardDiv">
@@ -41,10 +47,17 @@ function ResultBookCard({bookId, bookImgPath, bookName, bookAuthor, bookStoreNam
                         {bookPrice} ৳
                     </Card.Text>
                 </div>
-                <Button className="addToCartButton" variant="custom"
-                onClick={addToCart}>
-                    Add to Cart
-                </Button>
+                {cart.some(item => item.id == bookId) ?
+                    <Button className="removeFromCartButton" variant="remove"
+                    onClick={removeFromCart}>
+                        Remove from Cart
+                    </Button>
+                    :
+                    <Button className="addToCartButton" variant="custom"
+                    onClick={addToCart}>
+                        Add to Cart
+                    </Button>
+                }
             </div>
         </Card>
     );

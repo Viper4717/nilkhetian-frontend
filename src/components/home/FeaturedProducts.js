@@ -23,6 +23,12 @@ function FeaturedProducts({cardDeckTitle, topCategory}) {
         localStorage.setItem("cart", JSON.stringify(newCart));
     }
 
+    const removeFromCart = (book) => {
+        const newCart = cart.filter(item => item.id !== book.id);
+        setCart(newCart);
+        localStorage.setItem("cart", JSON.stringify(newCart));
+    }
+
     return (
         <div className="cardDeck">
             <div className="cardDeckHeader">
@@ -55,10 +61,17 @@ function FeaturedProducts({cardDeckTitle, topCategory}) {
                                     {book.price} ৳
                                 </Card.Text>
                             </div>
-                            <Button className="addToCartButton" variant="custom"
-                            onClick={() => addToCart(book)}>
-                                Add to Cart
-                            </Button>
+                            {cart.some(item => item.id == book.id) ?
+                                <Button className="removeFromCartButton" variant="remove"
+                                onClick={() => removeFromCart(book)}>
+                                    Remove from Cart
+                                </Button>
+                                :
+                                <Button className="addToCartButton" variant="custom"
+                                onClick={() => addToCart(book)}>
+                                    Add to Cart
+                                </Button>
+                            }
                         </div>
                     </Card>
                 ))}

@@ -111,7 +111,7 @@ function Result() {
             <h2 className="storeHeader"> Nilkhet Online </h2>
             <div className="resultGrid">
                 {testBooks.map(book => ( //it has to be currentresults
-                    <ResultBookCard bookImgPath={book.imgPath} bookName={book.name}
+                    <ResultBookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.name}
                     bookAuthor={book.author} bookStoreName={book.storeName} bookPrice={book.price}/>
                 ))}
             </div>
