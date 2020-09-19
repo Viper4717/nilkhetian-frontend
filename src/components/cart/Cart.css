@@ -1,7 +1,77 @@
-.cartDiv{
+.emptyDiv{
+    text-align: center;
+    margin-top: 50px;
+}
+.emptyText{
+    color: #054575;
+    text-align: center;
+    font-size: 1.2em !important;
+    font-weight: 600 !important;
+    margin-bottom: 0 !important;
+}
+.cartBodyDiv > div{
     width: 90%;
     left: 0;
     right: 0;
     margin: auto;
-    margin-top: 50px;
+}
+.cartDivHeader{
+    margin-top: 50px !important;
+    display: flex;
+    position: relative;
+    font-weight: 600;
+}
+.itemDiv{
+    width: 70%;
+    margin-left: 30px;
+}
+.unitDiv{
+    width: 15%;
+    text-align: center;
+}
+.priceDiv{
+    width: 15%;
+    margin-right: 30px;
+    text-align: center;
+}
+.cartDivFooter{
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+    font-weight: 600;
+}
+.labelDiv{
+    width: 15%;
+    text-align: center;
+    margin-left: 30px;
+    line-height: 2em;
+}
+.numberDiv{
+    width: 15%;
+    margin-right: 30px;
+    text-align: center;
+    line-height: 2em;
+}
+.totalBillDiv{
+    margin-top: 30px !important;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5em;
+}
+.bottomButtonDiv{
+    margin-top: 50px !important;
+    text-align: center;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+}
+.backToLibraryBtn{
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+    margin-left: 15px;
+}
+.continueBtn{
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+    margin-right: 15px;
 }
