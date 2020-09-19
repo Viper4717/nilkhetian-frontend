@@ -18,38 +18,23 @@ function CartItem({bookId, bookName, bookAuthor, bookStoreName, bookImgPath, boo
     const increaseQty = () =>{
         if(quantity < 99){
             const newQuantity = quantity + 1;
-            const index = cart.findIndex(item => item.id === bookId);
-            const newCart = [...cart];
-            newCart[index] = {...newCart[index], quantity: newQuantity};
-            setCart(newCart);
-            setQuantity(newQuantity);
-            localStorage.setItem("cart", JSON.stringify(newCart));
+            modifyQuantity(newQuantity);
         }
     }
     const decreaseQty = () =>{
         if(quantity > 1){
             const newQuantity = quantity - 1;
-            const index = cart.findIndex(item => item.id === bookId);
-            const newCart = [...cart];
-            newCart[index] = {...newCart[index], quantity: newQuantity};
-            setCart(newCart);
-            setQuantity(newQuantity);
-            localStorage.setItem("cart", JSON.stringify(newCart));
+            modifyQuantity(newQuantity);
         }
     }
-    // const modifyQuantity = () => {
-    //     const index = cart.findIndex(item => item.id === bookId);
-    //     const newCart = [...cart];
-    //     newCart[index] = {...newCart[index], quantity: bookQuantity};
-    //     setCart(newCart);
-    //     localStorage.setItem("cart", JSON.stringify(newCart));
-    // }
-
-    // useEffect(() => {
-    //     return () => {
-    //         modifyQuantity();
-    //     }
-    // }, [quantity])
+    const modifyQuantity = (newQuantity) => {
+        const index = cart.findIndex(item => item.id === bookId);
+        const newCart = [...cart];
+        newCart[index] = {...newCart[index], quantity: newQuantity};
+        setCart(newCart);
+        setQuantity(newQuantity);
+        localStorage.setItem("cart", JSON.stringify(newCart));
+    }
 
     return (
         <Card className="cartItem">
