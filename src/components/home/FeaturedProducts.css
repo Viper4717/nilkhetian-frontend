@@ -82,16 +82,6 @@
     bottom: 0;
     margin: auto;
 }
-.removeFromCartButton{
-    font-size: 1.1em !important;
-    font-weight: 600 !important;
-    width: 100%;
-    position: absolute;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    margin: auto;
-}
 .btn-remove {
     background-color: #aadbff !important;
     color: black !important;

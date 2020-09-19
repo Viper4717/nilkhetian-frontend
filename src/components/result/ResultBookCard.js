@@ -48,7 +48,7 @@ function ResultBookCard({bookId, bookImgPath, bookName, bookAuthor, bookStoreNam
                     </Card.Text>
                 </div>
                 {cart.some(item => item.id == bookId) ?
-                    <Button className="removeFromCartButton" variant="remove"
+                    <Button className="addToCartButton" variant="remove"
                     onClick={removeFromCart}>
                         Remove from Cart
                     </Button>

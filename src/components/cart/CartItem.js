@@ -35,7 +35,7 @@ function CartItem({bookId, bookName, bookAuthor, bookStoreName, bookImgPath, boo
                     </div>
                     <div className="cartItemDeleteBg">
                         <Link onClick={removeFromCart}>
-                            <CgTrash size='1.5em'/>
+                            <CgTrash className="trashIcon" size='1.5em'/>
                         </Link>
                     </div>
                 </div>

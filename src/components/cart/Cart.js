@@ -39,7 +39,7 @@ function Cart() {
                         ))}
                     </div>
                     <div className="cartDivFooter">
-                        <div className="itemDiv"></div>
+                        <div className="emptyItemDiv"></div>
                         <div className="labelDiv">
                             Total Sum <br/>
                             Shipping

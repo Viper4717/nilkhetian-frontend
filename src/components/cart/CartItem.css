@@ -91,6 +91,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 600;
 }
 .cartItemPriceBg{
     height: 170px;
@@ -106,5 +107,67 @@
 }
 
 @media screen and (max-width: 768px){
-    
+    .cartItem{
+        padding: 5px;
+        height: 120px;
+    }
+    .cartItemdDiv{
+        height: 120px;
+    }
+    .cartItemCoverBg{
+        height: 110px;
+        width: 20%;
+        display: flex;
+        justify-content: center;
+    }
+    .cartBodyBg{
+        width: 50%;
+        height: 110px;
+    }
+    .cartItemDetailsBg{
+        height: 93px;
+        padding-left: 10px;
+    }
+    .cartItemDeleteBg{
+        height: 17px;
+        padding-left: 10px;
+    }
+    .cartItemDeleteBg > a{
+        height: 17px;
+    }
+    .cartItemDeleteBg > a > svg{
+        height: 1em;
+        width: 1em;
+        margin-top: -10px;
+    }
+    .cartItemTitle{
+        font-size: 0.7em !important;
+    }
+    .cartItemAuthor{
+        font-size: 0.5em !important;
+    }
+    .cartItemStoreName{
+        font-size: 0.6em !important;
+    }
+    .cartItemQtyBg{
+        height: 110px;
+    }
+    .qtyBtn{
+        font-size: 0.6em !important;
+        height: 15px;
+        width: 15px;
+        padding: 2px !important;
+    }
+    .cartItemQtyDiv{
+        height: 15px;
+        width: 15px;
+        font-size: 0.6em;
+    }
+    .cartItemPriceBg{
+        height: 110px;
+        width: 15%;
+    }
+    .cartItemPrice{
+        font-size: 0.6em !important;
+    }
 }

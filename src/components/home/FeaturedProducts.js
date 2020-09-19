@@ -62,7 +62,7 @@ function FeaturedProducts({cardDeckTitle, topCategory}) {
                                 </Card.Text>
                             </div>
                             {cart.some(item => item.id == book.id) ?
-                                <Button className="removeFromCartButton" variant="remove"
+                                <Button className="addToCartButton" variant="remove"
                                 onClick={() => removeFromCart(book)}>
                                     Remove from Cart
                                 </Button>
