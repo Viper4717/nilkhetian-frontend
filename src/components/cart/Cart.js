@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Cart.css';
 import EmptyCartImage from '../../assets/cart/emptyCartImage.png'
 import { Container, Button, Image } from 'react-bootstrap';
@@ -8,8 +8,14 @@ import { CartContext } from '../../CartContext';
 function Cart() {
 
     const [cart, setCart] = useContext(CartContext);
-    var productCost = cart.reduce((acc, item) => acc + item.price, 0);
+    const [productCost, setCost] = useState(
+        cart.reduce((acc, item) => acc + (item.quantity * item.price), 0));
     const shippingCost = 50;
+
+    useEffect(() => {
+        const newCost = cart.reduce((acc, item) => acc + (item.quantity * item.price), 0);
+        setCost(newCost);
+    }, [cart])
 
     return (
         <Container fluid="md" className="parentContainer smallHeight">
