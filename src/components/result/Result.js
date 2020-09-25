@@ -44,41 +44,6 @@ function loadResults(setResults){
 
 function Result() {
 
-    const testBooks = [
-        {
-            id: "1",
-            name: "Himu Rimande",
-            author: "Humayun Ahmed",
-            storeName: "Shameme Boi Bitan",
-            imgPath: Himu,
-            price: 300,
-          },
-          {
-            id: "2",
-            name: "Ami Ebong Amra",
-            author: "Humayun Ahmed",
-            storeName: "Shameme Boi Bitan",
-            imgPath: Himu,
-            price: 350,
-          },
-          {
-            id: "3",
-            name: "Angels and Demons",
-            author: "Dan Brown",
-            storeName: "Samin Er Bosta",
-            imgPath: Himu,
-            price: 700,
-          },
-          {
-            id: "4",
-            name: "The Da Vinci Code",
-            author: "Dan Brown",
-            storeName: "Samin Er Bosta",
-            imgPath: Himu,
-            price: 800,
-          },
-    ]
-
     const [currentResults, setResults] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -110,7 +75,7 @@ function Result() {
         <Container fluid="md" className="parentContainer smallHeight">
             <h2 className="storeHeader"> Nilkhet Online </h2>
             <div className="resultGrid">
-                {testBooks.map(book => ( //it has to be currentresults
+                {currentResults.map(book => (
                     <ResultBookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.name}
                     bookAuthor={book.author} bookStoreName={book.storeName} bookPrice={book.price}/>
                 ))}
