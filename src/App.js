@@ -5,6 +5,8 @@ import Header from './components/header/Header';
 import Home from './components/home/Home';
 import Login from './components/login/Login';
 import Registration from './components/registration/Registration';
+import VerifyMail from './components/registration/VerifyMail';
+import MailExists from './components/registration/MailExists';
 import Footer from './components/footer/Footer';
 import StoreFront from './components/storeFront/StoreFront';
 import BookLibrary from './components/bookLibrary/BookLibrary';

@@ -1,0 +1,28 @@
+.verifyText{
+    color: #054575;
+    text-align: center;
+    font-size: 1.3em !important;
+    font-weight: 600 !important;
+    margin-top: 70px !important;
+    margin-bottom: 0px !important;
+}
+.verifyPageBtnDiv{
+    text-align: center;
+    margin-top: 70px;
+}
+.verifyPageBtn{
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+}
+
+@media screen and (max-width: 768px){
+    .verifyText{
+        font-size: 1.2em !important;
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-top: 50px !important;
+    }
+    .verifyPageBtnDiv{
+        margin-top: 50px;
+    }
+}
