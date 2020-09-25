@@ -6,10 +6,11 @@ import PaginationBar from '../paginationBar/PaginationBar'
 import { Container, Button} from 'react-bootstrap';
 import Axios from 'axios';
 import { serverUrl, categoryParse } from '../../util';
+import { Link } from 'react-router-dom';
 
 var firstCategory = "Fiction";
 var currentPageNo;
-var totalPages;
+var totalPages = 1;
 const urlPath = window.location.href.substring(
   window.location.href.indexOf("/stores"), window.location.href.indexOf("page"+5));
 
@@ -54,7 +55,8 @@ function StoreFront() {
 
     useEffect(() => {
       loadCurrentPage(setCurrentPage);
-    }, [window.location.href])
+    }, [window.location.href.substring(
+        window.location.href.indexOf("page=")+5, window.location.href.length)])
 
     useEffect(() => {
       loadStores(
@@ -81,8 +83,8 @@ function StoreFront() {
         <Container fluid="md" className="parentContainer smallHeight">
             <h2 className="storeHeader"> Nilkhet Online: Store Front </h2>
             <div className="topButtonDiv">
-                <Button className="bookCategoryButton" variant="custom" 
-                href={`/products?category=${firstCategory}&page=1`}>
+                <Button className="bookCategoryButton" variant="custom" as={Link}
+                to={`/products?category=${firstCategory}&page=1`}>
                     Browse Books/Stationaries
                 </Button>
             </div>

@@ -7,6 +7,7 @@ import { Container, Button } from 'react-bootstrap';
 import Himu from '../../assets/home/himuRimande.jpg';
 import Axios from 'axios';
 import { serverUrl, reverseCategoryParse } from '../../util';
+import { Link } from 'react-router-dom';
 
 var categoryIdString;
 var currentPageNo;
@@ -48,7 +49,7 @@ function loadCategory(setBooks){
             totalPages = res.totalPages;
             const newBooks = res.results.map((book) => ({
                 id: book._id,
-                bookName: book.name,
+                name: book.name,
                 author: book.author,
                 imgPath: Himu,
             }));
@@ -104,7 +105,7 @@ function BookLibrary() {
         <Container fluid="md" className="parentContainer">
             <h2 className="storeHeader"> Nilkhet Online: All Available Products </h2>
             <div className="topButtonDiv">
-                <Button className="bookCategoryButton" variant="custom" href='/stores?page=1'>
+                <Button className="bookCategoryButton" variant="custom" as={Link} to="/stores?page=1">
                     Browse Stores
                 </Button>
             </div>
@@ -117,7 +118,7 @@ function BookLibrary() {
                     </div>
                     <div className="bookGrid">
                         {currentBooks.map(book => (
-                            <BookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.bookName}
+                            <BookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.name}
                             bookAuthor={book.author}/>
                         ))}
                         <div className="paginationDiv">

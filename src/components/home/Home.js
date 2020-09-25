@@ -10,34 +10,39 @@ import AmiEbongAmra from '../../assets/home/amiEbongAmra.jpg'
 import AngelsAndDemons from '../../assets/home/angelsAndDemons.jpg'
 import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg'
 import { Button, Container, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const [topCategory, setTopCategory] = useState([
     {
-      bookName: "Himu Rimande",
+      id: "1",
+      name: "Himu Rimande",
       author: "Humayun Ahmed",
-      bookStoreName: "Shameme Boi Bitan",
+      storeName: "Shameme Boi Bitan",
       imgPath: Himu,
       price: 300,
     },
     {
-      bookName: "Ami Ebong Amra",
+      id: "2",
+      name: "Ami Ebong Amra",
       author: "Humayun Ahmed",
-      bookStoreName: "Shameme Boi Bitan",
+      storeName: "Shameme Boi Bitan",
       imgPath: AmiEbongAmra,
       price: 350,
     },
     {
-      bookName: "Angels and Demons",
+      id: "3",
+      name: "Angels and Demons",
       author: "Dan Brown",
-      bookStoreName: "Samin Er Bosta",
+      storeName: "Samin Er Bosta",
       imgPath: AngelsAndDemons,
       price: 700,
     },
     {
-      bookName: "The Da Vinci Code",
+      id: "4",
+      name: "The Da Vinci Code",
       author: "Dan Brown",
-      bookStoreName: "Samin Er Bosta",
+      storeName: "Samin Er Bosta",
       imgPath: TheDaVinciCode,
       price: 800,
     },
@@ -60,12 +65,12 @@ function Home() {
             </Card.Text>
           </Card.ImgOverlay>
           <Card.ImgOverlay className="buttonOverlay">
-            <Button className="exploreButtonWeb" variant="custom" href="/stores?page=1">
+            <Button className="exploreButtonWeb" variant="custom" as={Link} to="/stores?page=1">
               EXPLORE NOW
             </Button>
           </Card.ImgOverlay>
         </Card>
-        <Button className="exploreButtonMobile" variant="custom" href="/stores?page=1">
+        <Button className="exploreButtonMobile" variant="custom" as={Link} to="/stores?page=1">
           EXPLORE NOW
         </Button>
       </div>

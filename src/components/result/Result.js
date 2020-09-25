@@ -28,9 +28,9 @@ function loadResults(setResults){
             totalPages = res.totalPages;
             const newResults = res.results.map((book) => ({
                 id: book._id,
-                bookName: book.name,
+                name: book.name,
                 author: book.author,
-                bookStoreName: book.storeName,
+                storeName: book.storeName,
                 imgPath: Himu,
                 price: book.price,
               }));
@@ -76,8 +76,8 @@ function Result() {
             <h2 className="storeHeader"> Nilkhet Online </h2>
             <div className="resultGrid">
                 {currentResults.map(book => (
-                    <ResultBookCard imgPath={book.imgPath} bookName={book.bookName}
-                    author={book.author} bookStoreName={book.bookStoreName} price={book.price}/>
+                    <ResultBookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.name}
+                    bookAuthor={book.author} bookStoreName={book.storeName} bookPrice={book.price}/>
                 ))}
             </div>
             <div className="paginationDiv">

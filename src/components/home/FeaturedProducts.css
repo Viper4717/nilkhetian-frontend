@@ -82,6 +82,14 @@
     bottom: 0;
     margin: auto;
 }
+.btn-remove {
+    background-color: #aadbff !important;
+    color: black !important;
+}
+.btn-remove:hover {
+    background-color: #054575 !important;
+    color: white !important;
+}
 
 @media screen and (max-width: 768px){
     .cardDeck{

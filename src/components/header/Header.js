@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
-import { Navbar, Nav, Form, FormControl, Button, Container} from 'react-bootstrap';
+import React, { useState, useEffect, useContext } from 'react';
+import { Navbar, Nav, Form, FormControl, Button, Container, Badge} from 'react-bootstrap';
 import HeaderLogo from '../../assets/header/nilkhetianLogoHeader.png'
 import MobileHeaderLogo from '../../assets/header/nilkhetianMobileLogoHeader.svg'
 import { CgProfile, CgSearch, CgShoppingCart } from 'react-icons/cg';
 import './Header.css';
 import { categoryParse } from '../../util';
+import { Link } from 'react-router-dom';
+import { CartContext } from '../../CartContext';
+
+function loadCartFromStorage(setCart){
+  var storageCart = localStorage.getItem("cart");
+  storageCart = JSON.parse(storageCart);
+  if(storageCart != null && storageCart.length){
+    setCart(storageCart);
+  }
+}
 
 function Header() {
 
   const [searchText, setSearchText] = useState();
+  const [cart, setCart] = useContext(CartContext);
+
+  useEffect(() => {
+    loadCartFromStorage(setCart);
+  }, [])
 
   function parseSearchText(e){
     setSearchText(categoryParse(e.target.value));
@@ -22,7 +37,7 @@ function Header() {
   return (
     <Navbar className="shadow-sm p-1 justify-content-between" bg="light" expand="md" sticky="top">
       <Container fluid="md" className="headerContainer">
-        <Navbar.Brand className="webBrand" href="/">
+        <Navbar.Brand className="webBrand" as={Link} to="/">
           <img
             src={HeaderLogo}
             width="180"
@@ -30,7 +45,7 @@ function Header() {
             alt="Nilkhetian Logo"
           />
         </Navbar.Brand>
-        <Navbar.Brand className="mobileBrand" href="/">
+        <Navbar.Brand className="mobileBrand" as={Link} to="/">
           <img
             src={MobileHeaderLogo}
             width="50"
@@ -50,12 +65,13 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="collapsedNavbar" id="basic-navbar-nav" >
           <Nav>
-            <Nav.Link href="/login">
+            <Nav.Link as={Link} to="/login">
               <CgProfile size='2em'/>
               <h5 className="iconText">Profile</h5>
             </Nav.Link>
-            <Nav.Link href="/cart">
+            <Nav.Link as={Link} to="/cart">
               <CgShoppingCart size='2em'/>
+              {cart.length > 0 && <Badge className="cartCounter" pill variant="primary"> {cart.length} </Badge>}
               <h5 className="iconText">Cart</h5>
             </Nav.Link>
           </Nav>

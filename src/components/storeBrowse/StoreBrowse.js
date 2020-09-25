@@ -52,8 +52,9 @@ function loadCategory(setBooks){
             totalPages = res.totalPages;
             const newBooks = res.results.map((book) => ({
                 id: book._id,
-                bookName: book.name,
+                name: book.name,
                 author: book.author,
+                storeName: book.storeName,
                 imgPath: Himu,
                 price: book.price,
               }));
@@ -117,8 +118,8 @@ function StoreBrowse() {
                     </div>
                     <div className="StoreBookGrid">
                         {currentBooks.map(book => (
-                            <StoreBookCard bookImgPath={book.imgPath} bookName={book.bookName}
-                            bookAuthor={book.author} bookPrice={book.price}/>
+                            <StoreBookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.name}
+                            bookStoreName={book.storeName} bookAuthor={book.author} bookPrice={book.price}/>
                         ))}
                         <div className="paginationDiv">
                             <PaginationBar maxLeft={maxLeft} maxRight={maxRight} lastPage={totalPages}
