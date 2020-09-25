@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './FeaturedProducts.css';
 import { Button, Card, CardGroup } from 'react-bootstrap';
 import { RiArrowRightCircleFill } from 'react-icons/ri';
-import { CartContext } from '../../CartContext';
+import { CartContext } from '../../Contexts';
 import { Link } from 'react-router-dom';
 
 function FeaturedProducts({cardDeckTitle, topCategory}) {

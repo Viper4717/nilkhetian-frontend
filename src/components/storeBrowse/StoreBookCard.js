@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './StoreBookCard.css';
 import { Button, Card } from 'react-bootstrap';
-import { CartContext } from '../../CartContext';
+import { CartContext } from '../../Contexts';
 
 function StoreBookCard({bookId, bookImgPath, bookName, bookAuthor, bookStoreName, bookPrice}) {
 

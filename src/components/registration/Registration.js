@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './Registration.css'
 import { Form, Button, Container, Alert } from 'react-bootstrap';
 import Axios from 'axios';
+import { serverUrl } from '../../util';
+import { ResponseContext } from '../../Contexts';
 
-function postUser(userObject){
-    Axios.post();
+function postUser(userObject, setResponse){
+    Axios.post(`${serverUrl}/api/user/register`, userObject)
+        .then(({data: res}) => {
+            setResponse(res);
+            window.location.assign('/response');
+        })
+        .catch((error) => {
+            console.error(error);
+            console.log('failed to register');
+        });
 }
 
 function Registration() {
+
+    const [respone, setResponse] = useContext(ResponseContext);
 
     const [formEmpty, setFormEmpty] = useState(false);
     const [shortPass, setShortPass] = useState(false);
@@ -57,7 +69,7 @@ function Registration() {
                         phone: phone,
                         address: address,
                     }
-                    postUser(userObject);
+                    postUser(userObject, setResponse);
                 }
                 else{
                     window.scrollTo(0, 0);

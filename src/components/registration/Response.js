@@ -1,16 +1,17 @@
-import React from 'react';
-import './VerifyMail.css';
+import React, { useContext } from 'react';
+import './Response.css';
 import { Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { ResponseContext } from '../../Contexts';
 
 function VerifyMail() {
+
+    const [response, setResponse] = useContext(ResponseContext);
+
     return (
         <Container fluid="md" className="parentContainer smallHeight">
             <h4 className="verifyText">
-                An e-mail has been sent to your e-mail address for verification.
-            </h4>
-            <h4 className="verifyText">
-                Please verify your e-mail to complete registration.
+                {response}
             </h4>
             <div className="verifyPageBtnDiv">
                 <Button className="verifyPageBtn" as={Link} to='/' variant="custom">

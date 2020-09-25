@@ -3,7 +3,7 @@ import './CartItem.css';
 import { Card, Button } from 'react-bootstrap';
 import { CgTrash } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../CartContext';
+import { CartContext } from '../../Contexts';
 
 function CartItem({bookId, bookName, bookAuthor, bookStoreName, bookImgPath, bookQuantity, bookPrice}) {
 

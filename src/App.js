@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Header from './components/header/Header';
 import Home from './components/home/Home';
 import Login from './components/login/Login';
 import Registration from './components/registration/Registration';
-import VerifyMail from './components/registration/VerifyMail';
-import MailExists from './components/registration/MailExists';
+import Response from './components/registration/Response';
 import Footer from './components/footer/Footer';
 import StoreFront from './components/storeFront/StoreFront';
 import BookLibrary from './components/bookLibrary/BookLibrary';
@@ -15,31 +14,33 @@ import Search from './components/search/Search';
 import Result from './components/result/Result';
 import Profile from './components/profile/Profile';
 import Cart from './components/cart/Cart';
-import { CartProvider } from './CartContext';
-import { UserProvider } from './UserContext';
+import { CartProvider, UserProvider, ResponseProvider } from './Contexts';
 
 function App() {
   return (
     <div className="App">
       <UserProvider>
-        <CartProvider>
-          <BrowserRouter>
-            <Header/>
-              <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/login" component={Login}/>
-                <Route path="/profile" component={Profile}/>
-                <Route path="/registration" component={Registration}/>
-                <Route path="/stores" component={StoreFront}/>
-                <Route path="/products" component={BookLibrary}/>
-                <Route path="/store" component={StoreBrowse}/>
-                <Route path="/search" component={Search}/>
-                <Route path="/results" component={Result}/>
-                <Route path="/cart" component={Cart}/>
-              </Switch>
-            <Footer/>
-          </BrowserRouter>
-        </CartProvider>
+      <ResponseProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <Header/>
+            <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route path="/login" component={Login}/>
+              <Route path="/profile" component={Profile}/>
+              <Route path="/registration" component={Registration}/>
+              <Route path="/response" component={Response}/>
+              <Route path="/stores" component={StoreFront}/>
+              <Route path="/products" component={BookLibrary}/>
+              <Route path="/store" component={StoreBrowse}/>
+              <Route path="/search" component={Search}/>
+              <Route path="/results" component={Result}/>
+              <Route path="/cart" component={Cart}/>
+            </Switch>
+          <Footer/>
+        </BrowserRouter>
+      </CartProvider>
+      </ResponseProvider>
       </UserProvider>
     </div>
   );

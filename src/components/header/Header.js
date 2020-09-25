@@ -6,8 +6,7 @@ import { CgProfile, CgSearch, CgShoppingCart } from 'react-icons/cg';
 import './Header.css';
 import { categoryParse } from '../../util';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../CartContext';
-import { UserContext } from '../../UserContext';
+import { CartContext, UserContext } from '../../Contexts';
 
 function loadCartFromStorage(setCart){
   var storageCart = localStorage.getItem("cart");

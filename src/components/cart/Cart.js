@@ -3,7 +3,7 @@ import './Cart.css';
 import EmptyCartImage from '../../assets/cart/emptyCartImage.png'
 import { Container, Button, Image } from 'react-bootstrap';
 import CartItem from './CartItem';
-import { CartContext } from '../../CartContext';
+import { CartContext } from '../../Contexts';
 
 function Cart() {
 
