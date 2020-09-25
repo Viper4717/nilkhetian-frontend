@@ -32,7 +32,6 @@ function App() {
               <Route path="/results" component={Result}/>
               <Route path="/cart" component={Cart}/>
             </Switch>
-            {/* <Cart/> */}
           <Footer/>
         </BrowserRouter>
       </CartProvider>

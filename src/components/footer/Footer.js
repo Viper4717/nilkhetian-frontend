@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css'
 import { Container } from 'react-bootstrap';
+import { FaFacebookSquare } from 'react-icons/fa';
 
 function Footer() {
   return (
@@ -16,8 +17,9 @@ function Footer() {
             <text>Is this even a legit address</text>
           </div>
           <div className="footerBottom">
-            <text>Logos will go here</text><br/>
-            <text>Logos will go here</text>
+            <a href="https://www.facebook.com/nilkhetian" target="_blank">
+              <FaFacebookSquare size='2.5em'/>
+            </a>
           </div>
         </div>
         <div className="footerRight">

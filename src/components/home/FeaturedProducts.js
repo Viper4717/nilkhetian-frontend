@@ -3,6 +3,7 @@ import './FeaturedProducts.css';
 import { Button, Card, CardGroup } from 'react-bootstrap';
 import { RiArrowRightCircleFill } from 'react-icons/ri';
 import { CartContext } from '../../CartContext';
+import { Link } from 'react-router-dom';
 
 function FeaturedProducts({cardDeckTitle, topCategory}) {
 
@@ -35,9 +36,9 @@ function FeaturedProducts({cardDeckTitle, topCategory}) {
                 <h4 className="cardDeckTitle"> {cardDeckTitle} </h4>
                 <div>
                     <text className="moreButtonText">More</text>
-                    <a className="moreButton" href='#'>
+                    <Link className="moreButton" to='#'>
                         <RiArrowRightCircleFill size='2em'/>
-                    </a>
+                    </Link>
                 </div>
             </div>
             <CardGroup className="bookCardGroup">
