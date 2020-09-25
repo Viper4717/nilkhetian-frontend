@@ -14,27 +14,31 @@ import Result from './components/result/Result';
 import Profile from './components/profile/Profile';
 import Cart from './components/cart/Cart';
 import { CartProvider } from './CartContext';
+import { UserProvider } from './UserContext';
 
 function App() {
   return (
     <div className="App">
-      <CartProvider>
-        <BrowserRouter>
-          <Header/>
-            <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route path="/login" component={Login}/>
-              <Route path="/registration" component={Registration}/>
-              <Route path="/stores" component={StoreFront}/>
-              <Route path="/products" component={BookLibrary}/>
-              <Route path="/store" component={StoreBrowse}/>
-              <Route path="/search" component={Search}/>
-              <Route path="/results" component={Result}/>
-              <Route path="/cart" component={Cart}/>
-            </Switch>
-          <Footer/>
-        </BrowserRouter>
-      </CartProvider>
+      <UserProvider>
+        <CartProvider>
+          <BrowserRouter>
+            <Header/>
+              <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route path="/login" component={Login}/>
+                <Route path="/profile" component={Profile}/>
+                <Route path="/registration" component={Registration}/>
+                <Route path="/stores" component={StoreFront}/>
+                <Route path="/products" component={BookLibrary}/>
+                <Route path="/store" component={StoreBrowse}/>
+                <Route path="/search" component={Search}/>
+                <Route path="/results" component={Result}/>
+                <Route path="/cart" component={Cart}/>
+              </Switch>
+            <Footer/>
+          </BrowserRouter>
+        </CartProvider>
+      </UserProvider>
     </div>
   );
 }

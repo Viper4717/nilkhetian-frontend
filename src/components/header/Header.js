@@ -7,6 +7,7 @@ import './Header.css';
 import { categoryParse } from '../../util';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../CartContext';
+import { UserContext } from '../../UserContext';
 
 function loadCartFromStorage(setCart){
   var storageCart = localStorage.getItem("cart");
@@ -16,13 +17,23 @@ function loadCartFromStorage(setCart){
   }
 }
 
+function loadUserFromStorage(setUser){
+  var storageUser = localStorage.getItem("user");
+  storageUser = JSON.parse(storageUser);
+  if(storageUser != null){
+    setUser(storageUser);
+  }
+}
+
 function Header() {
 
   const [searchText, setSearchText] = useState();
   const [cart, setCart] = useContext(CartContext);
+  const [user, setUser] = useContext(UserContext);
 
   useEffect(() => {
     loadCartFromStorage(setCart);
+    loadUserFromStorage(setUser);
   }, [])
 
   function parseSearchText(e){
@@ -65,7 +76,7 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="collapsedNavbar" id="basic-navbar-nav" >
           <Nav>
-            <Nav.Link as={Link} to="/login">
+            <Nav.Link as={Link} to={user? "/profile" : "/login"}>
               <CgProfile size='2em'/>
               <h5 className="iconText">Profile</h5>
             </Nav.Link>

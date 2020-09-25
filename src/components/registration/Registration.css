@@ -2,6 +2,10 @@
     color: #e59010;
     font-weight: 600 !important;
 }
+.passwordWarnText{
+    color: red;
+    font-weight: 600;
+}
 .addressTextDiv{
     margin-top: 20px;
     margin-bottom: 20px;
