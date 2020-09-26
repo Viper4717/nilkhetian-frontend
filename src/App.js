@@ -14,13 +14,12 @@ import Search from './components/search/Search';
 import Result from './components/result/Result';
 import Profile from './components/profile/Profile';
 import Cart from './components/cart/Cart';
-import { CartProvider, UserProvider, ResponseProvider } from './Contexts';
+import { CartProvider, UserProvider } from './Contexts';
 
 function App() {
   return (
     <div className="App">
       <UserProvider>
-      <ResponseProvider>
       <CartProvider>
         <BrowserRouter>
           <Header/>
@@ -40,7 +39,6 @@ function App() {
           <Footer/>
         </BrowserRouter>
       </CartProvider>
-      </ResponseProvider>
       </UserProvider>
     </div>
   );

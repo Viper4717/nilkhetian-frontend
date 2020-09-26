@@ -23,15 +23,3 @@ export const UserProvider = (props) => {
         </UserContext.Provider>
     )
 }
-
-export const ResponseContext = React.createContext();
-
-export const ResponseProvider = (props) => {
-    const [response, setResponse] = useState()
-
-    return(
-        <ResponseContext.Provider value = {[response, setResponse]}>
-            {props.children}
-        </ResponseContext.Provider>
-    )
-}

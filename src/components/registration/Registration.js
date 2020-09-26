@@ -1,29 +1,34 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import './Registration.css'
 import { Form, Button, Container, Alert } from 'react-bootstrap';
 import Axios from 'axios';
 import { serverUrl } from '../../util';
-import { ResponseContext } from '../../Contexts';
 
-function postUser(userObject, setResponse){
+function postUser(userObject){
     Axios.post(`${serverUrl}/api/user/register`, userObject)
         .then(({data: res}) => {
-            setResponse(res);
-            window.location.assign('/response');
+            window.location.assign('/response/200');
         })
         .catch((error) => {
-            console.error(error);
+            window.location.assign('/response/409');
             console.log('failed to register');
         });
 }
 
+function validateEmail(email) {
+    const re = /\S+@\S+\.\S+/
+    return re.test(email);
+}
+
+function validatePhone(phone){
+    const re = /^(\+88)?(01[3-9]{1}\d{8}$)/
+    return re.test(phone);
+}
+
 function Registration() {
 
-    const [respone, setResponse] = useContext(ResponseContext);
-
     const [formEmpty, setFormEmpty] = useState(false);
-    const [shortPass, setShortPass] = useState(false);
-    const [passNotMatched, setPassNotMatched] = useState(false);
+    const [invalid, setInvalid] = useState(false);
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -54,27 +59,22 @@ function Registration() {
         e.preventDefault();
         if(name && email && password && confirmPass && phone && address){
             setFormEmpty(false);
-            if(password.length < 8){
+            if(name.length < 6 || !validateEmail(email) || password.length < 8 
+            || !validatePhone(phone) || address.length < 10
+            || password !== confirmPass){
                 window.scrollTo(0, 0);
-                setShortPass(true);
+                setInvalid(true);
             }
             else{
-                setShortPass(false);
-                if(password === confirmPass){
-                    setPassNotMatched(false);
-                    const userObject = {
-                        name: name,
-                        email: email,
-                        password: password,
-                        phone: phone,
-                        address: address,
-                    }
-                    postUser(userObject, setResponse);
+                setInvalid(false);
+                const userObject = {
+                    name: name,
+                    email: email,
+                    password: password,
+                    phone: phone,
+                    address: address,
                 }
-                else{
-                    window.scrollTo(0, 0);
-                    setPassNotMatched(true);
-                }
+                postUser(userObject);
             }
         }
         else{
@@ -94,13 +94,9 @@ function Registration() {
                 <Alert variant='danger'>
                     Please fill out all the details.
                 </Alert>}
-                {shortPass &&
+                {invalid &&
                 <Alert variant='danger'>
-                    Password must be minimum 8 characters long.
-                </Alert>}
-                {passNotMatched &&
-                <Alert variant='danger'>
-                    Passwords don't match!
+                    Invalid data.
                 </Alert>}
                 <h5 className="personalInfoText">
                     Personal Info
@@ -109,10 +105,18 @@ function Registration() {
                     <Form.Group>
                         <Form.Label>Name</Form.Label>
                         <Form.Control placeholder="Enter name" onChange={handleName} />
+                        {(name && name.length < 6) &&
+                        <Form.Text className="passwordWarnText">
+                            Name must be minimum 6 characters long.
+                        </Form.Text>}
                     </Form.Group>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" placeholder="Enter email" onChange={handleEmail}/>
+                        {(email && !validateEmail(email)) &&
+                        <Form.Text className="passwordWarnText">
+                            Enter a valid e-mail address.
+                        </Form.Text>}
                     </Form.Group>
                     <Form.Group controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
@@ -132,6 +136,10 @@ function Registration() {
                     <Form.Group>
                         <Form.Label>Phone Number</Form.Label>
                         <Form.Control type="tel" placeholder="Enter number" onChange={handlePhone}/>
+                        {(phone && !validatePhone(phone)) &&
+                        <Form.Text className="passwordWarnText">
+                            Enter a valid number.
+                        </Form.Text>}
                     </Form.Group>
                 </Form>
             </div>
@@ -146,6 +154,10 @@ function Registration() {
                     <Form.Group>
                         <Form.Label>Address Line 1</Form.Label>
                         <Form.Control placeholder="Enter address" onChange={handleAddress} />
+                        {(address && address.length < 10) &&
+                        <Form.Text className="passwordWarnText">
+                            Address must be minimum 10 characters long.
+                        </Form.Text>}
                     </Form.Group>
                 </Form>
             </div>
