@@ -6,7 +6,7 @@ import { serverUrl } from '../../util';
 
 function postUser(userObject){
     Axios.post(`${serverUrl}/api/user/register`, userObject)
-        .then(({data: res}) => {
+        .then((res) => {
             window.location.assign('/response/200');
         })
         .catch((error) => {
