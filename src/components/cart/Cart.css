@@ -73,7 +73,7 @@
     font-weight: 600 !important;
     margin-left: 15px;
 }
-.continueBtn{
+.continueToShippingBtn{
     font-size: 1.1em !important;
     font-weight: 600 !important;
     margin-right: 15px;
@@ -132,13 +132,9 @@
     }
     .backToLibraryBtn{
         font-size: 0.8em !important;
-        font-weight: 600 !important;
-        margin-left: 15px;
     }
-    .continueBtn{
+    .continueToShippingBtn{
         font-size: 0.8em !important;
-        font-weight: 600 !important;
-        margin-right: 15px;
     }
     .loginPromptDiv{
         font-size: 0.8em;

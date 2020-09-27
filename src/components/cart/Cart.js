@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './Cart.css';
 import EmptyCartImage from '../../assets/cart/emptyCartImage.png'
 import { Container, Button, Image } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
 import { CartContext, UserContext } from '../../Contexts';
 
@@ -64,10 +65,11 @@ function Cart() {
                         Total Bill: {productCost + shippingCost} ৳
                     </div>
                     <div className="bottomButtonDiv">
-                        <Button className="backToLibraryBtn" variant="remove">
+                        <Button className="backToLibraryBtn" variant="remove" as={Link} to="/stores">
                             Back to Library
                         </Button>
-                        <Button className="continueBtn" variant="remove" disabled={user == null}>
+                        <Button className="continueToShippingBtn" variant="remove" disabled={user == null}
+                        as={Link} to="/shipping">
                             Continue
                         </Button>
                     </div>
