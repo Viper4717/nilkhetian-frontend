@@ -79,6 +79,7 @@ function BookLibrary() {
         window.location.href.indexOf("page=")+5, window.location.href.length)])
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         firstLoad(setCategories);
     }, [])
 

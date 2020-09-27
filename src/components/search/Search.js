@@ -51,6 +51,7 @@ function Search() {
         window.location.href.indexOf("page=")+5, window.location.href.length)])
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         loadResults(setResults);
     }, [])
   

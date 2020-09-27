@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Home.css'
 import FeaturedProducts from './FeaturedProducts'
 import WebsiteBanner from '../../assets/home/websiteBanner.jpg'
@@ -47,6 +47,10 @@ function Home() {
       price: 800,
     },
   ])
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   return (
     <Container fluid="md" className="parentContainer padBottomContainer">

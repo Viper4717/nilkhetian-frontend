@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Login.css'
 import { Form, Button, Container, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -26,6 +26,10 @@ function Login() {
     const [formEmpty, setFormEmpty] = useState(false);
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
     function handleEmail(e){
         setEmail(e.target.value);

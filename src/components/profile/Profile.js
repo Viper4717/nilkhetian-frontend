@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Profile.css';
 import BookOrderCard from './BookOrderCard';
 import { Container, Image, Button} from 'react-bootstrap';
@@ -19,6 +19,10 @@ function Profile() {
             price: "721",
         },
     ])
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
     return(
         <Container fluid="md" className="parentContainer smallHeight">

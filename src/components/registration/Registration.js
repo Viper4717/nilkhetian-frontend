@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Registration.css'
 import { Form, Button, Container, Alert } from 'react-bootstrap';
 import Axios from 'axios';
@@ -36,6 +36,10 @@ function Registration() {
     const [confirmPass, setConfirmPass] = useState();
     const [phone, setPhone] = useState();
     const [address, setAddress] = useState();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
     function handleName(e){
         setName(e.target.value);

@@ -17,6 +17,10 @@ function Cart() {
         setCost(newCost);
     }, [cart])
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     return (
         <Container fluid="md" className="parentContainer smallHeight">
             <h4 className="signInText">

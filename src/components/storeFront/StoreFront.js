@@ -64,6 +64,10 @@ function StoreFront() {
       );
     }, [currentPage]);
 
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [])
+
     const pageBarLimit = 5;
     var maxLeft = currentPage - Math.floor(pageBarLimit/2);
     var maxRight = currentPage + Math.floor(pageBarLimit/2);
