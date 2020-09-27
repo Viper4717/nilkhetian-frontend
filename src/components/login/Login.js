@@ -17,7 +17,6 @@ function loginUser(user, setUser, setLoading, setError){
             history.push('/');
         })
         .catch((error) => {
-            console.log('failed to login');
             setLoading(false);
             const err = "Login failed"
             setError(err);

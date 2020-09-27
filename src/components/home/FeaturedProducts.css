@@ -90,6 +90,10 @@
     background-color: #054575 !important;
     color: white !important;
 }
+.btn-remove:disabled{
+    background-color: #aadbff !important;
+    color: black !important;
+}
 
 @media screen and (max-width: 768px){
     .cardDeck{

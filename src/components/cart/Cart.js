@@ -3,11 +3,12 @@ import './Cart.css';
 import EmptyCartImage from '../../assets/cart/emptyCartImage.png'
 import { Container, Button, Image } from 'react-bootstrap';
 import CartItem from './CartItem';
-import { CartContext } from '../../Contexts';
+import { CartContext, UserContext } from '../../Contexts';
 
 function Cart() {
 
     const [cart, setCart] = useContext(CartContext);
+    const [user, setUser] = useContext(UserContext);
     const [productCost, setCost] = useState(
         cart.reduce((acc, item) => acc + (item.quantity * item.price), 0));
     const shippingCost = 50;
@@ -66,10 +67,14 @@ function Cart() {
                         <Button className="backToLibraryBtn" variant="remove">
                             Back to Library
                         </Button>
-                        <Button className="continueBtn" variant="remove">
+                        <Button className="continueBtn" variant="remove" disabled={user == null}>
                             Continue
                         </Button>
                     </div>
+                    {user == null &&
+                    <div className="loginPromptDiv">
+                        Please login to continue
+                    </div>}
                 </div>
             }
         </Container>
