@@ -4,10 +4,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import "../node_modules/bootstrap/dist/css/bootstrap.css"
+import { CartProvider, UserProvider } from './Contexts';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UserProvider>
+    <CartProvider>
+      <App />
+    </CartProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

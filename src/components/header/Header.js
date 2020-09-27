@@ -7,22 +7,7 @@ import './Header.css';
 import { categoryParse } from '../../util';
 import { Link } from 'react-router-dom';
 import { CartContext, UserContext } from '../../Contexts';
-
-function loadCartFromStorage(setCart){
-  var storageCart = localStorage.getItem("cart");
-  storageCart = JSON.parse(storageCart);
-  if(storageCart != null && storageCart.length){
-    setCart(storageCart);
-  }
-}
-
-function loadUserFromStorage(setUser){
-  var storageUser = localStorage.getItem("user");
-  storageUser = JSON.parse(storageUser);
-  if(storageUser != null){
-    setUser(storageUser);
-  }
-}
+import history from '../../History';
 
 function Header() {
 
@@ -30,18 +15,13 @@ function Header() {
   const [cart, setCart] = useContext(CartContext);
   const [user, setUser] = useContext(UserContext);
 
-  useEffect(() => {
-    loadCartFromStorage(setCart);
-    loadUserFromStorage(setUser);
-  }, [])
-
   function parseSearchText(e){
     setSearchText(categoryParse(e.target.value));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    window.location.assign(`/search?q=${searchText}&page=1`);
+    history.push(`/search?q=${searchText}&page=1`);
   } 
 
   return (

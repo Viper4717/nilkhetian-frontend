@@ -3,14 +3,15 @@ import './Registration.css'
 import { Form, Button, Container, Alert } from 'react-bootstrap';
 import Axios from 'axios';
 import { serverUrl } from '../../util';
+import history from '../../History';
 
 function postUser(userObject){
     Axios.post(`${serverUrl}/api/user/register`, userObject)
         .then((res) => {
-            window.location.assign('/response/200');
+            history.push('/response/200');
         })
         .catch((error) => {
-            window.location.assign('/response/409');
+            history.push('/response/409');
             console.log('failed to register');
         });
 }
