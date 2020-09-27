@@ -68,10 +68,15 @@ function Cart() {
                         <Button className="backToLibraryBtn" variant="remove" as={Link} to="/stores">
                             Back to Library
                         </Button>
-                        <Button className="continueToShippingBtn" variant="remove" disabled={user == null}
-                        as={Link} to="/shipping">
-                            Continue
-                        </Button>
+                        {user == null?
+                            <Button className="continueToShippingBtn" variant="remove" disabled>
+                                Continue
+                            </Button>:
+                            <Button className="continueToShippingBtn" variant="remove"
+                            as={Link} to="/shipping">
+                                Continue
+                            </Button>
+                        }
                     </div>
                     {user == null &&
                     <div className="loginPromptDiv">
