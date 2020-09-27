@@ -3,6 +3,7 @@ import { Navbar, Nav, Form, FormControl, Button, Container, Badge} from 'react-b
 import HeaderLogo from '../../assets/header/nilkhetianLogoHeader.png'
 import MobileHeaderLogo from '../../assets/header/nilkhetianMobileLogoHeader.svg'
 import { CgProfile, CgSearch, CgShoppingCart } from 'react-icons/cg';
+import { BsCircleFill } from 'react-icons/bs';
 import './Header.css';
 import { categoryParse } from '../../util';
 import { Link } from 'react-router-dom';
@@ -57,6 +58,7 @@ function Header() {
           <Nav>
             <Nav.Link as={Link} to={user? "/profile" : "/login"}>
               <CgProfile size='2em'/>
+              {user && <BsCircleFill className="loggedInDot"/>}
               <h5 className="iconText">Profile</h5>
             </Nav.Link>
             <Nav.Link as={Link} to="/cart">
