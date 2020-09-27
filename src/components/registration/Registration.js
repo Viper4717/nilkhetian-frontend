@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './Registration.css'
-import { Form, Button, Container, Alert } from 'react-bootstrap';
+import { Form, Button, Container, Alert, Spinner } from 'react-bootstrap';
 import Axios from 'axios';
 import { serverUrl } from '../../util';
 import history from '../../History';
 
-function postUser(userObject){
+function postUser(userObject, setLoading){
     Axios.post(`${serverUrl}/api/user/register`, userObject)
         .then((res) => {
             history.push('/response/200');
         })
         .catch((error) => {
+            setLoading(false);
             history.push('/response/409');
             console.log('failed to register');
         });
@@ -28,8 +29,8 @@ function validatePhone(phone){
 
 function Registration() {
 
-    const [formEmpty, setFormEmpty] = useState(false);
-    const [invalid, setInvalid] = useState(false);
+    const [error, setError] = useState();
+    const [loading, setLoading] = useState(false);
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -63,15 +64,17 @@ function Registration() {
     function register(e){
         e.preventDefault();
         if(name && email && password && confirmPass && phone && address){
-            setFormEmpty(false);
+            setError(null);
             if(name.length < 6 || !validateEmail(email) || password.length < 8 
             || !validatePhone(phone) || address.length < 10
             || password !== confirmPass){
                 window.scrollTo(0, 0);
-                setInvalid(true);
+                const err = "Invalid data."
+                setError(err);
             }
             else{
-                setInvalid(false);
+                setError(null);
+                setLoading(true);
                 const userObject = {
                     name: name,
                     email: email,
@@ -79,12 +82,13 @@ function Registration() {
                     phone: phone,
                     address: address,
                 }
-                postUser(userObject);
+                postUser(userObject, setLoading);
             }
         }
         else{
             window.scrollTo(0, 0);
-            setFormEmpty(true);
+            const err = "Please fill out all the details."
+            setError(err);
         }
     }
 
@@ -94,88 +98,82 @@ function Registration() {
                 Create Account
             </h4>
             <div className="formDiv">
-            <div>
-                {formEmpty &&
-                <Alert variant='danger'>
-                    Please fill out all the details.
-                </Alert>}
-                {invalid &&
-                <Alert variant='danger'>
-                    Invalid data.
-                </Alert>}
-                <h5 className="personalInfoText">
-                    Personal Info
-                </h5>
-                <Form>
-                    <Form.Group>
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control placeholder="Enter name" onChange={handleName} />
-                        {(name && name.length < 6) &&
-                        <Form.Text className="passwordWarnText">
-                            Name must be minimum 6 characters long.
-                        </Form.Text>}
-                    </Form.Group>
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" onChange={handleEmail}/>
-                        {(email && !validateEmail(email)) &&
-                        <Form.Text className="passwordWarnText">
-                            Enter a valid e-mail address.
-                        </Form.Text>}
-                    </Form.Group>
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Enter password" onChange={handlePassword}/>
-                        {(password && password.length < 8) &&
-                        <Form.Text className="passwordWarnText">
-                            Password must be minimum 8 characters long.
-                        </Form.Text>}
-                    </Form.Group>
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control type="password" placeholder="Re-enter password"
-                        onChange={handleConfirmPassword}/>
-                        {(confirmPass && password !== confirmPass) &&
-                        <Form.Text className="passwordWarnText"> Passwords don't match! </Form.Text>}
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Phone Number</Form.Label>
-                        <Form.Control type="tel" placeholder="Enter number" onChange={handlePhone}/>
-                        {(phone && !validatePhone(phone)) &&
-                        <Form.Text className="passwordWarnText">
-                            Enter a valid number.
-                        </Form.Text>}
-                    </Form.Group>
-                </Form>
-            </div>
-            <div>
-                <div className="addressTextDiv">
-                <h5 className="personalInfoText">
-                    Address Info
-                </h5>
-                <text className="accountText"> This will be set as your default shipping address </text>
+            <Form onSubmit={register}>
+                <div>
+                    {error &&
+                    <Alert variant='danger'>
+                        {error}
+                    </Alert>}
+                    <h5 className="personalInfoText">
+                        Personal Info
+                    </h5>
+                        <Form.Group>
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control type="text" placeholder="Enter name" onChange={handleName} />
+                            {(name && name.length < 6) &&
+                            <Form.Text className="passwordWarnText">
+                                Name must be minimum 6 characters long.
+                            </Form.Text>}
+                        </Form.Group>
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control type="email" placeholder="Enter email" onChange={handleEmail}/>
+                            {(email && !validateEmail(email)) &&
+                            <Form.Text className="passwordWarnText">
+                                Enter a valid e-mail address.
+                            </Form.Text>}
+                        </Form.Group>
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Enter password" onChange={handlePassword}/>
+                            {(password && password.length < 8) &&
+                            <Form.Text className="passwordWarnText">
+                                Password must be minimum 8 characters long.
+                            </Form.Text>}
+                        </Form.Group>
+                        <Form.Group controlId="formBasicConfirmPassword">
+                            <Form.Label>Confirm Password</Form.Label>
+                            <Form.Control type="password" placeholder="Re-enter password"
+                            onChange={handleConfirmPassword}/>
+                            {(confirmPass && password !== confirmPass) &&
+                            <Form.Text className="passwordWarnText"> Passwords don't match! </Form.Text>}
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Phone Number</Form.Label>
+                            <Form.Control type="tel" placeholder="Enter number" onChange={handlePhone}/>
+                            {(phone && !validatePhone(phone)) &&
+                            <Form.Text className="passwordWarnText">
+                                Enter a valid number.
+                            </Form.Text>}
+                        </Form.Group>
                 </div>
-                <Form>
-                    <Form.Group>
-                        <Form.Label>Address Line 1</Form.Label>
-                        <Form.Control placeholder="Enter address" onChange={handleAddress} />
-                        {(address && address.length < 10) &&
-                        <Form.Text className="passwordWarnText">
-                            Address must be minimum 10 characters long.
-                        </Form.Text>}
-                    </Form.Group>
-                </Form>
-            </div>
-            <div className="signInButtonnOverlay">
-                <Button className="signInButtonnWeb" variant="custom" onClick={register}>
-                    Sign Up
-                </Button>
-            </div>
-            <div className="signInMobileOverlay">
-                <Button className="signInButtonnMobile" variant="custom" onClick={register}>
-                    Sign Up
-                </Button>
-            </div>
+                <div>
+                    <div className="addressTextDiv">
+                    <h5 className="personalInfoText">
+                        Address Info
+                    </h5>
+                    <text className="accountText"> This will be set as your default shipping address </text>
+                    </div>
+                        <Form.Group>
+                            <Form.Label>Address Line 1</Form.Label>
+                            <Form.Control type="text" placeholder="Enter address" onChange={handleAddress} />
+                            {(address && address.length < 10) &&
+                            <Form.Text className="passwordWarnText">
+                                Address must be minimum 10 characters long.
+                            </Form.Text>}
+                        </Form.Group>
+                </div>
+                <div className="signInButtonnOverlay">
+                    <Button className="signInButtonnWeb" variant="custom" type="submit">
+                        {loading? <Spinner animation="border" variant="dark"/> : "Sign Up"}
+                    </Button>
+                </div>
+                <div className="signInMobileOverlay">
+                    <Button className="signInButtonnMobile" variant="custom" type="submit">
+                        {loading? <Spinner animation="border" variant="dark"/> : "Sign Up"}
+                    </Button>
+                </div>
+            </Form>
             </div>
         </Container>
     );

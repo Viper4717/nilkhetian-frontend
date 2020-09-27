@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Response.css';
 import { Container, Button } from 'react-bootstrap';
 import Axios from 'axios';
@@ -25,18 +25,21 @@ function Response() {
     const code = window.location.href.substring(
         window.location.href.indexOf("/response")+10, window.location.href.length);
 
-    if(code == "200"){
-        const reply = "An e-mail has been sent to your e-mail address for verification. " +
-        "Please verify your e-mail to complete registration.";
-        setResponse(reply);
-    }
-    else if(code == "409"){
-        const reply = "E-mail already exists";
-        setResponse(reply);
-    }
-    else {
-        verifyUser(code, setResponse);
-    }
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        if(code == "200"){
+            const reply = "An e-mail has been sent to your e-mail address for verification. " +
+            "Please verify your e-mail to complete registration.";
+            setResponse(reply);
+        }
+        else if(code == "409"){
+            const reply = "E-mail already exists";
+            setResponse(reply);
+        }
+        else {
+            verifyUser(code, setResponse);
+        }
+    }, [])
 
     return (
         <Container fluid="md" className="parentContainer smallHeight">
