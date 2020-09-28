@@ -4,6 +4,11 @@ import { Form, Button, Container, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../Contexts';
 
+function ship(phone, address){
+    console.log(phone);
+    console.log(address);
+}
+
 function Shipping() {
 
     const [user, setUser] = useContext(UserContext);
@@ -14,6 +19,8 @@ function Shipping() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        setPhone(user.phone);
+        setAddress(user.address);
     }, [])
 
     function validatePhone(phone){
@@ -61,7 +68,7 @@ function Shipping() {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group>
                         <Form.Label>Phone Number</Form.Label>
-                        <Form.Control type="tel" placeholder="Enter number" onChange={handlePhone}/>
+                        <Form.Control type="tel" placeholder="Enter number" defaultValue={user.phone} onChange={handlePhone}/>
                         {(phone && !validatePhone(phone)) &&
                         <Form.Text className="passwordWarnText">
                             Enter a valid number.
@@ -69,7 +76,7 @@ function Shipping() {
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Address Line 1</Form.Label>
-                        <Form.Control type="text" placeholder="Enter address" onChange={handleAddress} />
+                        <Form.Control type="text" placeholder="Enter address" defaultValue={user.address} onChange={handleAddress} />
                         {(address && address.length < 10) &&
                         <Form.Text className="passwordWarnText">
                             Address must be minimum 10 characters long.
@@ -79,7 +86,8 @@ function Shipping() {
                         <Button className="backToCartBtn" variant="remove" as={Link} to="/cart">
                             Back to Cart
                         </Button>
-                        <Button className="continueToConfirmBtn" variant="remove" type="submit">
+                        <Button className="continueToConfirmBtn" variant="remove" type="submit"
+                        onClick={() => ship(phone, address)}>
                             Continue
                         </Button>
                     </div>

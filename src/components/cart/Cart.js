@@ -68,7 +68,7 @@ function Cart() {
                         <Button className="backToLibraryBtn" variant="remove" as={Link} to="/stores">
                             Back to Library
                         </Button>
-                        {user == null?
+                        {(user == null || !user.confirmed)?
                             <Button className="continueToShippingBtn" variant="remove" disabled>
                                 Continue
                             </Button>:
@@ -81,6 +81,10 @@ function Cart() {
                     {user == null &&
                     <div className="loginPromptDiv">
                         Please login to continue
+                    </div>}
+                    {(user != null && !user.confirmed) &&
+                    <div className="loginPromptDiv">
+                        Please verify account to continue
                     </div>}
                 </div>
             }

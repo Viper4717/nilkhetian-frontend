@@ -32,11 +32,18 @@ function loadUserFromStorage(setUser){
   var storageUser = localStorage.getItem("user");
   storageUser = JSON.parse(storageUser);
   if(storageUser != null){
-    Axios.post(`${serverUrl}/api/user/logout`, storageUser.refreshToken)
+    const tokenObject = {
+      token: storageUser.refreshToken
+    }
+    Axios.post(`${serverUrl}/api/token/refresh`, tokenObject)
     .then(({data: res}) => {
+        storageUser.refreshToken = res.refreshToken;
+        storageUser.confirmed = res.confirmed;
         setUser(storageUser);
+        localStorage.setItem("user", JSON.stringify(storageUser));
     })
     .catch((error) => {
+        console.log(error);
         storageUser = null;
         localStorage.setItem("user", JSON.stringify(storageUser));
         setUser(storageUser);
