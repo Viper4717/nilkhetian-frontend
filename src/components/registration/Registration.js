@@ -5,15 +5,23 @@ import Axios from 'axios';
 import { serverUrl } from '../../util';
 import history from '../../History';
 
-function postUser(userObject, setLoading){
+function postUser(userObject, setLoading, setError){
     Axios.post(`${serverUrl}/api/user/register`, userObject)
         .then((res) => {
-            history.push('/response/200');
+            window.location.assign('/response/200');
         })
         .catch((error) => {
             setLoading(false);
-            history.push('/response/409');
-            console.log('failed to register');
+            if(error.response.status == 409){
+                window.scrollTo(0, 0);
+                const err = "E-mail already exists."
+                setError(err);
+            }
+            else{
+                window.scrollTo(0, 0);
+                const err = "Failed to register."
+                setError(err);
+            }
         });
 }
 
@@ -82,7 +90,7 @@ function Registration() {
                     phone: phone,
                     address: address,
                 }
-                postUser(userObject, setLoading);
+                postUser(userObject, setLoading, setError);
             }
         }
         else{
@@ -163,13 +171,13 @@ function Registration() {
                             </Form.Text>}
                         </Form.Group>
                 </div>
-                <div className="signInButtonnOverlay">
-                    <Button className="signInButtonnWeb" variant="custom" type="submit">
+                <div className="signInButtonOverlay">
+                    <Button className="signInButtonWeb" variant="custom" type="submit" disabled={loading}>
                         {loading? <Spinner animation="border" variant="dark"/> : "Sign Up"}
                     </Button>
                 </div>
                 <div className="signInMobileOverlay">
-                    <Button className="signInButtonnMobile" variant="custom" type="submit">
+                    <Button className="signInButtonMobile" variant="custom" type="submit" disabled={loading}>
                         {loading? <Spinner animation="border" variant="dark"/> : "Sign Up"}
                     </Button>
                 </div>

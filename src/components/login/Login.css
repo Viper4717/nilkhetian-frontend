@@ -24,7 +24,7 @@
     color: #e59010;
     font-weight: 600 !important;
 }
-.signInButtonnOverlay{
+.signInButtonOverlay{
     margin-top: 50px;
     display: flex;
     height: fit-content;
@@ -33,12 +33,12 @@
 .signInMobileOverlay{
     display: none;
 }
-.signInButtonnWeb{
+.signInButtonWeb{
     width: 20%;
     font-size: 1.3em !important;
     font-weight: 600 !important;
 }
-.signInButtonnMobile{
+.signInButtonMobile{
     width: 70%;
     font-size: 1.2em !important;
     font-weight: 600 !important;

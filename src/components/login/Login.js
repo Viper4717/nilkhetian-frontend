@@ -79,13 +79,13 @@ function Login() {
                     </Form.Group>
                     <text className="accountText"> Don't have an account? </text>
                     <Link className="createAccount" to="/registration"> Create an account. </Link>
-                    <div className="signInButtonnOverlay">
-                        <Button className="signInButtonnWeb" variant="custom" type="submit">
+                    <div className="signInButtonOverlay">
+                        <Button className="signInButtonWeb" variant="custom" type="submit" disabled={loading}>
                             {loading? <Spinner animation="border" variant="dark"/> : "Sign In"}
                         </Button>
                     </div>
                     <div className="signInMobileOverlay">
-                        <Button className="signInButtonnMobile" variant="custom" type="submit">
+                        <Button className="signInButtonMobile" variant="custom" type="submit" disabled={loading}>
                             {loading? <Spinner animation="border" variant="dark"/> : "Sign In"}
                         </Button>
                     </div>

@@ -14,7 +14,7 @@ function verifyUser(token, setResponse){
         .catch((error) => {
             const reply = "Failed to verify user";
             setResponse(reply);
-            console.log('failed to verify user');
+            console.log('Failed to verify user');
         });
 }
 
@@ -30,10 +30,6 @@ function Response() {
         if(code == "200"){
             const reply = "An e-mail has been sent to your e-mail address for verification. " +
             "Please verify your e-mail to complete registration.";
-            setResponse(reply);
-        }
-        else if(code == "409"){
-            const reply = "E-mail already exists";
             setResponse(reply);
         }
         else {
