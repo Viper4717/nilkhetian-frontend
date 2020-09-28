@@ -12,7 +12,7 @@ function postUser(userObject, setLoading, setError){
         })
         .catch((error) => {
             setLoading(false);
-            if(error.response.status == 409){
+            if(error.response != null && error.response.status == 409){
                 window.scrollTo(0, 0);
                 const err = "E-mail already exists."
                 setError(err);

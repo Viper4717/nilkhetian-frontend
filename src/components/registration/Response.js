@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 function verifyUser(token, setResponse){
     Axios.get(`${serverUrl}/api/user/confirmation/${token}`)
         .then((res) => {
-            const reply = "Your account has been successfully verified! Please Login to order products."
+            const reply = "Your account has been successfully verified!"
             setResponse(reply);
         })
         .catch((error) => {

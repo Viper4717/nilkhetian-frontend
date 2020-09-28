@@ -28,16 +28,23 @@ function resendCode(user, setUser, setMessage){
     }
     Axios.post(`${serverUrl}/api/user/resendconfirmation`, tokenObject)
     .then(({data: res}) => {
+        window.scrollTo(0, 0);
         const msg = "An e-mail has been sent to your e-mail address for verification."
         setMessage(msg);
     })
     .catch((error) => {
-        if(error.response.status == 401){
+        if(error.response != null && error.response.status == 401){
             requestAccess(user, setUser, setMessage);
         }
-        else if(error.response.status == 429){
+        else if(error.response != null && error.response.status == 429){
             console.log("Failed to resend");
+            window.scrollTo(0, 0);
             const msg = "Please wait for some time before requesting again."
+            setMessage(msg);
+        }
+        else{
+            window.scrollTo(0, 0);
+            const msg = "Failed to resend code."
             setMessage(msg);
         }
     });

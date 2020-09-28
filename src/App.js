@@ -37,16 +37,16 @@ function loadUserFromStorage(setUser){
     }
     Axios.post(`${serverUrl}/api/token/refresh`, tokenObject)
     .then(({data: res}) => {
-        storageUser.refreshToken = res.refreshToken;
-        storageUser.confirmed = res.confirmed;
-        setUser(storageUser);
-        localStorage.setItem("user", JSON.stringify(storageUser));
+      storageUser.refreshToken = res.refreshToken;
+      storageUser.confirmed = res.confirmed;
+      setUser(storageUser);
+      localStorage.setItem("user", JSON.stringify(storageUser));
     })
     .catch((error) => {
-        console.log(error);
-        storageUser = null;
-        localStorage.setItem("user", JSON.stringify(storageUser));
-        setUser(storageUser);
+      console.log(error);
+      storageUser = null;
+      localStorage.setItem("user", JSON.stringify(storageUser));
+      setUser(storageUser);
     });
   }
 }
