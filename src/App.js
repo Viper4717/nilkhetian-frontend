@@ -17,6 +17,8 @@ import Cart from './components/cart/Cart';
 import Shipping from './components/shipping/Shipping';
 import { CartContext, UserContext } from './Contexts';
 import history from './History';
+import Axios from 'axios';
+import { serverUrl } from './util';
 
 function loadCartFromStorage(setCart){
   var storageCart = localStorage.getItem("cart");
@@ -30,7 +32,15 @@ function loadUserFromStorage(setUser){
   var storageUser = localStorage.getItem("user");
   storageUser = JSON.parse(storageUser);
   if(storageUser != null){
-    setUser(storageUser);
+    Axios.post(`${serverUrl}/api/user/logout`, storageUser.refreshToken)
+    .then(({data: res}) => {
+        setUser(storageUser);
+    })
+    .catch((error) => {
+        storageUser = null;
+        localStorage.setItem("user", JSON.stringify(storageUser));
+        setUser(storageUser);
+    });
   }
 }
 

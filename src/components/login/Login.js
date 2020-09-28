@@ -10,8 +10,6 @@ import history from '../../History';
 function loginUser(user, setUser, setLoading, setError){
     Axios.post(`${serverUrl}/api/user/login`, user)
         .then(({data: res}) => {
-            console.log("ashche")
-            console.log(res);
             setUser(res);
             localStorage.setItem("user", JSON.stringify(res));
             history.push('/');

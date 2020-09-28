@@ -1,11 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Profile.css';
 import BookOrderCard from './BookOrderCard';
 import { Container, Image, Button} from 'react-bootstrap';
 import ProfileImage from '../../assets/profile/profileImage.png';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
+import { serverUrl } from '../../util';
+import { UserContext } from '../../Contexts';
+import history from '../../History';
+
+function logoutUser(user, setUser){
+    Axios.post(`${serverUrl}/api/user/logout`, user.refreshToken)
+        .then(({data: res}) => {
+            const nullUser = null;
+            setUser(nullUser);
+            localStorage.setItem("user", JSON.stringify(nullUser));
+            history.push('/');
+        })
+        .catch((error) => {
+            console.log("Logout Failed")
+        });
+}
 
 function Profile() {
+
+    const [user, setUser] = useContext(UserContext);
 
     const [orderHistory, setOrderHistory] = useState([
         {
@@ -33,22 +52,23 @@ function Profile() {
                         Personal Info
                     </h5>
                     <div className="personalInfoDiv">
-                        <text> John Doe </text>
-                        <text> johndoe@gmail.com </text>
-                        <text> 01712345678 </text>
+                        <text> {user.name} </text>
+                        <text> {user.email} </text>
+                        <text> {user.phone} </text>
                     </div>
                     <h5 className="personalInfoText">
                         Address Info
                     </h5>
                     <div className="personalInfoDiv">
-                        <text> 123, main street </text>
-                        <text> New York </text>
+                        <text> {user.address} </text>
                     </div>
                 </div>
                 <div className="profileRightDiv">
                     <Image src={ProfileImage} roundedCircle />
-                    <Link className="createAccount" href="#"> Edit Profile </Link>
-                    <Button className="logInOutBtn" variant="custom"> Log Out </Button>
+                    <Link className="createAccount" to="#"> Edit Profile </Link>
+                    <Button className="logInOutBtn" variant="custom" onClick={() => logoutUser(user, setUser)}>
+                         Log Out 
+                    </Button>
                 </div>
             </div>
             <div className="bookOrderDiv">
