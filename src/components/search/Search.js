@@ -24,20 +24,27 @@ function loadCurrentSearchString(setCurrentSearchString){
     setCurrentSearchString(searchStr);
 }
 
-function loadResults(setResults, setLoading){
+function loadResults(setResults, setLoading, setNotFound){
     setLoading(true);
     Axios
         .get(`${serverUrl}/products?search=${searchStr}&page=${currentPageNo}`)
         .then(({data: res}) => {
-            totalPages = res.totalPages;
-            const newResults = res.results.map((book) => ({
-                id: book._id,
-                name: book.name,
-                author: book.author,
-                imgPath: Himu,
-              }));
-            setResults(newResults);
-            setLoading(false);
+            if(res.totalPages == 0){
+                setLoading(false);
+                setNotFound(true);
+            }
+            else{
+                totalPages = res.totalPages;
+                const newResults = res.results.map((book) => ({
+                    id: book._id,
+                    name: book.name,
+                    author: book.author,
+                    imgPath: Himu,
+                }));
+                setResults(newResults);
+                setLoading(false);
+                setNotFound(false);
+            }
         })
         .catch((error) => {
             console.error(error);
@@ -48,6 +55,7 @@ function loadResults(setResults, setLoading){
 function Search() {
 
     const [loading, setLoading] = useState(true);
+    const [notFound, setNotFound] = useState(false);
     const [currentResults, setResults] = useState([])
     const [currentSearchString, setCurrentSearchString] = useState();
     const [currentPage, setCurrentPage] = useState(1);
@@ -69,7 +77,7 @@ function Search() {
         window.location.href.indexOf("page=")+5, window.location.href.length)])
 
     useEffect(() => {
-        loadResults(setResults, setLoading);
+        loadResults(setResults, setLoading, setNotFound);
     }, [currentSearchString, currentPage])
 
     const pageBarLimit = 5;
@@ -97,6 +105,11 @@ function Search() {
             </div>
             :
             <div>
+                {notFound &&
+                <div className="loadingDiv">
+                    <h4 className="loadingText"> No results found! </h4>
+                </div>
+                }
                 <div className="searchGrid">
                     {currentResults.map(book => (
                         <BookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.name}

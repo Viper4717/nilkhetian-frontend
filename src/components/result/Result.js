@@ -18,22 +18,29 @@ function loadCurrentPage(setCurrentPage){
     setCurrentPage(parseInt(currentPageNo, 10));
 }
 
-function loadResults(setResults, setLoading){
+function loadResults(setResults, setLoading, setNotFound){
     setLoading(true);
     Axios
         .get(`${serverUrl}/concrete-products?productId=${productIdString}&page=${currentPageNo}`)
         .then(({data: res}) => {
-            totalPages = res.totalPages;
-            const newResults = res.results.map((book) => ({
-                id: book._id,
-                name: book.name,
-                author: book.author,
-                storeName: book.storeName,
-                imgPath: Himu,
-                price: book.price,
-              }));
-            setResults(newResults);
-            setLoading(false);
+            if(res.totalPages == 0){
+                setLoading(false);
+                setNotFound(true);
+            }
+            else{
+                totalPages = res.totalPages;
+                const newResults = res.results.map((book) => ({
+                    id: book._id,
+                    name: book.name,
+                    author: book.author,
+                    storeName: book.storeName,
+                    imgPath: Himu,
+                    price: book.price,
+                }));
+                setResults(newResults);
+                setLoading(false);
+                setNotFound(false);
+            }
         })
         .catch((error) => {
             console.error(error);
@@ -44,6 +51,7 @@ function loadResults(setResults, setLoading){
 function Result() {
 
     const [loading, setLoading] = useState(true);
+    const [notFound, setNotFound] = useState(false);
     const [currentResults, setResults] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -61,7 +69,7 @@ function Result() {
         window.location.href.indexOf("page=")+5, window.location.href.length)])
   
     useEffect(() => {
-        loadResults(setResults, setLoading);
+        loadResults(setResults, setLoading, setNotFound);
     }, [currentPage])
 
     const pageBarLimit = 5;
@@ -88,7 +96,12 @@ function Result() {
             <h4 className="loadingText"> Loading... </h4>
             </div>
             :
-                <div>
+            <div>
+                {notFound &&
+                <div className="loadingDiv">
+                    <h4 className="loadingText"> No results found! </h4>
+                </div>
+                }
                 <div className="resultGrid">
                     {currentResults.map(book => (
                         <ResultBookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.name}
