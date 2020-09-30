@@ -3,7 +3,7 @@ import './BookLibrary.css';
 import Category from '../category/Category';
 import BookCard from './BookCard'
 import PaginationBar from '../paginationBar/PaginationBar';
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, Spinner } from 'react-bootstrap';
 import Himu from '../../assets/home/himuRimande.jpg';
 import Axios from 'axios';
 import { serverUrl, reverseCategoryParse } from '../../util';
@@ -12,11 +12,8 @@ import { Link } from 'react-router-dom';
 var categoryIdString;
 var currentPageNo;
 var totalPages = 1;
-
-const urlPathForCat = window.location.href.substring(
-    window.location.href.indexOf("/products"), window.location.href.indexOf("category")+9);
-const afterCat = window.location.href.substring(
-    window.location.href.indexOf("&page"), window.location.href.indexOf("page")+5);
+var urlPathForCat;
+var afterCat;
 
 function loadCurrentCateogry(setCurrentCategory){
     categoryIdString = window.location.href.substring(
@@ -30,11 +27,13 @@ function loadCurrentPage(setCurrentPage){
     setCurrentPage(parseInt(currentPageNo, 10));
 }
 
-function firstLoad(setCategories){
+function firstLoad(setCategories, setLoading){
+    setLoading(true);
     Axios
         .get(`${serverUrl}/products`)
         .then(({data: res}) => {
-            setCategories(res)
+            setCategories(res);
+            setLoading(false);
         })
         .catch((error) => {
             console.error(error);
@@ -42,7 +41,8 @@ function firstLoad(setCategories){
         });
 }
 
-function loadCategory(setBooks){
+function loadCategory(setBooks, setLoading){
+    setLoading(true);
     Axios
         .get(`${serverUrl}/products?category=${categoryIdString}&page=${currentPageNo}`)
         .then(({data: res}) => {
@@ -54,6 +54,7 @@ function loadCategory(setBooks){
                 imgPath: Himu,
             }));
             setBooks(newBooks);
+            setLoading(false);
         })
         .catch((error) => {
             console.error(error);
@@ -63,10 +64,20 @@ function loadCategory(setBooks){
 
 function BookLibrary() {
 
+    const [loading, setLoading] = useState(true);
     const [categories, setCategories] = useState([])
     const [currentCategory, setCurrentCategory] = useState()
     const [currentBooks, setBooks] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        urlPathForCat = window.location.href.substring(
+            window.location.href.indexOf("/products"), window.location.href.indexOf("category")+9);
+        afterCat = window.location.href.substring(
+            window.location.href.indexOf("&page"), window.location.href.indexOf("page")+5);
+        firstLoad(setCategories, setLoading);
+    }, [])
     
     useEffect(() => {
         loadCurrentCateogry(setCurrentCategory);
@@ -79,12 +90,7 @@ function BookLibrary() {
         window.location.href.indexOf("page=")+5, window.location.href.length)])
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-        firstLoad(setCategories);
-    }, [])
-
-    useEffect(() => {
-        loadCategory(setBooks);
+        loadCategory(setBooks, setLoading);
     }, [currentCategory, currentPage])
 
     const pageBarLimit = 5;
@@ -117,6 +123,12 @@ function BookLibrary() {
                     <div className="bookBgDivHeader">
                         <text className="bookDivHeader"> {currentCategory} </text>
                     </div>
+                    {loading?
+                    <div className="loadingDiv">
+                    <Spinner animation="border" role="status"/>
+                    <h4 className="loadingText"> Loading... </h4>
+                    </div>
+                    :
                     <div className="bookGrid">
                         {currentBooks.map(book => (
                             <BookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.name}
@@ -127,6 +139,7 @@ function BookLibrary() {
                             currentPage={currentPage} urlPath={urlPathForCat+categoryIdString+afterCat} />
                         </div>
                     </div>
+                    }
                 </div>
             </div>
         </Container>

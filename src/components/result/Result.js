@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Result.css';
-import { Container} from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
 import ResultBookCard from './ResultBookCard';
 import PaginationBar from '../paginationBar/PaginationBar'
 import Himu from '../../assets/home/himuRimande.jpg'
@@ -9,11 +9,8 @@ import { serverUrl } from '../../util';
 
 var currentPageNo;
 var totalPages = 1;
-
-const productIdString = window.location.href.substring(
-    window.location.href.indexOf("productId")+10, window.location.href.indexOf("&page"));
-const urlPath = window.location.href.substring(
-    window.location.href.indexOf("/results"), window.location.href.indexOf("page")+5);
+var productIdString;
+var urlPath;
 
 function loadCurrentPage(setCurrentPage){
     currentPageNo = window.location.href.substring(
@@ -21,7 +18,8 @@ function loadCurrentPage(setCurrentPage){
     setCurrentPage(parseInt(currentPageNo, 10));
 }
 
-function loadResults(setResults){
+function loadResults(setResults, setLoading){
+    setLoading(true);
     Axios
         .get(`${serverUrl}/concrete-products?productId=${productIdString}&page=${currentPageNo}`)
         .then(({data: res}) => {
@@ -35,6 +33,7 @@ function loadResults(setResults){
                 price: book.price,
               }));
             setResults(newResults);
+            setLoading(false);
         })
         .catch((error) => {
             console.error(error);
@@ -44,8 +43,17 @@ function loadResults(setResults){
 
 function Result() {
 
+    const [loading, setLoading] = useState(true);
     const [currentResults, setResults] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        productIdString = window.location.href.substring(
+            window.location.href.indexOf("productId")+10, window.location.href.indexOf("&page"));
+        urlPath = window.location.href.substring(
+            window.location.href.indexOf("/results"), window.location.href.indexOf("page")+5);
+    }, [])
 
     useEffect(() => {
         loadCurrentPage(setCurrentPage);
@@ -53,12 +61,8 @@ function Result() {
         window.location.href.indexOf("page=")+5, window.location.href.length)])
   
     useEffect(() => {
-        loadResults(setResults);
+        loadResults(setResults, setLoading);
     }, [currentPage])
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [])
 
     const pageBarLimit = 5;
     var maxLeft = currentPage - Math.floor(pageBarLimit/2);
@@ -78,16 +82,25 @@ function Result() {
     return (
         <Container fluid="md" className="parentContainer smallHeight">
             <h2 className="storeHeader"> Nilkhet Online </h2>
-            <div className="resultGrid">
-                {currentResults.map(book => (
-                    <ResultBookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.name}
-                    bookAuthor={book.author} bookStoreName={book.storeName} bookPrice={book.price}/>
-                ))}
+            {loading?
+            <div className="loadingDiv">
+            <Spinner animation="border" role="status"/>
+            <h4 className="loadingText"> Loading... </h4>
             </div>
-            <div className="paginationDiv">
-                <PaginationBar maxLeft={maxLeft} maxRight={maxRight} lastPage={totalPages}
-                currentPage={currentPage} urlPath={urlPath} />
+            :
+                <div>
+                <div className="resultGrid">
+                    {currentResults.map(book => (
+                        <ResultBookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.name}
+                        bookAuthor={book.author} bookStoreName={book.storeName} bookPrice={book.price}/>
+                    ))}
+                </div>
+                <div className="paginationDiv">
+                    <PaginationBar maxLeft={maxLeft} maxRight={maxRight} lastPage={totalPages}
+                    currentPage={currentPage} urlPath={urlPath} />
+                </div>
             </div>
+            }
         </Container>
     );
 }

@@ -14,6 +14,14 @@
     font-weight: 600 !important;
     padding: 10px 20px !important;
 }
+.loadingDiv{
+    margin-top: 50px;
+    text-align: center;
+}
+.loadingText{
+    margin-top: 20px;
+    font-weight: 600;
+}
 .storeGrid{
     min-height: 100%;
     display: flex;
@@ -44,6 +52,9 @@
     }
     .bookCategoryButton{
         font-size: 1em !important;
+    }
+    .loadingText{
+        font-size: 1.3em !important;
     }
     .storeGrid{
         flex-direction: column;
