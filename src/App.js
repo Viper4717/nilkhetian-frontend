@@ -15,6 +15,7 @@ import Result from './components/result/Result';
 import Profile from './components/profile/Profile';
 import Cart from './components/cart/Cart';
 import Shipping from './components/shipping/Shipping';
+import Confirmation from './components/shipping/Confirmation';
 import { CartContext, UserContext } from './Contexts';
 import history from './History';
 import Axios from 'axios';
@@ -77,7 +78,8 @@ function App() {
               <Route path="/search" component={Search}/>
               <Route path="/results" component={Result}/>
               <Route path="/cart" component={Cart}/>
-              <Route path="/shipping" render={() => (user? <Shipping/> : <Redirect to="/cart"/> )}/>
+              <Route path="/shipping" render={() => ((user == null || !user.confirmed)? <Redirect to="/cart"/> : <Shipping/> )}/>
+              <Route path="/confirmation" render={() => ((user == null || !user.confirmed)? <Redirect to="/cart"/> : <Confirmation/> )}/>
             </Switch>
           <Footer/>
         </Router>

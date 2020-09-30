@@ -2,16 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import './Shipping.css'
 import { Form, Button, Container, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../Contexts';
-
-function ship(phone, address){
-    console.log(phone);
-    console.log(address);
-}
+import { ShippingContext, UserContext } from '../../Contexts';
+import history from '../../History';
 
 function Shipping() {
 
     const [user, setUser] = useContext(UserContext);
+    const [shippingInfo, setShippingInfo] = useContext(ShippingContext);
 
     const [error, setError] = useState();
     const [phone, setPhone] = useState();
@@ -45,7 +42,13 @@ function Shipping() {
                 setError(err);
             }
             else{
+                const newShippingInfo = {
+                    phone: phone,
+                    address: address,
+                }
+                setShippingInfo(newShippingInfo);
                 setError(null);
+                history.push("/confirmation");
             }
         }
         else{
@@ -86,8 +89,7 @@ function Shipping() {
                         <Button className="backToCartBtn" variant="remove" as={Link} to="/cart">
                             Back to Cart
                         </Button>
-                        <Button className="continueToConfirmBtn" variant="remove" type="submit"
-                        onClick={() => ship(phone, address)}>
+                        <Button className="continueToConfirmBtn" variant="remove" type="submit">
                             Continue
                         </Button>
                     </div>

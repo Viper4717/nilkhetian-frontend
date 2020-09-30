@@ -23,3 +23,15 @@ export const UserProvider = (props) => {
         </UserContext.Provider>
     )
 }
+
+export const ShippingContext = React.createContext();
+
+export const ShippingProvider = (props) => {
+    const [shippingInfo, setShippingInfo] = useState()
+
+    return(
+        <ShippingContext.Provider value = {[shippingInfo, setShippingInfo]}>
+            {props.children}
+        </ShippingContext.Provider>
+    )
+}
