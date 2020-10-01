@@ -22,17 +22,16 @@ function Response() {
 
     const [response, setResponse] = useState();
 
-    const code = window.location.href.substring(
-        window.location.href.indexOf("/response")+10, window.location.href.length);
-
     useEffect(() => {
         window.scrollTo(0, 0);
+        const code = window.location.href.substring(
+            window.location.href.indexOf("/response")+10, window.location.href.length);
         if(code == "200"){
             const reply = "An e-mail has been sent to your e-mail address for verification. " +
             "Please verify your e-mail to complete registration.";
             setResponse(reply);
         }
-        if(code == ""){
+        else if(code == ""){
             const reply = "Oh my sweet summer child, how did you end up here?";
             setResponse(reply);
         }

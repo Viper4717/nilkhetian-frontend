@@ -4,8 +4,11 @@ import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import Header from './components/header/Header';
 import Home from './components/home/Home';
 import Login from './components/login/Login';
+import Recover from './components/login/Recover';
 import Registration from './components/registration/Registration';
 import Response from './components/registration/Response';
+import RecoverPassword from './components/recoverPassword/RecoverPassword';
+import RecoverSuccess from './components/recoverPassword/RecoverSuccess';
 import Footer from './components/footer/Footer';
 import StoreFront from './components/storeFront/StoreFront';
 import BookLibrary from './components/bookLibrary/BookLibrary';
@@ -17,6 +20,7 @@ import EditProfile from './components/profile/EditProfile';
 import Cart from './components/cart/Cart';
 import Shipping from './components/shipping/Shipping';
 import Confirmation from './components/shipping/Confirmation';
+import OrderSuccess from './components/shipping/OrderSuccess';
 import { CartContext, UserContext } from './Contexts';
 import history from './History';
 import Axios from 'axios';
@@ -69,10 +73,13 @@ function App() {
           <Header/>
             <Switch>
               <Route exact path="/" component={Home}/>
-              <Route path="/login" render={() => (user? <Redirect to="/profile"/> : <Login/> )} />
-              <Route path="/profile" render={() => (user? <Profile/> : <Redirect to="/login"/> )}/>
-              <Route exact path="/profile/edit" render={() => (user? <EditProfile/> : <Redirect to="/login"/> )}/>
+              <Route exact path="/login" render={() => (user? <Redirect to="/profile"/> : <Login/> )} />
+              <Route path="/login/recover" render={() => (user? <Redirect to="/profile"/> : <Recover/> )} />
+              <Route exact path="/profile" render={() => (user? <Profile/> : <Redirect to="/login"/> )}/>
+              <Route path="/profile/edit" render={() => (user? <EditProfile/> : <Redirect to="/login"/> )}/>
               <Route path="/registration" render={() => (user? <Redirect to="/profile"/> : <Registration/> )}/>
+              <Route path="/recoverpassword" component={RecoverPassword}/>
+              <Route path="/recoverpasswordsuccess" component={RecoverSuccess}/>
               <Route path="/response" component={Response}/>
               <Route path="/stores" component={StoreFront}/>
               <Route path="/products" component={BookLibrary}/>
@@ -82,6 +89,7 @@ function App() {
               <Route path="/cart" component={Cart}/>
               <Route path="/shipping" render={() => ((user == null || !user.confirmed)? <Redirect to="/cart"/> : <Shipping/> )}/>
               <Route path="/confirmation" render={() => ((user == null || !user.confirmed)? <Redirect to="/cart"/> : <Confirmation/> )}/>
+              <Route path="/ordersuccess" render={() => ((user == null || !user.confirmed)? <Redirect to="/cart"/> : <OrderSuccess/> )}/>
             </Switch>
           <Footer/>
         </Router>

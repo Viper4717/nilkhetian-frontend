@@ -6,26 +6,7 @@ import { Link } from 'react-router-dom';
 import { CartContext,ShippingContext, UserContext } from '../../Contexts';
 import Axios from 'axios';
 import { serverUrl } from '../../util';
-
-// function requestAccess(user, setUser){
-//     const tokenObject = {
-//         token: user.refreshToken
-//     }
-//     Axios.post(`${serverUrl}/api/token`, tokenObject)
-//     .then(({data: res}) => {
-//         const newUser = user;
-//         newUser.accessToken = res.accessToken;
-//         localStorage.setItem("user", JSON.stringify(newUser));
-//         setUser(newUser);
-//         resendCode(newUser, setUser);
-//     })
-//     .catch((error) => {
-//         const nullUser = null;
-//         setUser(nullUser);
-//         localStorage.setItem("user", JSON.stringify(nullUser));
-//         history.push('/');
-//     });
-// }
+import history from '../../History';
 
 function Confirmation() {
 
@@ -39,7 +20,6 @@ function Confirmation() {
     }, [])
 
     function placeOrder(e){
-        e.preventDefault();
         setLoading(true);
         const orderObject = {
             products: cart,
@@ -50,9 +30,40 @@ function Confirmation() {
         Axios.post(`${serverUrl}/order`, orderObject)
         .then(({data: res}) => {
             setLoading(false);
+            const newCart = null;
+            localStorage.setItem("cart", JSON.stringify(newCart));
+            setCart(newCart);
+            window.location.assign('/ordersuccess');
         })
         .catch((error) => {
             setLoading(false);
+            if(error.response != null && error.response.status == 401){
+                requestAccess(user, setUser);
+            }
+            else{
+                window.scrollTo(0, 0);
+                const msg = "Failed to send order"
+            }
+        });
+    }
+
+    function requestAccess(user, setUser){
+        const tokenObject = {
+            token: user.refreshToken
+        }
+        Axios.post(`${serverUrl}/api/token`, tokenObject)
+        .then(({data: res}) => {
+            const newUser = user;
+            newUser.accessToken = res.accessToken;
+            localStorage.setItem("user", JSON.stringify(newUser));
+            setUser(newUser);
+            placeOrder();
+        })
+        .catch((error) => {
+            const nullUser = null;
+            setUser(nullUser);
+            localStorage.setItem("user", JSON.stringify(nullUser));
+            history.push('/');
         });
     }
     
@@ -78,7 +89,7 @@ function Confirmation() {
                         Back to Shipping
                     </Button>
                     <Button className="confirmPurchaseBtn" variant="remove" disabled={loading}
-                    onclick={placeOrder}>
+                    onClick={placeOrder}>
                         {loading? <Spinner animation="border" variant="dark"/> : "Confirm Purchase"}
                     </Button>
                 </div>

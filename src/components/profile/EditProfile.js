@@ -5,9 +5,17 @@ import { serverUrl } from '../../util';
 import { UserContext } from '../../Contexts';
 import history from '../../History';
 
-function updateUser(userObject, setLoading, setError){
+function updateUser(userObject, user, setUser, setLoading, setError){
     Axios.post(`${serverUrl}/api/user/update`, userObject)
         .then((res) => {
+            var storageUser = user;
+            storageUser.phone = userObject.phone;
+            storageUser.address = userObject.address;
+            if(userObject.newPassword != null){
+                storageUser.password = userObject.newPassword;
+            }
+            setUser(storageUser);
+            localStorage.setItem("user", JSON.stringify(storageUser));
             setLoading(false);
             history.push('/profile');
         })
@@ -31,7 +39,7 @@ function EditProfile() {
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const [password, setPassword] = useState();
-    const [newPass, setNewPass] = useState();
+    const [newPass, setNewPass] = useState("");
     const [confirmPass, setConfirmPass] = useState();
     const [phone, setPhone] = useState();
     const [address, setAddress] = useState();
@@ -73,6 +81,9 @@ function EditProfile() {
                     setError(err);
                 }
                 else{
+                    if (newPass == null || newPass == ""){
+                        newPass = null;
+                    }
                     setError(null);
                     setLoading(true);
                     const userObject = {
@@ -81,7 +92,7 @@ function EditProfile() {
                         phone: phone,
                         address: address,
                     }
-                    updateUser(userObject, setLoading, setError);
+                    updateUser(userObject, user, setUser, setLoading, setError);
                 }
             }
         }

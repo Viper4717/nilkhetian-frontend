@@ -79,6 +79,9 @@ function Login() {
                     </Form.Group>
                     <text className="accountText"> Don't have an account? </text>
                     <Link className="createAccount" to="/registration"> Create an account. </Link>
+                    <br/>
+                    <text className="accountText"> Forgot your password? </text>
+                    <Link className="createAccount" to="/login/recover"> Recover it. </Link>
                     <div className="signInButtonOverlay">
                         <Button className="signInButtonWeb" variant="custom" type="submit" disabled={loading}>
                             {loading? <Spinner animation="border" variant="dark"/> : "Sign In"}
