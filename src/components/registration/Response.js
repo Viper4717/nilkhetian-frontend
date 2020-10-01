@@ -32,6 +32,10 @@ function Response() {
             "Please verify your e-mail to complete registration.";
             setResponse(reply);
         }
+        if(code == ""){
+            const reply = "Oh my sweet summer child, how did you end up here?";
+            setResponse(reply);
+        }
         else {
             verifyUser(code, setResponse);
         }

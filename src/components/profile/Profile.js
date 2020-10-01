@@ -124,7 +124,7 @@ function Profile() {
                 </div>
                 <div className="profileRightDiv">
                     <Image src={ProfileImage} roundedCircle />
-                    <Link className="createAccount" to="#"> Edit Profile </Link>
+                    <Link className="createAccount" to="/profile/edit"> Edit Profile </Link>
                     <Button className="logutBtn" variant="custom" onClick={() => logoutUser(user, setUser)}>
                          Log Out 
                     </Button>

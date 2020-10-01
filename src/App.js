@@ -13,6 +13,7 @@ import StoreBrowse from './components/storeBrowse/StoreBrowse';
 import Search from './components/search/Search';
 import Result from './components/result/Result';
 import Profile from './components/profile/Profile';
+import EditProfile from './components/profile/EditProfile';
 import Cart from './components/cart/Cart';
 import Shipping from './components/shipping/Shipping';
 import Confirmation from './components/shipping/Confirmation';
@@ -70,6 +71,7 @@ function App() {
               <Route exact path="/" component={Home}/>
               <Route path="/login" render={() => (user? <Redirect to="/profile"/> : <Login/> )} />
               <Route path="/profile" render={() => (user? <Profile/> : <Redirect to="/login"/> )}/>
+              <Route exact path="/profile/edit" render={() => (user? <EditProfile/> : <Redirect to="/login"/> )}/>
               <Route path="/registration" render={() => (user? <Redirect to="/profile"/> : <Registration/> )}/>
               <Route path="/response" component={Response}/>
               <Route path="/stores" component={StoreFront}/>
