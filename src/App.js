@@ -89,7 +89,7 @@ function App() {
               <Route path="/cart" component={Cart}/>
               <Route path="/shipping" render={() => ((user == null || !user.confirmed)? <Redirect to="/cart"/> : <Shipping/> )}/>
               <Route path="/confirmation" render={() => ((user == null || !user.confirmed)? <Redirect to="/cart"/> : <Confirmation/> )}/>
-              <Route path="/ordersuccess" render={() => ((user == null || !user.confirmed)? <Redirect to="/cart"/> : <OrderSuccess/> )}/>
+              <Route path="/ordersuccess" component={OrderSuccess}/>
             </Switch>
           <Footer/>
         </Router>

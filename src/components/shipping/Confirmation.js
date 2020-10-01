@@ -30,7 +30,7 @@ function Confirmation() {
         Axios.post(`${serverUrl}/order`, orderObject)
         .then(({data: res}) => {
             setLoading(false);
-            const newCart = null;
+            const newCart = [];
             localStorage.setItem("cart", JSON.stringify(newCart));
             setCart(newCart);
             window.location.assign('/ordersuccess');
