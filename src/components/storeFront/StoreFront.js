@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './StoreFront.css';
-import BookStoreImage from '../../assets/bookStore/bookStore.jpg'
-import StoreCard from './StoreCard'
-import PaginationBar from '../paginationBar/PaginationBar'
+import BookStoreImage from '../../assets/bookStore/bookStore.jpg';
+import StoreCard from './StoreCard';
+import PaginationBar from '../paginationBar/PaginationBar';
 import { Container, Button, Spinner} from 'react-bootstrap';
 import Axios from 'axios';
 import { serverUrl, categoryParse } from '../../util';
@@ -28,7 +28,7 @@ function loadStores(setStores, setLoading){
     const newStores = res.results.map((store) => ({
       id: store._id,
       storeName: store.storeName,
-      storeImgPath: BookStoreImage,
+      storeImgPath: serverUrl+store.img,
       storeDetails: store.storeDetails,
       storeCategories: store.categories,
     }));

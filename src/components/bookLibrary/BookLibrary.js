@@ -51,7 +51,7 @@ function loadCategory(setBooks, setLoading){
                 id: book._id,
                 name: book.name,
                 author: book.author,
-                imgPath: Himu,
+                imgPath: serverUrl+book.img,
             }));
             setBooks(newBooks);
             setLoading(false);

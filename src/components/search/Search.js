@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Search.css';
 import { Container, Spinner } from 'react-bootstrap';
 import BookCard from '../bookLibrary/BookCard';
-import PaginationBar from '../paginationBar/PaginationBar'
-import Himu from '../../assets/home/himuRimande.jpg'
+import PaginationBar from '../paginationBar/PaginationBar';
+import Himu from '../../assets/home/himuRimande.jpg';
 import Axios from 'axios';
 import { serverUrl } from '../../util';
 
@@ -39,7 +39,7 @@ function loadResults(setResults, setLoading, setNotFound){
                     id: book._id,
                     name: book.name,
                     author: book.author,
-                    imgPath: Himu,
+                    imgPath: serverUrl+book.img,
                 }));
                 setResults(newResults);
                 setLoading(false);
