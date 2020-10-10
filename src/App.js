@@ -41,7 +41,7 @@ function loadUserFromStorage(setUser){
     const tokenObject = {
       token: storageUser.refreshToken
     }
-    Axios.post(`${serverUrl}/api/token/refresh`, tokenObject)
+    Axios.post(`${serverUrl}/token/refresh`, tokenObject)
     .then(({data: res}) => {
       storageUser.refreshToken = res.refreshToken;
       storageUser.confirmed = res.confirmed;

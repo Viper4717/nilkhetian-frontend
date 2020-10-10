@@ -8,7 +8,7 @@ import { UserContext } from '../../Contexts';
 import history from '../../History';
 
 function loginUser(user, setUser, setLoading, setError){
-    Axios.post(`${serverUrl}/api/user/login`, user)
+    Axios.post(`${serverUrl}/user/login`, user)
         .then(({data: res}) => {
             setUser(res);
             localStorage.setItem("user", JSON.stringify(res));

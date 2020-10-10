@@ -10,7 +10,7 @@ import { UserContext } from '../../Contexts';
 import history from '../../History';
 
 function logoutUser(user, setUser){
-    Axios.post(`${serverUrl}/api/user/logout`, user.refreshToken)
+    Axios.post(`${serverUrl}/user/logout`, user.refreshToken)
         .then(({data: res}) => {
             const nullUser = null;
             setUser(nullUser);
@@ -26,7 +26,7 @@ function resendCode(user, setUser, setMessage){
     const tokenObject = {
         token: user.accessToken
     }
-    Axios.post(`${serverUrl}/api/user/resendconfirmation`, tokenObject)
+    Axios.post(`${serverUrl}/user/resendconfirmation`, tokenObject)
     .then(({data: res}) => {
         window.scrollTo(0, 0);
         const msg = "An e-mail has been sent to your e-mail address for verification."
@@ -54,7 +54,7 @@ function requestAccess(user, setUser, setMessage){
     const tokenObject = {
         token: user.refreshToken
     }
-    Axios.post(`${serverUrl}/api/token`, tokenObject)
+    Axios.post(`${serverUrl}/token`, tokenObject)
     .then(({data: res}) => {
         const newUser = user;
         newUser.accessToken = res.accessToken;
@@ -75,18 +75,18 @@ function Profile() {
     const [user, setUser] = useContext(UserContext);
     const [message, setMessage] = useState();
 
-    const [orderHistory, setOrderHistory] = useState([
-        {
-            orderNo: "20200817xxxx",
-            issueDate: "2020, Aug 17, 10:49AM",
-            price: "721",
-        },
-        {
-            orderNo: "20200817xxxx",
-            issueDate: "2020, Aug 17, 10:49AM",
-            price: "721",
-        },
-    ])
+    // const [orderHistory, setOrderHistory] = useState([
+    //     {
+    //         orderNo: "20200817xxxx",
+    //         issueDate: "2020, Aug 17, 10:49AM",
+    //         price: "721",
+    //     },
+    //     {
+    //         orderNo: "20200817xxxx",
+    //         issueDate: "2020, Aug 17, 10:49AM",
+    //         price: "721",
+    //     },
+    // ])
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -130,7 +130,7 @@ function Profile() {
                     </Button>
                 </div>
             </div>
-            <div className="bookOrderDiv">
+            {/* <div className="bookOrderDiv">
                 <h5 className="bookOrderHeader"> Book Order History </h5>
                 <div className="bookOrderGrid">
                     {orderHistory.map(order => (
@@ -138,7 +138,7 @@ function Profile() {
                         price={order.price}/>
                     ))}
                 </div>
-            </div>
+            </div> */}
         </Container>
     );
 }

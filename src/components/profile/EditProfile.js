@@ -6,7 +6,7 @@ import { UserContext } from '../../Contexts';
 import history from '../../History';
 
 function updateUser(userObject, user, setUser, setLoading, setError){
-    Axios.patch(`${serverUrl}/api/user/`, userObject)
+    Axios.patch(`${serverUrl}/user`, userObject)
         .then((res) => {
             var storageUser = user;
             storageUser.phone = userObject.phone;
@@ -42,7 +42,7 @@ function requestAccess(userObject, user, setUser, setLoading, setError){
     const tokenObject = {
         token: user.refreshToken
     }
-    Axios.post(`${serverUrl}/api/token`, tokenObject)
+    Axios.post(`${serverUrl}/token`, tokenObject)
     .then(({data: res}) => {
         const newUser = user;
         newUser.accessToken = res.accessToken;

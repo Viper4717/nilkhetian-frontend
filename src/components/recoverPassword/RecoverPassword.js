@@ -4,7 +4,7 @@ import Axios from 'axios';
 import { serverUrl } from '../../util';
 
 function changeUserPass(passwordObject, token, setLoading, setError){
-    Axios.post(`${serverUrl}/api/user/resetpassword/${token}`, passwordObject)
+    Axios.post(`${serverUrl}/user/resetpassword/${token}`, passwordObject)
     .then(({data: res}) => {
         window.location.assign('/recoverpasswordsuccess');
     })

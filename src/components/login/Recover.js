@@ -4,7 +4,7 @@ import Axios from 'axios';
 import { serverUrl } from '../../util';
 
 function recoverMail(emailObject, setMessage, setLoading){
-    Axios.post(`${serverUrl}/api/user/resetpassword`, emailObject)
+    Axios.post(`${serverUrl}/user/resetpassword`, emailObject)
     .then(({data: res}) => {
         window.scrollTo(0, 0);
         const msg = "An e-mail has been sent to your e-mail address for password recovery."

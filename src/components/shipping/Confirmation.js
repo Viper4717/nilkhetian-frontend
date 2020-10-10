@@ -51,7 +51,7 @@ function Confirmation() {
         const tokenObject = {
             token: user.refreshToken
         }
-        Axios.post(`${serverUrl}/api/token`, tokenObject)
+        Axios.post(`${serverUrl}/token`, tokenObject)
         .then(({data: res}) => {
             const newUser = user;
             newUser.accessToken = res.accessToken;

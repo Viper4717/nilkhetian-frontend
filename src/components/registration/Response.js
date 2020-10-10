@@ -6,7 +6,7 @@ import { serverUrl } from '../../util';
 import { Link } from 'react-router-dom';
 
 function verifyUser(token, setResponse){
-    Axios.get(`${serverUrl}/api/user/confirmation/${token}`)
+    Axios.get(`${serverUrl}/user/confirmation/${token}`)
         .then((res) => {
             const reply = "Your account has been successfully verified!"
             setResponse(reply);

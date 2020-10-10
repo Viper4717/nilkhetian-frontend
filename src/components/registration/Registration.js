@@ -6,7 +6,7 @@ import { serverUrl } from '../../util';
 import history from '../../History';
 
 function postUser(userObject, setLoading, setError){
-    Axios.post(`${serverUrl}/api/user/register`, userObject)
+    Axios.post(`${serverUrl}/user/register`, userObject)
         .then((res) => {
             window.location.assign('/response/200');
         })
