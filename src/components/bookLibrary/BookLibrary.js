@@ -4,7 +4,7 @@ import Category from '../category/Category';
 import BookCard from './BookCard'
 import PaginationBar from '../paginationBar/PaginationBar';
 import { Container, Button, Spinner } from 'react-bootstrap';
-import Himu from '../../assets/home/himuRimande.jpg';
+import BookImage from '../../assets/home/bookClipart.png';
 import Axios from 'axios';
 import { serverUrl, reverseCategoryParse } from '../../util';
 import { Link } from 'react-router-dom';
@@ -51,7 +51,7 @@ function loadCategory(setBooks, setLoading){
                 id: book._id,
                 name: book.name,
                 author: book.author,
-                imgPath: serverUrl+book.img,
+                imgPath: (book.img? serverUrl+book.img : BookImage),
             }));
             setBooks(newBooks);
             setLoading(false);

@@ -1,6 +1,7 @@
 import React from 'react';
 import './FeaturedProducts.css';
 import BookCard from '../bookLibrary/BookCard';
+import BookImage from '../../assets/home/bookClipart.png';
 import { CardGroup } from 'react-bootstrap';
 import { RiArrowRightCircleFill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
@@ -21,7 +22,7 @@ function FeaturedProducts({cardDeckTitle, topCategories}) {
             </div>
             <CardGroup className="bookCardGroup">
                 {topCategories.map(book => (
-                    <BookCard bookId={book.id} bookImgPath={serverUrl+book.img} bookName={book.name}
+                    <BookCard bookId={book.id} bookImgPath={book.img? serverUrl+book.img : BookImage} bookName={book.name}
                     bookAuthor={book.author}/>
                 ))}
             </CardGroup>

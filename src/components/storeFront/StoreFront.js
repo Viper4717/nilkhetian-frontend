@@ -28,7 +28,7 @@ function loadStores(setStores, setLoading){
     const newStores = res.results.map((store) => ({
       id: store._id,
       storeName: store.storeName,
-      storeImgPath: serverUrl+store.img,
+      storeImgPath: (store.img? serverUrl+store.img : BookStoreImage),
       storeDetails: store.storeDetails,
       storeCategories: store.categories,
     }));

@@ -3,7 +3,7 @@ import './Result.css';
 import { Container, Spinner } from 'react-bootstrap';
 import ResultBookCard from './ResultBookCard';
 import PaginationBar from '../paginationBar/PaginationBar';
-import Himu from '../../assets/home/himuRimande.jpg';
+import BookImage from '../../assets/home/bookClipart.png';
 import Axios from 'axios';
 import { serverUrl } from '../../util';
 
@@ -34,7 +34,7 @@ function loadResults(setResults, setLoading, setNotFound){
                     name: book.name,
                     author: book.author,
                     storeName: book.storeName,
-                    imgPath: serverUrl+book.img,
+                    imgPath: (book.img? serverUrl+book.img : BookImage),
                     price: book.price,
                 }));
                 setResults(newResults);
