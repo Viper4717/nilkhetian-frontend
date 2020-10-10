@@ -26,6 +26,7 @@ function loadResults(setResults, setLoading, setNotFound){
             if(res.totalPages == 0){
                 setLoading(false);
                 setNotFound(true);
+                setResults([]);
             }
             else{
                 totalPages = res.totalPages;
