@@ -14,7 +14,7 @@ function Footer() {
           </div>
           <div className="footerMiddle">
             <text>123, Main Street, New York</text><br/>
-            <text>Is this even a legit address</text>
+            <text>Dummy address for now</text>
           </div>
           <div className="footerBottom">
             <a href="https://www.facebook.com/nilkhetian" target="_blank">
@@ -29,7 +29,7 @@ function Footer() {
           </div>
           <div className="footerMiddle">
             <text>+8801723456789</text><br/>
-            <text>kiremamakekovor@gmail.com</text>
+            <text>nilkhetian@gmail.com</text>
           </div>
           <div className="footerBottom">
             <text>All Rights Reserved</text><br/>

@@ -58,21 +58,24 @@ function Home() {
         </Button>
       </div>
       {topCategories.length > 0 &&
-      <FeaturedProducts cardDeckTitle={topCategories[0].category} topCategories={topCategories[0].products}/>}
+      <FeaturedProducts cardDeckTitle={topCategories[0].category} topCategories={topCategories[0].products}/>
+      || <h5>Couldn't load category list here. No connection to server!</h5>}
       <div className="whiteDiv">
         <Card className="midBanner">
           <Card.Img className="midBannerImage" src={MidBanner} alt="Site Banner"/>
         </Card>
       </div>
       {topCategories.length > 0 &&
-      <FeaturedProducts cardDeckTitle={topCategories[0].category} topCategories={topCategories[0].products}/>}
+      <FeaturedProducts cardDeckTitle={topCategories[0].category} topCategories={topCategories[0].products}/>
+      || <h5>Couldn't load category list here. No connection to server!</h5>}
       <div className="whiteDiv">
         <Card className="midBanner">
           <Card.Img className="midBannerImage" src={MidBanner2} alt="Site Banner"/>
         </Card>
       </div>
       {topCategories.length > 0 &&
-      <FeaturedProducts cardDeckTitle={topCategories[0].category} topCategories={topCategories[0].products}/>}
+      <FeaturedProducts cardDeckTitle={topCategories[0].category} topCategories={topCategories[0].products}/>
+      || <h5>Couldn't load category list here. No connection to server!</h5>}
     </Container>
   );
 }
