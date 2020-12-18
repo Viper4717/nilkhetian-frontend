@@ -1,3 +1,6 @@
+This is the front-end for a book-selling start-up website named Nilkhetian.
+You can find the back-end for the website [here](https://github.com/SaminYaser/nilkhetian-backend).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
