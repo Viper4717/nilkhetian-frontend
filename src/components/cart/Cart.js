@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import './Cart.css';
 import EmptyCartImage from '../../assets/cart/emptyCartImage.png'
 import { Container, Button, Image } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
-import { CartContext } from '../../CartContext';
+import { CartContext, UserContext } from '../../Contexts';
 
 function Cart() {
 
     const [cart, setCart] = useContext(CartContext);
+    const [user, setUser] = useContext(UserContext);
     const [productCost, setCost] = useState(
         cart.reduce((acc, item) => acc + (item.quantity * item.price), 0));
     const shippingCost = 50;
@@ -16,6 +18,10 @@ function Cart() {
         const newCost = cart.reduce((acc, item) => acc + (item.quantity * item.price), 0);
         setCost(newCost);
     }, [cart])
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
     return (
         <Container fluid="md" className="parentContainer smallHeight">
@@ -59,13 +65,27 @@ function Cart() {
                         Total Bill: {productCost + shippingCost} ৳
                     </div>
                     <div className="bottomButtonDiv">
-                        <Button className="backToLibraryBtn" variant="remove">
+                        <Button className="backToLibraryBtn" variant="remove" as={Link} to="/stores">
                             Back to Library
                         </Button>
-                        <Button className="continueBtn" variant="remove">
-                            Continue
-                        </Button>
+                        {(user == null || !user.confirmed)?
+                            <Button className="continueToShippingBtn" variant="remove" disabled>
+                                Continue
+                            </Button>:
+                            <Button className="continueToShippingBtn" variant="remove"
+                            as={Link} to="/shipping">
+                                Continue
+                            </Button>
+                        }
                     </div>
+                    {user == null &&
+                    <div className="loginPromptDiv">
+                        Please login to continue
+                    </div>}
+                    {(user != null && !user.confirmed) &&
+                    <div className="loginPromptDiv">
+                        Please verify account to continue
+                    </div>}
                 </div>
             }
         </Container>

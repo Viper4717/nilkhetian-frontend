@@ -1,52 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Home.css'
 import FeaturedProducts from './FeaturedProducts'
 import WebsiteBanner from '../../assets/home/websiteBanner.jpg'
 import MidBanner from '../../assets/home/midBanner.jpg'
 import MidBanner2 from '../../assets/home/midBanner2.jpg'
 import MobileTopBanner from '../../assets/home/mobileTopBanner.png'
-import Himu from '../../assets/home/himuRimande.jpg'
-import AmiEbongAmra from '../../assets/home/amiEbongAmra.jpg'
-import AngelsAndDemons from '../../assets/home/angelsAndDemons.jpg'
-import TheDaVinciCode from '../../assets/home/theDaVinciCode.jpg'
 import { Button, Container, Card } from 'react-bootstrap';
+import Axios from 'axios';
+import { serverUrl } from '../../util';
 import { Link } from 'react-router-dom';
 
+function loadFeaturedCategories(setTopCategories){
+  Axios
+  .get(`${serverUrl}/homeCategory`)
+  .then(({data: res}) => {
+    const newCategories = res;
+    setTopCategories(newCategories);
+  })
+  .catch((error) => {
+    console.error(error);
+    console.log('failed to load categories');
+  });
+}
+
 function Home() {
-  const [topCategory, setTopCategory] = useState([
-    {
-      id: "1",
-      name: "Himu Rimande",
-      author: "Humayun Ahmed",
-      storeName: "Shameme Boi Bitan",
-      imgPath: Himu,
-      price: 300,
-    },
-    {
-      id: "2",
-      name: "Ami Ebong Amra",
-      author: "Humayun Ahmed",
-      storeName: "Shameme Boi Bitan",
-      imgPath: AmiEbongAmra,
-      price: 350,
-    },
-    {
-      id: "3",
-      name: "Angels and Demons",
-      author: "Dan Brown",
-      storeName: "Samin Er Bosta",
-      imgPath: AngelsAndDemons,
-      price: 700,
-    },
-    {
-      id: "4",
-      name: "The Da Vinci Code",
-      author: "Dan Brown",
-      storeName: "Samin Er Bosta",
-      imgPath: TheDaVinciCode,
-      price: 800,
-    },
-  ])
+  const [topCategories, setTopCategories] = useState([])
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    loadFeaturedCategories(setTopCategories);
+  }, [])
 
   return (
     <Container fluid="md" className="parentContainer padBottomContainer">
@@ -74,19 +57,25 @@ function Home() {
           EXPLORE NOW
         </Button>
       </div>
-      <FeaturedProducts cardDeckTitle="Top Category" topCategory={topCategory}/>
+      {topCategories.length > 0 &&
+      <FeaturedProducts cardDeckTitle={topCategories[0].category} topCategories={topCategories[0].products}/>
+      || <h5>Couldn't load category list here. No connection to server!</h5>}
       <div className="whiteDiv">
         <Card className="midBanner">
           <Card.Img className="midBannerImage" src={MidBanner} alt="Site Banner"/>
         </Card>
       </div>
-      <FeaturedProducts cardDeckTitle="Book Category" topCategory={topCategory}/>
+      {topCategories.length > 0 &&
+      <FeaturedProducts cardDeckTitle={topCategories[0].category} topCategories={topCategories[0].products}/>
+      || <h5>Couldn't load category list here. No connection to server!</h5>}
       <div className="whiteDiv">
         <Card className="midBanner">
           <Card.Img className="midBannerImage" src={MidBanner2} alt="Site Banner"/>
         </Card>
       </div>
-      <FeaturedProducts cardDeckTitle="Book Category" topCategory={topCategory}/>
+      {topCategories.length > 0 &&
+      <FeaturedProducts cardDeckTitle={topCategories[0].category} topCategories={topCategories[0].products}/>
+      || <h5>Couldn't load category list here. No connection to server!</h5>}
     </Container>
   );
 }

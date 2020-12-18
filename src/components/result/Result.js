@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './Result.css';
-import { Container} from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
 import ResultBookCard from './ResultBookCard';
-import PaginationBar from '../paginationBar/PaginationBar'
-import Himu from '../../assets/home/himuRimande.jpg'
+import PaginationBar from '../paginationBar/PaginationBar';
+import BookImage from '../../assets/home/bookClipart.png';
 import Axios from 'axios';
 import { serverUrl } from '../../util';
 
 var currentPageNo;
 var totalPages = 1;
-
-const productIdString = window.location.href.substring(
-    window.location.href.indexOf("productId")+10, window.location.href.indexOf("&page"));
-const urlPath = window.location.href.substring(
-    window.location.href.indexOf("/results"), window.location.href.indexOf("page")+5);
+var productIdString;
+var urlPath;
 
 function loadCurrentPage(setCurrentPage){
     currentPageNo = window.location.href.substring(
@@ -21,20 +18,30 @@ function loadCurrentPage(setCurrentPage){
     setCurrentPage(parseInt(currentPageNo, 10));
 }
 
-function loadResults(setResults){
+function loadResults(setResults, setLoading, setNotFound){
+    setLoading(true);
     Axios
         .get(`${serverUrl}/concrete-products?productId=${productIdString}&page=${currentPageNo}`)
         .then(({data: res}) => {
-            totalPages = res.totalPages;
-            const newResults = res.results.map((book) => ({
-                id: book._id,
-                name: book.name,
-                author: book.author,
-                storeName: book.storeName,
-                imgPath: Himu,
-                price: book.price,
-              }));
-            setResults(newResults);
+            if(res.totalPages == 0){
+                setLoading(false);
+                setNotFound(true);
+                setResults([]);
+            }
+            else{
+                totalPages = res.totalPages;
+                const newResults = res.results.map((book) => ({
+                    id: book._id,
+                    name: book.name,
+                    author: book.author,
+                    storeName: book.storeName,
+                    imgPath: (book.img? serverUrl+book.img : BookImage),
+                    price: book.price,
+                }));
+                setResults(newResults);
+                setLoading(false);
+                setNotFound(false);
+            }
         })
         .catch((error) => {
             console.error(error);
@@ -44,8 +51,18 @@ function loadResults(setResults){
 
 function Result() {
 
+    const [loading, setLoading] = useState(true);
+    const [notFound, setNotFound] = useState(false);
     const [currentResults, setResults] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        productIdString = window.location.href.substring(
+            window.location.href.indexOf("productId")+10, window.location.href.indexOf("&page"));
+        urlPath = window.location.href.substring(
+            window.location.href.indexOf("/results"), window.location.href.indexOf("page")+5);
+    }, [])
 
     useEffect(() => {
         loadCurrentPage(setCurrentPage);
@@ -53,7 +70,7 @@ function Result() {
         window.location.href.indexOf("page=")+5, window.location.href.length)])
   
     useEffect(() => {
-        loadResults(setResults);
+        loadResults(setResults, setLoading, setNotFound);
     }, [currentPage])
 
     const pageBarLimit = 5;
@@ -74,16 +91,30 @@ function Result() {
     return (
         <Container fluid="md" className="parentContainer smallHeight">
             <h2 className="storeHeader"> Nilkhet Online </h2>
-            <div className="resultGrid">
-                {currentResults.map(book => (
-                    <ResultBookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.name}
-                    bookAuthor={book.author} bookStoreName={book.storeName} bookPrice={book.price}/>
-                ))}
+            {loading?
+            <div className="loadingDiv">
+            <Spinner animation="border" role="status"/>
+            <h4 className="loadingText"> Loading... </h4>
             </div>
-            <div className="paginationDiv">
-                <PaginationBar maxLeft={maxLeft} maxRight={maxRight} lastPage={totalPages}
-                currentPage={currentPage} urlPath={urlPath} />
+            :
+            <div>
+                {notFound &&
+                <div className="loadingDiv">
+                    <h4 className="loadingText"> No results found! </h4>
+                </div>
+                }
+                <div className="resultGrid">
+                    {currentResults.map(book => (
+                        <ResultBookCard bookId={book.id} bookImgPath={book.imgPath} bookName={book.name}
+                        bookAuthor={book.author} bookStoreName={book.storeName} bookPrice={book.price}/>
+                    ))}
+                </div>
+                <div className="paginationDiv">
+                    <PaginationBar maxLeft={maxLeft} maxRight={maxRight} lastPage={totalPages}
+                    currentPage={currentPage} urlPath={urlPath} />
+                </div>
             </div>
+            }
         </Container>
     );
 }

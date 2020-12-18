@@ -1,33 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import './Registration.css'
+import React, { useState, useEffect, useContext } from 'react';
 import { Form, Button, Container, Alert, Spinner } from 'react-bootstrap';
 import Axios from 'axios';
 import { serverUrl } from '../../util';
+import { UserContext } from '../../Contexts';
 import history from '../../History';
 
-function postUser(userObject, setLoading, setError){
-    Axios.post(`${serverUrl}/user/register`, userObject)
+function updateUser(userObject, user, setUser, setLoading, setError){
+    Axios.patch(`${serverUrl}/user`, userObject)
         .then((res) => {
-            window.location.assign('/response/200');
+            var storageUser = user;
+            storageUser.phone = userObject.phone;
+            storageUser.address = userObject.address;
+            if(userObject.newPassword != null){
+                storageUser.password = userObject.newPassword;
+            }
+            setUser(storageUser);
+            localStorage.setItem("user", JSON.stringify(storageUser));
+            setLoading(false);
+            history.push('/profile');
         })
         .catch((error) => {
-            setLoading(false);
-            if(error.response != null && error.response.status == 409){
+            if(error.response != null && error.response.status == 401){
+                requestAccess(userObject, user, setUser, setLoading, setError);
+            }
+            else if(error.response != null && error.response.status == 400){
+                setLoading(false);
                 window.scrollTo(0, 0);
-                const err = "E-mail already exists."
+                const err = "Your current password is incorrect."
                 setError(err);
             }
             else{
+                setLoading(false);
                 window.scrollTo(0, 0);
-                const err = "Failed to register."
+                const err = "Failed to update profile."
                 setError(err);
             }
         });
 }
 
-function validateEmail(email) {
-    const re = /\S+@\S+\.\S+/
-    return re.test(email);
+function requestAccess(userObject, user, setUser, setLoading, setError){
+    const tokenObject = {
+        token: user.refreshToken
+    }
+    Axios.post(`${serverUrl}/token`, tokenObject)
+    .then(({data: res}) => {
+        const newUser = user;
+        newUser.accessToken = res.accessToken;
+        localStorage.setItem("user", JSON.stringify(newUser));
+        setUser(newUser);
+        updateUser(userObject, user, setUser, setLoading, setError);
+    })
+    .catch((error) => {
+        const nullUser = null;
+        setUser(nullUser);
+        localStorage.setItem("user", JSON.stringify(nullUser));
+        history.push('/');
+    });
 }
 
 function validatePhone(phone){
@@ -35,29 +63,29 @@ function validatePhone(phone){
     return re.test(phone);
 }
 
-function Registration() {
+function EditProfile() {
+
+    const [user, setUser] = useContext(UserContext);
 
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
-    const [name, setName] = useState();
-    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [newPass, setNewPass] = useState("");
     const [confirmPass, setConfirmPass] = useState();
     const [phone, setPhone] = useState();
     const [address, setAddress] = useState();
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        setPhone(user.phone);
+        setAddress(user.address);
     }, [])
 
-    function handleName(e){
-        setName(e.target.value);
-    }
-    function handleEmail(e){
-        setEmail(e.target.value);
-    }
     function handlePassword(e){
         setPassword(e.target.value);
+    }
+    function handleNewPassword(e){
+        setNewPass(e.target.value);
     }
     function handleConfirmPassword(e){
         setConfirmPass(e.target.value);
@@ -69,33 +97,35 @@ function Registration() {
         setAddress(e.target.value);
     }
 
-    function register(e){
+    function update(e){
         e.preventDefault();
-        if(name && email && password && confirmPass && phone && address){
+        if(password){
             setError(null);
-            if(name.length < 6 || !validateEmail(email) || password.length < 8 
-            || !validatePhone(phone) || address.length < 10
-            || password !== confirmPass){
+            if((newPass != "" && newPass.length < 8) || !validatePhone(phone) || address.length < 10
+            || (newPass != "" && newPass !== confirmPass)){
                 window.scrollTo(0, 0);
                 const err = "Invalid data."
+                console.log(newPass)
+                console.log(phone)
+                console.log(address)
                 setError(err);
             }
             else{
                 setError(null);
                 setLoading(true);
                 const userObject = {
-                    name: name,
-                    email: email,
+                    token: user.accessToken,
                     password: password,
+                    newPassword: newPass,
                     phone: phone,
                     address: address,
                 }
-                postUser(userObject, setLoading, setError);
+                updateUser(userObject, user, setUser, setLoading, setError);
             }
         }
         else{
             window.scrollTo(0, 0);
-            const err = "Please fill out all the details."
+            const err = "Please enter your current password."
             setError(err);
         }
     }
@@ -103,10 +133,10 @@ function Registration() {
     return (
         <Container fluid="md" className="parentContainer smallHeight">
             <h4 className="signInText">
-                Create Account
+                Edit Profile
             </h4>
             <div className="formDiv">
-            <Form onSubmit={register}>
+            <Form onSubmit={update}>
                 <div>
                     {error &&
                     <Alert variant='danger'>
@@ -115,40 +145,28 @@ function Registration() {
                     <h5 className="personalInfoText">
                         Personal Info
                     </h5>
-                        <Form.Group>
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter name" onChange={handleName} />
-                            {(name && name.length < 6) &&
-                            <Form.Text className="passwordWarnText">
-                                Name must be minimum 6 characters long.
-                            </Form.Text>}
-                        </Form.Group>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" onChange={handleEmail}/>
-                            {(email && !validateEmail(email)) &&
-                            <Form.Text className="passwordWarnText">
-                                Enter a valid e-mail address.
-                            </Form.Text>}
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label>Current Password</Form.Label>
+                            <Form.Control type="password" placeholder="Enter password" onChange={handlePassword}/>
                         </Form.Group>
                         <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Enter password" onChange={handlePassword}/>
-                            {(password && password.length < 8) &&
+                            <Form.Label>New Password</Form.Label>
+                            <Form.Control type="password" placeholder="Enter password" onChange={handleNewPassword}/>
+                            {(newPass && newPass.length < 8) &&
                             <Form.Text className="passwordWarnText">
                                 Password must be minimum 8 characters long.
                             </Form.Text>}
                         </Form.Group>
                         <Form.Group controlId="formBasicConfirmPassword">
-                            <Form.Label>Confirm Password</Form.Label>
+                            <Form.Label>Confirm New Password</Form.Label>
                             <Form.Control type="password" placeholder="Re-enter password"
                             onChange={handleConfirmPassword}/>
-                            {(confirmPass && password !== confirmPass) &&
+                            {(confirmPass && newPass !== confirmPass) &&
                             <Form.Text className="passwordWarnText"> Passwords don't match! </Form.Text>}
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Phone Number</Form.Label>
-                            <Form.Control type="tel" placeholder="Enter number" onChange={handlePhone}/>
+                            <Form.Control type="tel" defaultValue={user.phone} onChange={handlePhone}/>
                             {(phone && !validatePhone(phone)) &&
                             <Form.Text className="passwordWarnText">
                                 Enter a valid number.
@@ -164,7 +182,7 @@ function Registration() {
                     </div>
                         <Form.Group>
                             <Form.Label>Address Line 1</Form.Label>
-                            <Form.Control type="text" placeholder="Enter address" onChange={handleAddress} />
+                            <Form.Control type="text" defaultValue={user.address} onChange={handleAddress} />
                             {(address && address.length < 10) &&
                             <Form.Text className="passwordWarnText">
                                 Address must be minimum 10 characters long.
@@ -173,12 +191,12 @@ function Registration() {
                 </div>
                 <div className="signInButtonOverlay">
                     <Button className="signInButtonWeb" variant="custom" type="submit" disabled={loading}>
-                        {loading? <Spinner animation="border" variant="dark"/> : "Sign Up"}
+                        {loading? <Spinner animation="border" variant="dark"/> : "Update"}
                     </Button>
                 </div>
                 <div className="signInMobileOverlay">
                     <Button className="signInButtonMobile" variant="custom" type="submit" disabled={loading}>
-                        {loading? <Spinner animation="border" variant="dark"/> : "Sign Up"}
+                        {loading? <Spinner animation="border" variant="dark"/> : "Update"}
                     </Button>
                 </div>
             </Form>
@@ -187,4 +205,4 @@ function Registration() {
     );
 }
 
-export default Registration;
+export default EditProfile;

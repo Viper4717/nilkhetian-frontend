@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './StoreFront.css';
-import BookStoreImage from '../../assets/bookStore/bookStore.jpg'
-import StoreCard from './StoreCard'
-import PaginationBar from '../paginationBar/PaginationBar'
-import { Container, Button} from 'react-bootstrap';
+import BookStoreImage from '../../assets/bookStore/bookStore.jpg';
+import StoreCard from './StoreCard';
+import PaginationBar from '../paginationBar/PaginationBar';
+import { Container, Button, Spinner} from 'react-bootstrap';
 import Axios from 'axios';
 import { serverUrl, categoryParse } from '../../util';
 import { Link } from 'react-router-dom';
@@ -11,8 +11,7 @@ import { Link } from 'react-router-dom';
 var firstCategory = "Fiction";
 var currentPageNo;
 var totalPages = 1;
-const urlPath = window.location.href.substring(
-  window.location.href.indexOf("/stores"), window.location.href.indexOf("page"+5));
+var urlPath;
 
 function loadCurrentPage(setCurrentPage){
   currentPageNo = window.location.href.substring(
@@ -20,7 +19,8 @@ function loadCurrentPage(setCurrentPage){
   setCurrentPage(parseInt(currentPageNo, 10));
 }
 
-function loadStores(setStores){
+function loadStores(setStores, setLoading){
+  setLoading(true);
   Axios
   .get(`${serverUrl}/stores?page=${currentPageNo}`)
   .then(({data: res}) => {
@@ -28,11 +28,12 @@ function loadStores(setStores){
     const newStores = res.results.map((store) => ({
       id: store._id,
       storeName: store.storeName,
-      storeImgPath: BookStoreImage,
+      storeImgPath: (store.img? serverUrl+store.img : BookStoreImage),
       storeDetails: store.storeDetails,
       storeCategories: store.categories,
     }));
     setStores(newStores);
+    setLoading(false);
   })
   .catch((error) => {
     console.error(error);
@@ -50,8 +51,16 @@ function loadStores(setStores){
 }
 
 function StoreFront() {
+
+    const [loading, setLoading] = useState(true);
     const [stores, setStores] = useState([]);
     const [currentPage, setCurrentPage] = useState();
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+      urlPath = window.location.href.substring(
+        window.location.href.indexOf("/stores"), window.location.href.indexOf("page"+5));
+    }, [])
 
     useEffect(() => {
       loadCurrentPage(setCurrentPage);
@@ -61,6 +70,7 @@ function StoreFront() {
     useEffect(() => {
       loadStores(
         setStores,
+        setLoading,
       );
     }, [currentPage]);
 
@@ -88,16 +98,25 @@ function StoreFront() {
                     Browse Books/Stationaries
                 </Button>
             </div>
-            <div className="storeGrid">
-                {stores.map(store => (
-                    <StoreCard storeId={store.id} storeName={store.storeName} storeImgPath={store.storeImgPath}
-                     storeDetails={store.storeDetails} storeCategories={store.storeCategories} />
-                ))}
+            {loading?
+            <div className="loadingDiv">
+              <Spinner animation="border" role="status"/>
+              <h4 className="loadingText"> Loading... </h4>
             </div>
-            <div className="paginationDiv">
-              <PaginationBar maxLeft={maxLeft} maxRight={maxRight} lastPage={totalPages}
-               currentPage={currentPage} urlPath={urlPath} />
+            :
+            <div>
+              <div className="storeGrid">
+                  {stores.map(store => (
+                      <StoreCard storeId={store.id} storeName={store.storeName} storeImgPath={store.storeImgPath}
+                      storeDetails={store.storeDetails} storeCategories={store.storeCategories} />
+                  ))}
+              </div>
+              <div className="paginationDiv">
+                <PaginationBar maxLeft={maxLeft} maxRight={maxRight} lastPage={totalPages}
+                currentPage={currentPage} urlPath={urlPath} />
+              </div>
             </div>
+            }
         </Container>
     );
 }

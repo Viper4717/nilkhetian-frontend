@@ -73,10 +73,16 @@
     font-weight: 600 !important;
     margin-left: 15px;
 }
-.continueBtn{
+.continueToShippingBtn{
     font-size: 1.1em !important;
     font-weight: 600 !important;
     margin-right: 15px;
+}
+.loginPromptDiv{
+    padding-right: 15px;
+    margin-top: 10px !important;
+    text-align: right;
+    color: red;
 }
 
 @media screen and (max-width: 768px){
@@ -126,12 +132,11 @@
     }
     .backToLibraryBtn{
         font-size: 0.8em !important;
-        font-weight: 600 !important;
-        margin-left: 15px;
     }
-    .continueBtn{
+    .continueToShippingBtn{
         font-size: 0.8em !important;
-        font-weight: 600 !important;
-        margin-right: 15px;
+    }
+    .loginPromptDiv{
+        font-size: 0.8em;
     }
 }

@@ -1,3 +1,6 @@
+.resendAlertDiv{
+    padding: 0px 100px;
+}
 .profileBgDiv{
     display: flex;
     justify-content: space-between;
@@ -18,11 +21,14 @@
     display: block;
     margin-top: 30px;
 }
+.verifyEmailText{
+    font-size: 0.9em;
+}
 .profileRightDiv > .createAccount{
     display: block;
     margin-top: 30px;
 }
-.logInOutBtn{
+.logutBtn{
     margin-top: 30px;
 }
 .bookOrderDiv{
@@ -41,6 +47,9 @@
 }
 
 @media screen and (max-width: 768px){
+    .resendAlertDiv{
+        padding: 0px 15px;
+    }
     .profileBgDiv{
         flex-direction: column-reverse;
         margin-top: 30px;
@@ -51,7 +60,7 @@
     .profileRightDiv > .createAccount{
         margin-top: 20px;
     }
-    .logInOutBtn{
+    .logutBtn{
         margin-top: 20px;
     }
     .profileLeftDiv{

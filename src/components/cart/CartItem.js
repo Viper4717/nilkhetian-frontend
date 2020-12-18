@@ -1,14 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './CartItem.css';
 import { Card, Button } from 'react-bootstrap';
 import { CgTrash } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../CartContext';
+import { CartContext } from '../../Contexts';
 
 function CartItem({bookId, bookName, bookAuthor, bookStoreName, bookImgPath, bookQuantity, bookPrice}) {
 
     const [cart, setCart] = useContext(CartContext);
-    const [quantity, setQuantity] = useState(bookQuantity);
+    const [quantity, setQuantity] = useState();
+
+    useEffect(() => {
+        setQuantity(bookQuantity);
+    }, [bookQuantity])
 
     const removeFromCart = () => {
         const newCart = cart.filter(item => item.id !== bookId);

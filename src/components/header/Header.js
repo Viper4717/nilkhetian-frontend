@@ -3,27 +3,18 @@ import { Navbar, Nav, Form, FormControl, Button, Container, Badge} from 'react-b
 import HeaderLogo from '../../assets/header/nilkhetianLogoHeader.png'
 import MobileHeaderLogo from '../../assets/header/nilkhetianMobileLogoHeader.svg'
 import { CgProfile, CgSearch, CgShoppingCart } from 'react-icons/cg';
+import { BsCircleFill } from 'react-icons/bs';
 import './Header.css';
 import { categoryParse } from '../../util';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../CartContext';
-
-function loadCartFromStorage(setCart){
-  var storageCart = localStorage.getItem("cart");
-  storageCart = JSON.parse(storageCart);
-  if(storageCart != null && storageCart.length){
-    setCart(storageCart);
-  }
-}
+import { CartContext, UserContext } from '../../Contexts';
+import history from '../../History';
 
 function Header() {
 
   const [searchText, setSearchText] = useState();
   const [cart, setCart] = useContext(CartContext);
-
-  useEffect(() => {
-    loadCartFromStorage(setCart);
-  }, [])
+  const [user, setUser] = useContext(UserContext);
 
   function parseSearchText(e){
     setSearchText(categoryParse(e.target.value));
@@ -31,7 +22,7 @@ function Header() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    window.location.assign(`/search?q=${searchText}&page=1`);
+    history.push(`/search?q=${searchText}&page=1`);
   } 
 
   return (
@@ -65,8 +56,9 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="collapsedNavbar" id="basic-navbar-nav" >
           <Nav>
-            <Nav.Link as={Link} to="/login">
+            <Nav.Link as={Link} to={user? "/profile" : "/login"}>
               <CgProfile size='2em'/>
+              {user && <BsCircleFill className="loggedInDot"/>}
               <h5 className="iconText">Profile</h5>
             </Nav.Link>
             <Nav.Link as={Link} to="/cart">

@@ -4,10 +4,17 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import "../node_modules/bootstrap/dist/css/bootstrap.css"
+import { CartProvider, ShippingProvider, UserProvider } from './Contexts';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UserProvider>
+    <CartProvider>
+    <ShippingProvider>
+      <App />
+    </ShippingProvider>
+    </CartProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
